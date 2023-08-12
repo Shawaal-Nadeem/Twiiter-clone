@@ -21,6 +21,8 @@ module.exports = {
       'white': '#FFFFFF',
       'grayDark': '#242424',
       'black-Home-BG': '#060606',
+      'gray-box': '#EAEAEA',
+      'black-box': '#121212'
     },
   
     container: {
