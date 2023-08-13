@@ -5,6 +5,7 @@ export default function LognSign() {
   const [state,setState]=useState(false);
   const [mode,setMode]=useState(false);
   const [show,setShow]=useState(false);
+  const [password,setPassword]=useState('Type Password');
 function ToggleMode()
 {
 if(mode===false){
@@ -50,12 +51,12 @@ else if(show===true){
     </div>
     <div className=" mt-6">
       <label className=" text-grayLight">Email Address</label>
-      <input className={mode===false?"flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight":"flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight bg-black "} placeholder="Codenest@gmail.com" type="email"></input>
+      <input className={mode===false?"flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight":"flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight bg-black text-grayLight"} placeholder="Codenest@gmail.com" type="email"></input>
     </div>
     <div className=" mt-6">
       <label className={mode===false?" text-black":" text-white"}>Password</label>
       <div className={mode===false?" flex items-center border-2 border-solid border-black h-12 rounded-lg w-96":" flex items-center border-2 border-solid border-white h-12 rounded-lg w-96"}>
-      <input className={mode===false?" outline-none w-96 pl-4":" outline-none w-96 pl-4 bg-black text-white"} type={show===false?'password':'text'} value={'Type Password'}></input>
+      <input className={mode===false?" outline-none w-96 pl-4":" outline-none w-96 pl-4 bg-black text-white"} type={show===false?'password':'text'} value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
       <Image src={mode===false?show===false?'/images/notEye.png':'/images/openEye1.png':show===false?'/images/notEye1.png':'/images/openEye.png'} onClick={()=>{ToggleIcon()}} alt="Loading..." width={19} height={19} className=" mr-3"></Image>
       </div>
     </div>
@@ -81,16 +82,16 @@ else if(show===true){
     </div>
     <div className=" mt-4">
       <label className=" text-grayLight">Email Address</label>
-      <input className={mode===false?"flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight":"flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight bg-black"} placeholder="Codenest@gmail.com" type="email"></input>
+      <input className={mode===false?"flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight":"flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight bg-black text-grayLight"} placeholder="Codenest@gmail.com" type="email"></input>
     </div>
     <div className=" mt-4">
       <label className=" text-grayLight">Create Username</label>
-      <input className={mode===false?"flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight":"flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight bg-black"} placeholder="Codenest2023" type="text"></input>
+      <input className={mode===false?"flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight":"flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight bg-black text-grayLight"} placeholder="Codenest2023" type="text"></input>
     </div>
     <div className=" mt-4">
       <label className={mode===false?" text-black":" text-white"}>Password</label>
       <div className={mode===false?" flex items-center border-2 border-solid border-black h-12 rounded-lg w-96":" flex items-center border-2 border-solid border-white h-12 rounded-lg w-96"}>
-      <input className={mode===false?" outline-none w-96 pl-4":" outline-none w-96 pl-4 bg-black text-white"} type="password" value={'Type Password'}></input>
+      <input className={mode===false?" outline-none w-96 pl-4":" outline-none w-96 pl-4 bg-black text-white"} type={show===false?'password':'text'} value={password} onChange={(e)=>{setPassword(e.target.value)}}></input>
       <Image src={mode===false?show===false?'/images/notEye.png':'/images/openEye1.png':show===false?'/images/notEye1.png':'/images/openEye.png'} onClick={()=>{ToggleIcon()}} alt="Loading..." width={19} height={19} className=" mr-3"></Image>
       </div>
     </div>
