@@ -26,16 +26,21 @@ else if(show===true){
 }
   return (
     <>
-    <div className={mode===false?" flex items-center justify-between":" flex items-center justify-between bg-black"}>
+    <div className={mode===false?" flex items-center justify-between w-full h-[100vh] max-sm:flex-col":" flex items-center justify-between bg-black w-full h-[100vh] max-sm:flex-col"}>
 
    <div>
-    <Image src={'/images/Mask group.png'} alt="Loading...." width={300} height={300} className={mode===true?'grayscale':'grayscale-0'}></Image>
+    <Image src={'/images/Mask group.png'} alt="Loading...." width={325} height={325} className={mode===true?'grayscale h-[100vh] w-full max-md:hidden':'grayscale-0 h-[100vh] w-full max-md:hidden'}></Image>
+    <Image src={'/images/bg 1.png'} alt="Loading...." width={200} height={200} className={mode===false?" sm:hidden w-[100vh] relative grayscale-0":" sm:hidden w-[100vh] relative grayscale"}></Image>
+    <div className=" flex items-center flex-col mr-2 mt-3 sm:hidden absolute z-[1] right-0 top-0 bottom-0">
+    <Image src={'/images/X.png'} alt="Loading....." width={55} height={55}></Image>
+    <Image onClick={()=>{ToggleMode()}} src={mode===false?'/images/light mode icon.png':'/images/dark mode icon.png'} alt="Loading....." width={45} height={45} className=" mt-2 cursor-pointer"></Image>
+   </div>
    </div>
 
    <div>
     {state===false? 
-    <>
-    <div className={mode===false?" flex items-center justify-center bg-gray-box w-96 h-14 rounded-xl":" flex items-center justify-center bg-black-box w-96 h-14 rounded-xl"} >
+    <div className=" max-sm:mt-10 max-sm:mb-16">
+    <div className={mode===false?" flex items-center justify-center bg-gray-box w-96 h-14 rounded-xl ":" flex items-center justify-center bg-black-box w-96 h-14 rounded-xl max-sm:mt-10"} >
       <div className=" flex items-center justify-center w-full h-full ">
       <button className={mode===false?" w-2/4 h-12 bg-white ml-1 rounded-lg font-bold":" w-2/4 h-12 bg-black ml-1 rounded-lg font-bold text-white"}>Login</button>
       <button onClick={()=>setState(true)} className={mode===false?" w-2/4 h-12 mr-1 rounded-lg font-bold":" w-2/4 h-12 mr-1 rounded-lg font-bold text-white"}>Signup</button>
@@ -63,9 +68,9 @@ else if(show===true){
     <div className={mode===false?" flex items-center justify-center bg-black text-white h-12 rounded-lg w-96 mt-8":" flex items-center justify-center bg-white text-black h-12 rounded-lg w-96 mt-8"}>
     <button className=" flex items-center justify-center font-medium w-96 h-12">Login</button>
     </div>
-    </>
+    </div>
 
-    : <>
+    : <div className=" max-sm:mt-10 max-sm:mb-16">
     <div className={mode===false?" flex items-center justify-center bg-gray-box w-96 h-14 rounded-xl":" flex items-center justify-center bg-black-box w-96 h-14 rounded-xl"}>
       <div className=" flex items-center justify-center w-full h-full ">
       <button onClick={()=>setState(false)} className={mode===false?" w-2/4 h-12 ml-1 rounded-lg font-bold":" w-2/4 h-12 ml-1 rounded-lg font-bold text-white"}>Login</button>
@@ -98,13 +103,13 @@ else if(show===true){
     <div className={mode===false?" flex items-center justify-center bg-black text-white h-12 rounded-lg w-96 mt-8":" flex items-center justify-center bg-white text-black h-12 rounded-lg w-96 mt-8"}>
     <button className=" flex items-center justify-center font-medium w-96 h-12">Signup</button>
     </div>
-    </>
+    </div>
     }
     
    </div>
    
 
-   <div className=" flex items-center flex-col self-start mr-2 mt-3">
+   <div className=" flex items-center flex-col self-start mr-2 mt-3 max-sm:hidden">
     <Image src={'/images/X.png'} alt="Loading....." width={55} height={55}></Image>
     <Image onClick={()=>{ToggleMode()}} src={mode===false?'/images/light mode icon.png':'/images/dark mode icon.png'} alt="Loading....." width={45} height={45} className=" mt-2 cursor-pointer"></Image>
    </div>
