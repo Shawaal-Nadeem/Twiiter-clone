@@ -2,7 +2,7 @@ const tweets = [
     {
         profile: "/images/myprofile.jpg",
         username: "Muhammad Ahsaan",
-        slug: "my profile",
+        slug: "my-profile",
         email: "muhammadahsaan@gmail.com",
         time: 4,
         unit: "h",
@@ -10,11 +10,11 @@ const tweets = [
         contentImage: null,
         likesNumber: 90,
         commentsNumber: 20,
-    },
+    },  
     {
         profile: "https://pbs.twimg.com/profile_images/1548735070030204929/SE6zZzFV_400x400.jpg",
         username: "Imran Khan",
-        slug: "Imran Khan",
+        slug: "Imran-Khan",
         email: "imrankhan@gmail.com",
         time: 10,
         unit: "h",
@@ -26,7 +26,7 @@ const tweets = [
     {
         profile: "https://pbs.twimg.com/profile_images/1683325380441128960/yRsRRjGO_400x400.jpg",
         username: "Elon Musk",
-        slug: "Elon Musk",
+        slug: "Elon-Musk",
         email: "elonmusk@gmail.com",
         time: 5,
         unit: "h",
@@ -50,11 +50,11 @@ const tweets = [
     {
         profile: "https://pbs.twimg.com/profile_images/1672219882904072196/-Lt_IrhL_400x400.jpg",
         username: "Andrew Tate",
-        slug: "Andrew Tate",
+        slug: "Andrew-Tate",
         email: "andrewtate@gmail.com",
         time: 1,
         unit: "h",
-        content: "If you truly wanted money, you wouldn’t be able to sleep until you fucking had it.",
+        content: "If you truly wanted money, you wouldnt be able to sleep until you fucking had it.",
         contentImage: null,
         likesNumber: 96,
         commentsNumber: 500,
@@ -62,7 +62,7 @@ const tweets = [
     {
         profile: "https://pbs.twimg.com/profile_images/1417471791845478403/MzAWCfK7_400x400.jpg",
         username: "Rockstar Games",
-        slug: "Rockstar Games",
+        slug: "Rockstar-Games",
         email: "rockstargames@gmail.com", 
         time: 30,
         unit: "m",
@@ -74,7 +74,7 @@ const tweets = [
     {
         profile: "https://pbs.twimg.com/profile_images/1308769664240160770/AfgzWVE7_400x400.jpg",
         username: "Joe Biden",
-        slug: "Joe Biden",
+        slug: "Joe-Biden",
         email:"joebiden@gmail.com",
         time: 2,
         unit: "h",
