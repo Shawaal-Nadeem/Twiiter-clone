@@ -18,6 +18,8 @@ module.exports = {
     colors: {
       'black': '#000000',
       'grayLight': '#787878',
+      'gray':'#CACACA',
+      'mainBg':'#F6F6F6',             
       'white': '#FFFFFF',
       'grayDark': '#242424',
       'black-Home-BG': '#060606',
