@@ -34,7 +34,7 @@ export default function Home() {
         return (
             <div className={mode === false ? "flex flex-col w-[100%] border-[.5px] border-gray bg-mainBg" : "flex flex-col w-[100%] border-[.5px] border-gray bg-black"}>
                 <div className="flex w-[100%] mt-[17px]">
-                    <img className="ml-[17px] w-[32px] h-[32px] rounded-[32px] flex-shrink-0" src={data.profile} alt="" />
+                   <Link href={`/profiles/${data.slug}`}><img className="ml-[17px] w-[32px] h-[32px] rounded-[32px] flex-shrink-0" src={data.profile} alt="" /></Link>
                     <h1 className={mode === false ? "ml-[6px] mt-[2px] text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px]" : "ml-[6px] mt-[2px] text-white text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px]"}>{data.username}</h1>
                     <p className="ml-[6px] mt-[3px]  text-grayLight text-[10px] font-[500] 
           leading-[normal] tracking-[-0.04px]">{data.time}{data.unit} ago</p>
