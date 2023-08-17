@@ -44,11 +44,13 @@ export default function ProfileDetails({ params }: ProfileData) {
 
         <div className=" border-r border-b border-l border-solid border-[#CACACA] w-[600px]">
         <div className=" flex items-center justify-center w-full h-[70px] border-b border-solid border-[#CACACA] "><Image src={'/images/X.png'} alt="Loading...." width={35} height={35}></Image></div>
-        <div className=" bg-[yellow]">
+        <div className=" flex items-center flex-col bg-black">
           <div className=" flex justify-center">
           <div className=" relative"><Image src={profileData.profile} alt="Loading...." width={150} height={150} className=" rounded-full"></Image></div>
           <div className=" absolute z-[1] ml-20 w-5 h-5 rounded-full flex items-center justify-center bg-white"><input type="file" className=" w-4 h-4 rounded-full"></input></div>
           </div>
+          <h3 className=" font-bold mt-4">{profileData.username}</h3>
+          <p className=" text-[#787878]">{profileData.email}</p>
         </div>
         </div>
       </div>

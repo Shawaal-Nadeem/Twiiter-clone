@@ -73,7 +73,7 @@ else if(show===true){
     <Link href={'/home'}><button className=" flex items-center justify-center font-medium w-96 h-12">Login</button></Link>
     </div>
     <div className={ state===true?mode===false?" flex items-center justify-center bg-black text-white h-12 rounded-lg w-96 mt-8 max-md:w-[80%]":" flex items-center justify-center bg-white text-black h-12 rounded-lg w-96 mt-8 max-md:w-[80%]":'hidden'}>
-    <button className=" flex items-center justify-center font-medium w-96 h-12">Signup</button>
+    <Link href={'/home'}><button className=" flex items-center justify-center font-medium w-96 h-12">Signup</button></Link>
     </div>
     </div>
     
