@@ -83,5 +83,17 @@ const tweets = [
         likesNumber: 704,
         commentsNumber: 200,
     },
+    {
+        profile: "https://pbs.twimg.com/profile_images/1417471791845478403/MzAWCfK7_400x400.jpg",
+        username: "Rockstar Games",
+        slug: "Rockstar-Games",
+        email: "rockstargames@gmail.com", 
+        time: 30,
+        unit: "m",
+        content: "jkvbkdfbvjvjksdvjksbnvbsd vjkasdbnvsdvj",
+        contentImage: "https://pbs.twimg.com/media/F3QzOv-W0AA8m3q?format=jpg&name=large",
+        likesNumber: 212,
+        commentsNumber: 150,
+    },
 ]
 export default tweets;
