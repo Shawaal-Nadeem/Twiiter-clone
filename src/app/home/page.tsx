@@ -9,6 +9,10 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
+
+
+
+
 export default function Home() {
   const [mode, setMode] = useState(false);
   const setTheme = () => {
@@ -43,6 +47,7 @@ export default function Home() {
       }
     };
 
+    const [show,setShow]=useState(false);
     // Tweet Data Return
     return (
       <div
@@ -61,7 +66,7 @@ export default function Home() {
               alt=""
             />
           </Link>
-          <h1
+         <Link href={`/profiles/${data?.slug}`}> <h1
             className={
               mode === false
                 ? "ml-[6px] mt-[2px] text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px]"
@@ -69,7 +74,7 @@ export default function Home() {
             }
           >
             {data.username}
-          </h1>
+          </h1></Link>
           <p
             className="ml-[6px] mt-[3px]  text-grayLight text-[10px] font-[500] 
           leading-[normal] tracking-[-0.04px]"
@@ -79,23 +84,24 @@ export default function Home() {
           </p>
         </div>
         {/* PopOver Component ShadCN */}
-        <div className=" mt-5 mr-3">
+       <div className=" mt-5 mr-3">
         <Popover>
-      <PopoverTrigger asChild>
+      <PopoverTrigger asChild onClick={()=>setShow(false)}>
         <Image src={'/images/more.png'} alt="Loading...." width={18} height={18} className=" cursor-pointer"></Image>
-        
       </PopoverTrigger>
-      <PopoverContent className="w-30 h-24">
-        
-            <p className="text-sm text-muted-foreground cursor-pointer">
-              Edit tweet
-            </p>
-            <hr className=" w-full border border-solid border-[#CACACA] mt-2"/>
-            <p className="text-sm text-muted-foreground mt-2 cursor-pointer">
-              Delete
-            </p>
-        
-      </PopoverContent>
+      {show===false?
+        <PopoverContent className="w-30 h-24">
+        <p onClick={()=>setShow(true)} className="text-sm text-muted-foreground cursor-pointer">
+          Edit tweet
+        </p>
+        <hr className=" w-full border border-solid border-[#CACACA] mt-2"/>
+        <p onClick={()=>setShow(true)} className="text-sm text-muted-foreground mt-2 cursor-pointer">
+          Delete
+        </p>
+  </PopoverContent>
+        :
+        null
+        }
     </Popover>
           </div>
         
@@ -161,7 +167,7 @@ export default function Home() {
 
           <Image
             src={
-              mode === false ? "/images/message.jpg" : "/images/message.png"
+              mode === false ? "/images/message.png" : "/images/message.png"
             }
             alt=""
             width={16}
@@ -247,7 +253,7 @@ export default function Home() {
               <Image
                 src={
                   mode === false
-                    ? "/images/profileIcon.jpg"
+                    ? "/images/profileIcon.png"
                     : "/images/profileIconDark.png"
                 }
                 alt=""
