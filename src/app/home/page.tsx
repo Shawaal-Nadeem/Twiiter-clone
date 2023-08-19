@@ -309,7 +309,7 @@ export default function Home() {
       </div>
 
       {/* Mid Side */}
-      <div className="w-[100vw] m-auto relative overflow-x-hidden lmd:w-[50vw]  ">
+      <div className="w-[100%] m-auto relative overflow-x-hidden lmd:w-[50vw]  ">
         <div
           className={
             mode === false
@@ -339,12 +339,11 @@ export default function Home() {
           >
             <Image
               src={
-                mode === false ? "/images/addLight.png" : "/images/addDark.png"
+                mode === false ? "/images/Group 4.png" : "/images/Group 4w.png"
               }
               alt=""
-              width={0}
-              height={0}
-              className="w-[30px] h-[30px]"
+              width={45}
+              height={45}
             ></Image>
           </div>
         ) : (
@@ -368,8 +367,8 @@ export default function Home() {
                 <Image
                   src={
                     mode === false
-                      ? "/images/gallery-add-light.png"
-                      : "/images/gallery-add-dark.png"
+                      ? "/images/gallery-add1.png"
+                      : "/images/gallery-add.png"
                   }
                   alt=""
                   width={24}
@@ -380,8 +379,8 @@ export default function Home() {
                 <Image
                   src={
                     mode === false
-                      ? "/images/editLight.png"
-                      : "/images/editDark.png"
+                      ? "/images/edit-light.png"
+                      : "/images/edit-dark.png"
                   }
                   alt=""
                   width={24}
@@ -396,7 +395,7 @@ export default function Home() {
               className="absolute left-[108px] cursor-pointer bottom-[45px]"
             >
               <Image
-                src={"/images/close-circle-light.png"}
+                src={"/images/close-circle.png"}
                 alt=""
                 width={22}
                 height={22}
