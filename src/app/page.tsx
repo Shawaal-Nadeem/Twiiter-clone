@@ -2,9 +2,16 @@
 import Image from "next/image";
 import { useState } from "react";
 import Link from "next/link";
+import { useContext } from "react";
+import { context } from "@/contextAPI/contextApi";
+
+
 export default function LognSign() {
+  const getContext = useContext(context);
+  const mode = getContext.mode;
+  const setMode = getContext.setMode;
+  
   const [state, setState] = useState(false);
-  const [mode, setMode] = useState(false);
   const [show, setShow] = useState(false);
   const [password, setPassword] = useState("Type Password");
   function ToggleMode() {

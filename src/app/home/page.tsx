@@ -9,12 +9,15 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover"
 
-
-
+import { useContext } from "react";
+import { context } from "@/contextAPI/contextApi";
 
 
 export default function Home() {
-  const [mode, setMode] = useState(false);
+  const getContext = useContext(context);
+  const mode = getContext.mode;
+  const setMode = getContext.setMode;
+
   const setTheme = () => {
     if (mode === false) setMode(true);
     else if (mode === true) setMode(false);
