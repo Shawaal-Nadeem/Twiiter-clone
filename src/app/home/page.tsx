@@ -483,7 +483,7 @@ export default function Home() {
                 : " border-[5px] cursor-pointer mt-[60vh] border-[#121212] rounded-[10px] w-[90%]"
             }
           >
-            <Link href={"#"}>
+            <Link href={"/"}>
               <button
                 className={
                   mode === false
