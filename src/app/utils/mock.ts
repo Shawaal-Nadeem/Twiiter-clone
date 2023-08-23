@@ -1,12 +1,12 @@
 const tweets = [
     {
-        profile: "/images/myprofile.jpg",
-        username: "Muhammad Ahsaan",
+        profile: "/images/myprofile.jpeg",
+        username: "Codenest",
         slug: "my-profile",
-        email: "muhammadahsaan@gmail.com",
+        email: "codenest6@gmail.com",
         time: 4,
         unit: "h",
-        content: "Sweating always give me motivation and more energy.",
+        content: "Prepare for an exhilarating revelation! Codenest's Game Development Department is set to launch on March 16, 2024. Stay tuned for an immersive journey into the realm of gaming innovation! 🥳😀🎮",
         contentImage: null,
         likesNumber: 90,
         commentsNumber: 20,

@@ -13,7 +13,7 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog"
-
+import { ScrollArea } from "@/components/ui/scroll-area"
 
 import { useContext } from "react";
 import { context } from "@/contextAPI/contextApi";
@@ -121,7 +121,7 @@ export default function Home() {
       <div className=" flex items-center justify-center bg-[#F3DDDD] w-20 h-20 rounded-full"><Image src={'/images/trash.png'} alt="Loading..." width={40} height={40}></Image></div>
       <h2 className=" text-black text-2xl font-bold text-center w-64 mt-3">Do you want to delete this tweet?</h2>
       <div className=" mt-9 mb-3 flex gap-12">
-        <button className=" bg-[#CACACA] text-black w-[105px] h-8 rounded-lg">Cancel</button>
+        <p className=" bg-[#CACACA] text-black w-[105px] h-8 rounded-lg flex items-center justify-center cursor-pointer">Cancel</p>
         <button className=" bg-black text-white w-[105px] h-8 rounded-lg">Delete</button>
       </div>
       </div>
@@ -191,8 +191,11 @@ export default function Home() {
           >
             {countLike} Likes
           </p>
-
-          <Image
+          {/* Comments popup */}
+          
+      <Dialog>
+      <DialogTrigger asChild className=" flex">
+      <Image
             src={
               mode === false ? "/images/message.png" : "/images/message.png"
             }
@@ -201,12 +204,166 @@ export default function Home() {
             height={16}
             className="ml-[14px] cursor-pointer"
           ></Image>
-          <p
+        
+        </DialogTrigger>
+        <DialogTrigger asChild>
+        <p
             className="ml-[5px]  text-grayLight text-[10px] font-[500] 
-          leading-[normal] tracking-[-0.04px]"
+          leading-[normal] tracking-[-0.04px] cursor-pointer"
           >
+
             view all {data.commentsNumber} comments
           </p>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[450px] h-[508px]">
+       <div className=" flex items-center flex-col">
+         <h3 className="text-black font-bold text-xl">Comments</h3>
+         <hr className=" w-full border border-solid border-[#CACACA] mt-[10px]"/>
+         <div className=" w-full">
+         <ScrollArea className="h-[370px] w-full border-solid border-r-[2px] border-b-[2px] border-l-[2px] border-[#CACACA]">
+          {/* Static Data */}
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+         
+         </ScrollArea>
+         </div>
+         <div className=" flex gap-9 mt-3 mb-3  w-full">
+          <div className=" flex items-center bg-[#CACACA] w-[300px] h-12 rounded-xl ml-4">
+          <input  placeholder="Type your comment here..." className=" focus:outline-none bg-[#CACACA] ml-4 text-[15px] placeholder:text-[#787878]"></input>
+         </div>
+         <button className=" bg-black w-12 h-12 flex items-center justify-center rounded-xl">
+          <Image src={'/images/send.png'} alt="Loading...." width={23} height={23}></Image>
+         </button>
+         </div>
+       </div>
+            </DialogContent>
+     
+    </Dialog>
+       
         </div>
       </div>
     );
