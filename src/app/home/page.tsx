@@ -133,7 +133,7 @@ export default function Home() {
           </div>
         
         </div>
-        <div
+        <div 
           className={
             mode === false
               ? "ml-[55px] mt-[-2px] w-[280px] text-[12px] font-[400] leading-[normal] tracking-[-0.04px] self-start"

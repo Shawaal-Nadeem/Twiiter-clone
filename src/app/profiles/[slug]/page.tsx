@@ -5,6 +5,21 @@ import Link from "next/link";
 import { useContext } from "react";
 import { context } from "@/contextAPI/contextApi";
 import { useState } from "react";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover"
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+} from "@/components/ui/dialog"
+import { ScrollArea } from "@/components/ui/scroll-area"
+
+
+
+
 function profilesData(data: any) {
   slug: data.slug;
 }
@@ -23,10 +38,13 @@ export default function ProfileDetails({ params }: ProfileData) {
   const profileData = tweets.find((temp) => {
     return temp.slug === params.slug;
   }) as any;
-  let data = tweets.filter((temp) => { return profileData.username === temp.username })
+
+  let dataTweet = tweets.filter((temp) => { return profileData.username === temp.username })
+
   const getContext = useContext(context);
   const mode = getContext.mode;
   const setMode = getContext.setMode;
+
   const setTheme = () => {
     if (mode === false) setMode(true);
     else if (mode === true) setMode(false);
@@ -36,8 +54,303 @@ export default function ProfileDetails({ params }: ProfileData) {
     if (tweetAdd === false) updateAdd(true);
     else if (tweetAdd === true) updateAdd(false);
   };
+  const tweetContent = tweets.filter((item: any) => {
+    return item;
+  });
+  const myProfileData = tweetContent.find((item: any) => {
+    if (item.slug === "my-profile") return item;
+    else return null;
+  });
+
+
+  const tweetData = (data: any) => {
+    const [like, updateLike] = useState(false);
+    let num = data.likesNumber;
+    const [countLike, updateCountLike] = useState(num);
+    const toggleLike = () => {
+      if (like === false) {
+        updateLike(true);
+        if (countLike >= 0) updateCountLike(countLike + 1);
+      } else if (like === true) {
+        updateLike(false);
+        if (countLike > 0) updateCountLike(countLike - 1);
+      }
+    };
+
+    const [show,setShow]=useState(false);
+    // Tweet Data Return
+    return (
+      <div
+        className={
+          mode === false
+            ? "flex flex-col w-[100%] border-[.5px] border-gray bg-mainBg "
+            : "flex flex-col w-[100%] border-[.5px] border-gray bg-black"
+        }
+      >
+        <div className=" flex justify-center mt-7">
+          <Image src={ data.profile} alt="Loading..." width={180} height={180} className=" rounded-full"></Image>
+        </div>
+        <div className=" flex flex-col items-center mt-5 mb-12">
+          <p className={mode===false?" font-bold text-lg text-[black]":" font-bold text-lg text-[white]"}>{profileData.username}</p>
+          <p className=" font-semibold text-[#787878]">{profileData.email}</p>
+        </div>
+        <h4 className={mode===false?" font-bold text-[black] text-2xl ml-5":" font-bold text-[white] text-2xl ml-5"}>My Posts</h4>
+        
+        {dataTweet.map(function display(temp: any, index: number) {
+          return (
+        <div key={index} className=" border-t-[1px]  border-t-[#CACACA] w-full mt-4">
+         <div className=" ml-5 mt-5 mb-5 flex gap-1 items-center">
+         <Image src={temp.profile} alt="Loading..." width={30} height={30} className=" rounded-full"></Image>
+        <p  className={
+              mode === false
+                ? "ml-[6px] mt-[2px] text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px]"
+                : "ml-[6px] mt-[2px] text-white text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px]"
+            }>{temp.username}</p>
+        <p
+            className="ml-[6px] mt-[3px]  text-grayLight text-[10px] font-[500] 
+          leading-[normal] tracking-[-0.04px]"
+          >
+            {temp.time}
+            {temp.unit} ago
+              </p>
+              </div>
+              <p  className={
+            mode === false
+              ? "ml-[60px] mt-[3px] w-[280px] text-[12px] font-[400] leading-[normal] tracking-[-0.04px] self-start"
+              : "ml-[60px] mt-[3px] text-[#fff] w-[280px] text-[12px] font-[400] leading-[normal] tracking-[-0.04px] self-start"
+          }>{temp.content}</p>
+          {data.contentImage === null ? (
+          <div className="hidden"></div>
+        ) : (
+          <div>
+            <img
+              src={temp.contentImage}
+              alt="Loading..."
+              className="ml-[58px] mt-[17px] w-[240px] h-[240px] rounded-[13px] flex-shrink-0"
+            />
+          </div>
+              )}
+                 <div className="flex items-center w-[100%] mt-[25px]  mb-[22px] ">
+          {mode === false ? (
+            <Image
+              onClick={() => {
+                toggleLike();
+              }}
+              src={
+                like === false
+                  ? "/images/heartWhite.png"
+                  : "/images/heartRed.png"
+              }
+              alt=""
+              width={16}
+              height={16}
+              className="ml-[17px] cursor-pointer "
+            ></Image>
+          ) : (
+            <Image
+              onClick={() => {
+                toggleLike();
+              }}
+              src={
+                like === false
+                  ? "/images/heartWhite.png"
+                  : "/images/heartRed.png"
+              }
+              alt=""
+              width={16}
+              height={16}
+              className="ml-[17px] cursor-pointer "
+            ></Image>
+          )}
+          <p
+            className="ml-[5px] text-grayLight text-[10px] font-[500] 
+          leading-[normal] tracking-[-0.04px]"
+          >
+            {countLike} Likes
+          </p>
+          {/* Comments popup */}
+          
+      <Dialog>
+      <DialogTrigger asChild className=" flex">
+      <Image
+            src={
+              mode === false ? "/images/message.png" : "/images/message.png"
+            }
+            alt=""
+            width={16}
+            height={16}
+            className="ml-[14px] cursor-pointer"
+          ></Image>
+        
+        </DialogTrigger>
+        <DialogTrigger asChild>
+        <p
+            className="ml-[5px]  text-grayLight text-[10px] font-[500] 
+          leading-[normal] tracking-[-0.04px] cursor-pointer"
+          >
+
+            view all {temp.commentsNumber} comments
+          </p>
+            </DialogTrigger>
+            <DialogContent className="sm:max-w-[450px] h-[508px]">
+       <div className=" flex items-center flex-col">
+         <h3 className="text-black font-bold text-xl">Comments</h3>
+         <hr className=" w-full border border-solid border-[#CACACA] mt-[10px]"/>
+         <div className=" w-full">
+         <ScrollArea className="h-[370px] w-full border-solid border-r-[2px] border-b-[2px] border-l-[2px] border-[#CACACA]">
+          {/* Static Data */}
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+          <div className=" ml-4 mt-4">
+          <div className=" flex items-center gap-2">
+          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
+         <p className=" font-bold text-sm">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+          </div>
+          <div className=" ml-10">
+          <p className=" text-black text-[13px] font-[500] 
+          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          </div>
+          </div>
+          <div className=" flex justify-center mt-3">
+          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
+          </div>
+         
+         </ScrollArea>
+         </div>
+         <div className=" flex gap-9 mt-3 mb-3  w-full">
+          <div className=" flex items-center bg-[#CACACA] w-[300px] h-12 rounded-xl ml-4">
+          <input  placeholder="Type your comment here..." className=" focus:outline-none bg-[#CACACA] ml-4 text-[15px] placeholder:text-[#787878]"></input>
+         </div>
+         <button className=" bg-black w-12 h-12 flex items-center justify-center rounded-xl">
+          <Image src={'/images/send.png'} alt="Loading...." width={23} height={23}></Image>
+         </button>
+         </div>
+       </div>
+            </DialogContent>
+     
+    </Dialog>
+       
+        </div>
+        </div>
+          )
+        })}
+
+        </div>
+    );
+  };
   return (
-<div
+    <div
       className={` w-full bg-clip-content flex flex-col lmd:flex lmd:flex-row ${
         mode === false ? `bg-white` : `bg-black`
       }`}
@@ -51,7 +364,7 @@ export default function ProfileDetails({ params }: ProfileData) {
       >
         <div className="w-[90%] m-auto flex items-center justify-between">
           <img
-            src={profileData?.profile}
+            src={myProfileData?.profile}
             alt=""
             className="w-[44px] h-[44px] rounded-[36px]"
           />
@@ -90,57 +403,19 @@ export default function ProfileDetails({ params }: ProfileData) {
                 : "w-[90%] box-border cursor-pointer h-[136px] rounded-b-[10px] bg-[#121212]"
             }
           >
-            <div className="flex items-center justify-center">
-              <p
-                className={
-                  mode === false
-                    ? "text-[0.875rem] mt-[22px] font-[700] leading-[normal] tracking-[-0.056px]"
-                    : "text-[0.875rem] mt-[22px] font-[700] leading-[normal] tracking-[-0.056px] text-white"
-                }
-              >
-                My Profile
-              </p>
-              <Image
-                src={
-                  mode === false
-                    ? "/images/profileIcon.png"
-                    : "/images/profileIconDark.png"
-                }
-                alt=""
-                width={14}
-                height={14}
-                className={"ml-[7px] mt-[22px] flex-shrink-0"}
-              ></Image>
-            </div>
+           <Link href={'/home'}>
             <div
               className={
                 mode === false
-                  ? "mt-[18px]  mb-[6px] ml-[6px] mr-[6px] rounded-[10px] bg-white flex items-center "
-                  : "mt-[18px]  mb-[6px] ml-[6px] mr-[6px] rounded-[10px] bg-black flex items-center "
+                  ? " h-[72px] mt-[57px]  mb-[0px] ml-[6px] mr-[6px] rounded-[10px] bg-white flex gap-3 items-center justify-center "
+                  : " h-[72px] mt-[57px]  mb-[0px] ml-[6px] mr-[6px] rounded-[10px] bg-black flex gap-3 items-center justify-center"
               }
             >
-              <Link href={`/profiles/${profileData?.slug}`}><img
-                src={profileData?.profile}
-                alt=""
-                className="slg:w-[56px] slg:h-[56px] lg:w-[50px] lg:h-[50px] lmd:w-[40px] lmd:h-[40px]  ml-[9px] my-[8px] flex-shrink-0 rounded-[56px]"
-              />
-            </Link>
-            <Link href={`/profiles/${profileData?.slug}`}><div className="ml-[7px] box-content">
-                <p
-                  className={
-                    mode === false
-                      ? "slg:text-[0.875rem] lg:text-[0.78rem] lmd:text-[0.67rem] font-[700] leading-[normal] tracking-[-0.056px]"
-                      : "slg:text-[0.875rem] lg:text-[0.78rem] lmd:text-[0.67rem]  text-white font-[700] leading-[normal] tracking-[-0.056px]"
-                  }
-                >
-                  {profileData?.username}
-                </p>
-                <p className="text-grayLight slg:text-[0.625rem] lg:text-[0.57rem] lmd:text-[0.50rem]  font-[500] leading-[normal] tracking-[-0.04px]">
-                  {profileData?.email}
-                </p>
+              
+           <Image src={mode===false?'/images/home-2.png':'/images/home-2w.png'} alt="Loading..." width={19} height={19}></Image> 
+          <p className={mode===false?" text-black font-bold":" text-white font-bold"}>Home</p>
               </div>
               </Link>
-            </div>
           </div>
           <div
             className={
@@ -149,7 +424,7 @@ export default function ProfileDetails({ params }: ProfileData) {
                 : " border-[5px] cursor-pointer mt-[60vh] border-[#121212] rounded-[10px] w-[90%]"
             }
           >
-            <Link href={"#"}>
+            <Link href={"/"}>
               <button
                 className={
                   mode === false
@@ -181,7 +456,7 @@ export default function ProfileDetails({ params }: ProfileData) {
             className="mt-[15px] mb-[17px]"
           ></Image>
         </div>
-        {/* {tweetContent.map(tweetData)}
+        {tweetData(profileData)}
         {tweetAdd === false ? (
           <div
             onClick={() => {
@@ -258,7 +533,7 @@ export default function ProfileDetails({ params }: ProfileData) {
               ></Image>
             </div>
           </div>
-        )} */}
+        )}
       </div>
 
       {/* Right Side */}
@@ -286,7 +561,7 @@ export default function ProfileDetails({ params }: ProfileData) {
               className=" cursor-pointer absolute top-[23px] right-0 mr-[36px]"
             ></Image>
 
-            {/* {tweetAdd === false ? (
+            {tweetAdd === false ? (
               <div
                 onClick={() => {
                   addTweet();
@@ -366,11 +641,11 @@ export default function ProfileDetails({ params }: ProfileData) {
                   ></Image>
                 </div>
               </div>
-            )} */}
+            )}
           </div>
         </div>
       </div>
     
     </div>
-  );
+  )
 }

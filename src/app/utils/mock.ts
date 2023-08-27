@@ -36,6 +36,18 @@ const tweets = [
         commentsNumber: 30,
     },
     {
+        profile: "/images/myprofile.jpeg",
+        username: "Codenest",
+        slug: "my-profile",
+        email: "codenest6@gmail.com",
+        time: 1,
+        unit: "h",
+        content: "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
+        contentImage: null,
+        likesNumber: 40,
+        commentsNumber: 10,
+    },  
+    {
         profile: "https://pbs.twimg.com/profile_images/1404378291599937536/b-r3SWlW_400x400.jpg",
         username: "ICC",
         slug: "ICC",
