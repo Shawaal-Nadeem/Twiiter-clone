@@ -63,7 +63,7 @@ export default function ProfileDetails({ params }: ProfileData) {
   });
 
 
-  const tweetData = (data: any) => {
+  const TweetData = (data: any) => {
     const [like, updateLike] = useState(false);
     let num = data.likesNumber;
     const [countLike, updateCountLike] = useState(num);
@@ -531,7 +531,7 @@ export default function ProfileDetails({ params }: ProfileData) {
             className="mt-[15px] mb-[17px]"
           ></Image>
         </div>
-        {tweetData(profileData)}
+        {TweetData(profileData)}
         {tweetAdd === false ? (
           <div
             onClick={() => {

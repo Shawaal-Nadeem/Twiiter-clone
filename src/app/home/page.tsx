@@ -29,7 +29,7 @@ export default function Home() {
     else if (mode === true) setMode(false);
   };
   const [tweetAdd, updateAdd] = useState(false);
-  const addTweet = () => {
+  const AddTweet = () => {
     if (tweetAdd === false) updateAdd(true);
     else if (tweetAdd === true) updateAdd(false);
   };
@@ -42,7 +42,7 @@ export default function Home() {
   });
 
 
-  const tweetData = (data: any, index:number) => {
+  const TweetData = (data: any, index:number) => {
     const [like, updateLike] = useState(false);
     let num = data.likesNumber;
     const [countLike, updateCountLike] = useState(num);
@@ -515,11 +515,11 @@ export default function Home() {
             className="mt-[15px] mb-[17px]"
           ></Image>
         </div>
-        {tweetContent.map(tweetData)}
+        {tweetContent.map(TweetData)}
         {tweetAdd === false ? (
           <div
             onClick={() => {
-              addTweet();
+              AddTweet();
             }}
             className={`fixed top-0 mt-[85vh] right-0 mr-[12px] ${
               mode === false
@@ -580,7 +580,7 @@ export default function Home() {
             </div>
             <div
               onClick={() => {
-                addTweet();
+                AddTweet();
               }}
               className="absolute left-[108px] cursor-pointer bottom-[45px]"
             >
@@ -623,7 +623,7 @@ export default function Home() {
             {tweetAdd === false ? (
               <div
                 onClick={() => {
-                  addTweet();
+                  AddTweet();
                 }}
                 className={`absolute  top-0 mt-[80vh] right-0 mr-[28px] ${
                   mode === false
@@ -688,7 +688,7 @@ export default function Home() {
                 </div>
                 <div
                   onClick={() => {
-                    addTweet();
+                    AddTweet();
                   }}
                   className="absolute left-[108px] cursor-pointer bottom-[45px]"
                 >
