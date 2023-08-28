@@ -87,18 +87,53 @@ export default function ProfileDetails({ params }: ProfileData) {
             : "flex flex-col w-[100%] border-[.5px] border-gray bg-black"
         }
       >
-        <div className=" flex justify-center mt-7">
-          <Image src={ data.profile} alt="Loading..." width={180} height={180} className=" rounded-full"></Image>
-        </div>
+        <div className=" flex justify-center w-full mt-7"> 
+          <div className=" flex justify-center w-[95%]"> <Image src={data.profile} alt="Loading..." width={180} height={180} className={profileData.slug==='my-profile'?" rounded-full ml-5 ":" rounded-full"}></Image></div>
+          {profileData.slug === 'my-profile' ? <div>
+            {/* PopOver Component ShadCN */}
+       <div className=" mt-5 mr-3">
+        <Popover>
+      <PopoverTrigger asChild onClick={()=>setShow(false)}>
+      <Image src={mode === false ? '/images/setting-2.png' : '/images/setting-2w.png'} alt="Loading..." width={20} height={20} className="cursor-pointer"></Image>
+      </PopoverTrigger>
+     
+      <PopoverContent className="w-30 h-24">
+      <Dialog>
+      <DialogTrigger asChild onClick={()=>setShow(true)}>
+        <p className="text-sm text-muted-foreground cursor-pointer text-center">Edit Profile</p>
+        </DialogTrigger>
+        <hr className=" w-full border border-solid border-[#CACACA] mt-[10px]"/>
+        <DialogTrigger asChild onClick={()=>setShow(false)}>
+        <p className="text-sm text-muted-foreground cursor-pointer mt-[10px] text-center">Copy Link</p>
+      </DialogTrigger>
+      {show===true?<DialogContent className="sm:max-w-[375px]">
+        <div className=" flex items-center flex-col">
+      <h3 className=" text-black font-bold text-xl">Edit Profile</h3>
+      <hr className=" w-full border border-[#CACACA] mt-3" />
+      <p className=" mt-7 flex justify-self-start font-semibold text-black ">Change Username</p>
+      <input className=" pl-3 border border-solid border-[#CACACA] focus:outline-none rounded-lg w-72 h-10 mt-5 " placeholder={profileData.username} ></input>
+      <button className=" bg-black text-white w-[105px] h-8 rounded-lg mt-5">Update</button>
+      </div>
+      </DialogContent>
+      : null }
+    </Dialog>
+  </PopoverContent>
+       
+    </Popover>
+          </div>
+            </div> : null}
+         </div>
+        
         <div className=" flex flex-col items-center mt-5 mb-12">
           <p className={mode===false?" font-bold text-lg text-[black]":" font-bold text-lg text-[white]"}>{profileData.username}</p>
           <p className=" font-semibold text-[#787878]">{profileData.email}</p>
         </div>
-        <h4 className={mode===false?" font-bold text-[black] text-2xl ml-5":" font-bold text-[white] text-2xl ml-5"}>My Posts</h4>
+        {profileData.slug==='my-profile'?<h4 className={mode === false ? " font-bold text-[black] text-2xl ml-5" : " font-bold text-[white] text-2xl ml-5"}>My Posts</h4>:<h4 className={mode === false ? " font-bold text-[black] text-2xl ml-5" : " font-bold text-[white] text-2xl ml-5"}>Posts</h4>}
         
         {dataTweet.map(function display(temp: any, index: number) {
           return (
-        <div key={index} className=" border-t-[1px]  border-t-[#CACACA] w-full mt-4">
+            <div key={index} className=" flex border-t-[1px] border-t-[#CACACA] w-full mt-4">
+              <div className="flex flex-col w-[95%]">
          <div className=" ml-5 mt-5 mb-5 flex gap-1 items-center">
          <Image src={temp.profile} alt="Loading..." width={30} height={30} className=" rounded-full"></Image>
         <p  className={
@@ -341,7 +376,47 @@ export default function ProfileDetails({ params }: ProfileData) {
      
     </Dialog>
        
-        </div>
+              </div>
+              </div>
+               {/* PopOver Component ShadCN */}
+       <div className=" mt-5 mr-3">
+        <Popover>
+      <PopoverTrigger asChild onClick={()=>setShow(false)}>
+        <Image src={'/images/more.png'} alt="Loading...." width={18} height={18} className=" cursor-pointer"></Image>
+      </PopoverTrigger>
+     
+      <PopoverContent className="w-30 h-24">
+      <Dialog>
+      <DialogTrigger asChild onClick={()=>setShow(true)}>
+        <p className="text-sm text-muted-foreground cursor-pointer text-center">Edit tweet</p>
+        </DialogTrigger>
+        <hr className=" w-full border border-solid border-[#CACACA] mt-[10px]"/>
+        <DialogTrigger asChild onClick={()=>setShow(false)}>
+        <p className="text-sm text-muted-foreground cursor-pointer mt-[10px] text-center">Delete</p>
+      </DialogTrigger>
+      {show===true?<DialogContent className="sm:max-w-[375px]">
+        <div className=" flex items-center flex-col">
+      <h3 className=" text-black font-bold text-xl">Edit Tweet</h3>
+      <hr className=" w-full border border-[#CACACA] mt-3" />
+      <textarea className=" mt-8 border border-solid border-[#CACACA] focus:outline-none rounded-lg w-72 h-32 pt-3 pl-3 pr-3" placeholder="Type Tweet..." ></textarea>
+      <button className=" bg-black text-white w-[105px] h-8 rounded-lg mt-5">Update</button>
+      </div>
+      </DialogContent>
+      : <DialogContent className="sm:max-w-[425px]">
+       <div className=" flex items-center flex-col">
+      <div className=" flex items-center justify-center bg-[#F3DDDD] w-20 h-20 rounded-full"><Image src={'/images/trash.png'} alt="Loading..." width={40} height={40}></Image></div>
+      <h2 className=" text-black text-2xl font-bold text-center w-64 mt-3">Do you want to delete this tweet?</h2>
+      <div className=" mt-9 mb-3 flex gap-12">
+        <p className=" bg-[#CACACA] text-black w-[105px] h-8 rounded-lg flex items-center justify-center cursor-pointer">Cancel</p>
+        <button className=" bg-black text-white w-[105px] h-8 rounded-lg">Delete</button>
+      </div>
+      </div>
+      </DialogContent> }
+    </Dialog>
+  </PopoverContent>
+       
+    </Popover>
+          </div>
         </div>
           )
         })}
@@ -440,7 +515,7 @@ export default function ProfileDetails({ params }: ProfileData) {
       </div>
 
       {/* Mid Side */}
-      <div className="w-[100%] m-auto relative overflow-x-hidden lmd:w-[50vw]  ">
+      <div className="w-[100%] h-[100vh] m-auto relative overflow-x-hidden lmd:w-[50vw]  ">
         <div
           className={
             mode === false
