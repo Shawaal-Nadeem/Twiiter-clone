@@ -77,4 +77,16 @@ body{
   body {
     @apply bg-background text-foreground;
   }
+  @font-face {
+    font-family: 'SamsungSharpSans';
+    src: url('/fonts/SamsungSharpSans.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'SamsungSharpSans-Bold';
+    src: url('/fonts/SamsungSharpSans-Bold.woff2') format('woff2');
+  }
+  @font-face {
+    font-family: 'SamsungSharpSans-Medium';
+    src: url('/fonts/SamsungSharpSans-Medium.woff2') format('woff2');
+  }
 }

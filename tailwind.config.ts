@@ -38,6 +38,11 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        SamsungSharpSans: 'SamsungSharpSans',
+        SamsungSharpSansBold: 'SamsungSharpSans-Bold',
+        SamsungSharpSansMedium:'SamsungSharpSans-Medium'
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",

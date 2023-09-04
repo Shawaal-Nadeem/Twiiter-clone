@@ -29,7 +29,7 @@ export default function LognSign() {
     }
   }
   return (
-    <div className=" max-md: flex justify-center max-xsm:overflow-x-hidden">
+    <div className=" max-md: flex justify-center max-xsm:overflow-x-hidden font-SamsungSharpSansBold">
       <div
         className={
           mode === false
@@ -99,7 +99,7 @@ export default function LognSign() {
                   className={
                     state === false
                       ? mode === false
-                        ? " w-2/4 h-12 bg-white ml-1 rounded-lg font-bold"
+                        ? " w-2/4 h-12 bg-white ml-1 rounded-lg"
                         : " w-2/4 h-12 bg-black ml-1 rounded-lg font-bold text-white"
                       : mode === false
                       ? " w-2/4 h-12 ml-1 rounded-lg font-bold"
@@ -128,8 +128,8 @@ export default function LognSign() {
               <button
                 className={
                   mode === false
-                    ? " flex items-center gap-2 justify-center w-96 h-12"
-                    : " flex items-center gap-2 justify-center w-96 h-12 text-white"
+                    ? " flex items-center gap-2 justify-center w-96 h-12 text-sm font-SamsungSharpSansMedium"
+                    : " flex items-center gap-2 justify-center w-96 h-12 text-white text-sm font-SamsungSharpSansMedium"
                 }
               >
                 <span>
@@ -145,39 +145,45 @@ export default function LognSign() {
             </div>
             <div className=" flex items-center gap-1 w-96 mt-8 max-md:w-[80%]">
               <hr className=" border border-solid border-grayLight w-48" />
-              <p className={mode === false ? " text-black" : " text-white"}>
+              <p className={mode === false ? " text-black font-SamsungSharpSansMedium" : " text-white font-SamsungSharpSansMedium"}>
                 or
               </p>
               <hr className=" border border-solid border-grayLight w-48" />
             </div>
             <div className=" mt-6 max-md:w-[80%]">
-              <label className=" text-grayLight">Email Address</label>
+              <label className=" text-grayLight font-SamsungSharpSansMedium">Email Address</label>
               <input
                 className={
                   mode === false
-                    ? "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight max-md:w-[100%]"
-                    : "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight bg-black text-grayLight max-md:w-[100%]"
+                    ? "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm"
+                    : "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight bg-black text-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm"
                 }
                 placeholder="Codenest@gmail.com"
                 type="email"
               ></input>
             </div>
             <div className={state === true ? " mt-4 max-md:w-[80%]" : "hidden"}>
-              <label className=" text-grayLight">Create Username</label>
+              <label className=" text-grayLight font-SamsungSharpSansMedium">Create Username</label>
               <input
                 className={
                   mode === false
-                    ? "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight max-md:w-[100%]"
-                    : "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight bg-black text-grayLight max-md:w-[100%]"
+                    ? "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm"
+                    : "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight bg-black text-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm"
                 }
                 placeholder="Codenest2023"
                 type="text"
               ></input>
             </div>
             <div className=" mt-6 max-md:w-[80%]">
-              <label className={mode === false ? " text-black" : " text-white"}>
-                Password
-              </label>
+              {state === false?
+            <label className={mode === false ? " text-black" : " text-white"}>
+            Password
+                </label>
+                :
+                <label className={mode === false ? " text-black" : " text-white"}>
+                Create Password
+              </label>      
+            }
               <div
                 className={
                   mode === false
@@ -188,8 +194,8 @@ export default function LognSign() {
                 <input
                   className={
                     mode === false
-                      ? " outline-none w-96 pl-4"
-                      : " outline-none w-96 pl-4 bg-black text-white"
+                      ? show===false? " outline-none w-96 pl-4 font-SamsungSharpSansBold text-2xl":" outline-none w-96 pl-4 font-SamsungSharpSansBold text-sm"
+                      : show===false? " outline-none w-96 pl-4 bg-black text-white font-SamsungSharpSansMedium text-2xl":" outline-none w-96 pl-4 bg-black text-white font-SamsungSharpSansMedium text-sm"
                   }
                   type={show === false ? "password" : "text"}
                   value={password}
