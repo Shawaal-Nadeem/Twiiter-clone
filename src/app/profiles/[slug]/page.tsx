@@ -100,19 +100,19 @@ export default function ProfileDetails({ params }: ProfileData) {
       <PopoverContent className="w-30 h-24">
       <Dialog>
       <DialogTrigger asChild onClick={()=>setShow(true)}>
-        <p className="text-sm text-muted-foreground cursor-pointer text-center">Edit Profile</p>
+        <p className="text-sm text-muted-foreground cursor-pointer text-center font-PoppinsMedium">Edit Profile</p>
         </DialogTrigger>
         <hr className=" w-full border border-solid border-[#CACACA] mt-[10px]"/>
         <DialogTrigger asChild onClick={()=>setShow(false)}>
-        <p className="text-sm text-muted-foreground cursor-pointer mt-[10px] text-center">Copy Link</p>
+        <p className="text-sm text-muted-foreground cursor-pointer mt-[10px] text-center font-PoppinsMedium">Copy Link</p>
       </DialogTrigger>
       {show===true?<DialogContent className="sm:max-w-[375px]">
         <div className=" flex items-center flex-col">
-      <h3 className=" text-black font-bold text-xl">Edit Profile</h3>
+      <h3 className=" text-black font-bold text-xl font-SamsungSharpSansBold">Edit Profile</h3>
       <hr className=" w-full border border-[#CACACA] mt-3" />
-      <p className=" mt-7 flex justify-self-start font-semibold text-black ">Change Username</p>
-      <input className=" pl-3 border border-solid border-[#CACACA] focus:outline-none rounded-lg w-72 h-10 mt-5 " placeholder={profileData.username} ></input>
-      <button className=" bg-black text-white w-[105px] h-8 rounded-lg mt-5">Update</button>
+      <p className=" mt-7 flex justify-self-start font-semibold text-black font-SamsungSharpSansBold">Change Username</p>
+      <input className=" pl-3 border border-solid border-[#CACACA] focus:outline-none rounded-lg w-72 h-10 mt-5 font-PoppinsLight" placeholder={profileData.username} ></input>
+      <button className=" bg-black text-white w-[105px] h-8 rounded-lg mt-5 font-SamsungSharpSansBold">Update</button>
       </div>
       </DialogContent>
       : null }
@@ -125,10 +125,10 @@ export default function ProfileDetails({ params }: ProfileData) {
          </div>
         
         <div className=" flex flex-col items-center mt-5 mb-12">
-          <p className={mode===false?" font-bold text-lg text-[black]":" font-bold text-lg text-[white]"}>{profileData.username}</p>
-          <p className=" font-semibold text-[#787878]">{profileData.email}</p>
+          <p className={mode===false?" font-bold text-lg text-[black] font-SamsungSharpSansBold":" font-bold text-lg text-[white] font-SamsungSharpSansBold"}>{profileData.username}</p>
+          <p className=" font-semibold text-[#787878] font-SamsungSharpSans text-sm">{profileData.email}</p>
         </div>
-        {profileData.slug==='my-profile'?<h4 className={mode === false ? " font-bold text-[black] text-2xl ml-5" : " font-bold text-[white] text-2xl ml-5"}>My Posts</h4>:<h4 className={mode === false ? " font-bold text-[black] text-2xl ml-5" : " font-bold text-[white] text-2xl ml-5"}>Posts</h4>}
+        {profileData.slug==='my-profile'?<h4 className={mode === false ? " text-[black] text-2xl ml-5 font-SamsungSharpSansBold" : " font-SamsungSharpSansBold text-[white] text-2xl ml-5"}>My Posts</h4>:<h4 className={mode === false ? " font-SamsungSharpSansBold text-[black] text-2xl ml-5" : " font-SamsungSharpSansBold text-[white] text-2xl ml-5"}>Posts</h4>}
         
         {dataTweet.map(function display(temp: any, index: number) {
           return (
@@ -138,12 +138,12 @@ export default function ProfileDetails({ params }: ProfileData) {
          <Image src={temp.profile} alt="Loading..." width={30} height={30} className=" rounded-full"></Image>
         <p  className={
               mode === false
-                ? "ml-[6px] mt-[2px] text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px]"
-                : "ml-[6px] mt-[2px] text-white text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px]"
+                ? "ml-[6px] mt-[2px] text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px] font-SamsungSharpSansBold"
+                : "ml-[6px] mt-[2px] text-white text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px] font-SamsungSharpSansBold"
             }>{temp.username}</p>
         <p
             className="ml-[6px] mt-[3px]  text-grayLight text-[10px] font-[500] 
-          leading-[normal] tracking-[-0.04px]"
+          leading-[normal] tracking-[-0.04px] font-PoppinsMedium"
           >
             {temp.time}
             {temp.unit} ago
@@ -151,8 +151,8 @@ export default function ProfileDetails({ params }: ProfileData) {
               </div>
               <p  className={
             mode === false
-              ? "ml-[60px] mt-[3px] w-[280px] text-[12px] font-[400] leading-[normal] tracking-[-0.04px] self-start"
-              : "ml-[60px] mt-[3px] text-[#fff] w-[280px] text-[12px] font-[400] leading-[normal] tracking-[-0.04px] self-start"
+              ? "ml-[60px] mt-[1px] w-[280px] text-[12px] font-[400] leading-[normal] tracking-[-0.04px] self-start font-PoppinsLight"
+              : "ml-[60px] mt-[1px] text-[#fff] w-[280px] text-[12px] font-[400] leading-[normal] tracking-[-0.04px] self-start font-PoppinsLight"
           }>{temp.content}</p>
           {data.contentImage === null ? (
           <div className="hidden"></div>
@@ -199,7 +199,7 @@ export default function ProfileDetails({ params }: ProfileData) {
           )}
           <p
             className="ml-[5px] text-grayLight text-[10px] font-[500] 
-          leading-[normal] tracking-[-0.04px]"
+          leading-[normal] tracking-[-0.04px] font-PoppinsMedium"
           >
             {countLike} Likes
           </p>
@@ -221,7 +221,7 @@ export default function ProfileDetails({ params }: ProfileData) {
         <DialogTrigger asChild>
         <p
             className="ml-[5px]  text-grayLight text-[10px] font-[500] 
-          leading-[normal] tracking-[-0.04px] cursor-pointer"
+          leading-[normal] tracking-[-0.04px] cursor-pointer font-PoppinsMedium"
           >
 
             view all {temp.commentsNumber} comments
@@ -229,7 +229,7 @@ export default function ProfileDetails({ params }: ProfileData) {
             </DialogTrigger>
             <DialogContent className="sm:max-w-[450px] h-[508px]">
        <div className=" flex items-center flex-col">
-         <h3 className="text-black font-bold text-xl">Comments</h3>
+         <h3 className="text-black font-bold text-xl font-SamsungSharpSansBold">Comments</h3>
          <hr className=" w-full border border-solid border-[#CACACA] mt-[10px]"/>
          <div className=" w-full">
          <ScrollArea className="h-[370px] w-full border-solid border-r-[2px] border-b-[2px] border-l-[2px] border-[#CACACA]">
@@ -237,12 +237,12 @@ export default function ProfileDetails({ params }: ProfileData) {
           <div className=" ml-4 mt-4">
           <div className=" flex items-center gap-2">
           <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
-         <p className=" font-bold text-sm">{myProfileData?.username}</p>
-          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+         <p className=" font-bold text-sm font-SamsungSharpSansBold">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500] font-PoppinsMedium">{myProfileData?.time}{myProfileData?.unit}</p>
           </div>
           <div className=" ml-10">
           <p className=" text-black text-[13px] font-[500] 
-          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          leading-[normal] w-72 font-PoppinsLight">{myProfileData?.content}</p>
           </div>
           </div>
           <div className=" flex justify-center mt-3">
@@ -251,12 +251,12 @@ export default function ProfileDetails({ params }: ProfileData) {
           <div className=" ml-4 mt-4">
           <div className=" flex items-center gap-2">
           <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
-         <p className=" font-bold text-sm">{myProfileData?.username}</p>
-          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+         <p className=" font-bold text-sm font-SamsungSharpSansBold">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500] font-PoppinsMedium">{myProfileData?.time}{myProfileData?.unit}</p>
           </div>
           <div className=" ml-10">
           <p className=" text-black text-[13px] font-[500] 
-          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          leading-[normal] w-72 font-PoppinsLight">{myProfileData?.content}</p>
           </div>
           </div>
           <div className=" flex justify-center mt-3">
@@ -265,12 +265,12 @@ export default function ProfileDetails({ params }: ProfileData) {
           <div className=" ml-4 mt-4">
           <div className=" flex items-center gap-2">
           <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
-         <p className=" font-bold text-sm">{myProfileData?.username}</p>
-          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+         <p className=" font-bold text-sm font-SamsungSharpSansBold">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500] font-PoppinsMedium">{myProfileData?.time}{myProfileData?.unit}</p>
           </div>
           <div className=" ml-10">
           <p className=" text-black text-[13px] font-[500] 
-          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          leading-[normal] w-72 font-PoppinsLight">{myProfileData?.content}</p>
           </div>
           </div>
           <div className=" flex justify-center mt-3">
@@ -279,12 +279,12 @@ export default function ProfileDetails({ params }: ProfileData) {
           <div className=" ml-4 mt-4">
           <div className=" flex items-center gap-2">
           <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
-         <p className=" font-bold text-sm">{myProfileData?.username}</p>
-          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+         <p className=" font-bold text-sm font-SamsungSharpSansBold">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500] font-PoppinsMedium">{myProfileData?.time}{myProfileData?.unit}</p>
           </div>
           <div className=" ml-10">
           <p className=" text-black text-[13px] font-[500] 
-          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          leading-[normal] w-72 font-PoppinsLight">{myProfileData?.content}</p>
           </div>
           </div>
           <div className=" flex justify-center mt-3">
@@ -293,12 +293,12 @@ export default function ProfileDetails({ params }: ProfileData) {
           <div className=" ml-4 mt-4">
           <div className=" flex items-center gap-2">
           <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
-         <p className=" font-bold text-sm">{myProfileData?.username}</p>
-          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+         <p className=" font-bold text-sm font-SamsungSharpSansBold">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500] font-PoppinsMedium">{myProfileData?.time}{myProfileData?.unit}</p>
           </div>
           <div className=" ml-10">
           <p className=" text-black text-[13px] font-[500] 
-          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          leading-[normal] w-72 font-PoppinsLight">{myProfileData?.content}</p>
           </div>
           </div>
           <div className=" flex justify-center mt-3">
@@ -307,12 +307,12 @@ export default function ProfileDetails({ params }: ProfileData) {
           <div className=" ml-4 mt-4">
           <div className=" flex items-center gap-2">
           <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
-         <p className=" font-bold text-sm">{myProfileData?.username}</p>
-          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+         <p className=" font-bold text-sm font-SamsungSharpSansBold">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500] font-PoppinsMedium">{myProfileData?.time}{myProfileData?.unit}</p>
           </div>
           <div className=" ml-10">
           <p className=" text-black text-[13px] font-[500] 
-          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          leading-[normal] w-72 font-PoppinsLight">{myProfileData?.content}</p>
           </div>
           </div>
           <div className=" flex justify-center mt-3">
@@ -321,12 +321,12 @@ export default function ProfileDetails({ params }: ProfileData) {
           <div className=" ml-4 mt-4">
           <div className=" flex items-center gap-2">
           <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
-         <p className=" font-bold text-sm">{myProfileData?.username}</p>
-          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+         <p className=" font-bold text-sm font-SamsungSharpSansBold">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500] font-PoppinsMedium">{myProfileData?.time}{myProfileData?.unit}</p>
           </div>
           <div className=" ml-10">
           <p className=" text-black text-[13px] font-[500] 
-          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          leading-[normal] w-72 font-PoppinsLight">{myProfileData?.content}</p>
           </div>
           </div>
           <div className=" flex justify-center mt-3">
@@ -335,37 +335,22 @@ export default function ProfileDetails({ params }: ProfileData) {
           <div className=" ml-4 mt-4">
           <div className=" flex items-center gap-2">
           <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
-         <p className=" font-bold text-sm">{myProfileData?.username}</p>
-          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
+         <p className=" font-bold text-sm font-SamsungSharpSansBold">{myProfileData?.username}</p>
+          <p className=" text-grayLight text-sm font-[500] font-PoppinsMedium">{myProfileData?.time}{myProfileData?.unit}</p>
           </div>
           <div className=" ml-10">
           <p className=" text-black text-[13px] font-[500] 
-          leading-[normal] w-72 ">{myProfileData?.content}</p>
+          leading-[normal] w-72 font-PoppinsLight">{myProfileData?.content}</p>
           </div>
           </div>
           <div className=" flex justify-center mt-3">
           <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
           </div>
-          <div className=" ml-4 mt-4">
-          <div className=" flex items-center gap-2">
-          <img src={myProfileData?.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
-         <p className=" font-bold text-sm">{myProfileData?.username}</p>
-          <p className=" text-grayLight text-sm font-[500]">{myProfileData?.time}{myProfileData?.unit}</p>
-          </div>
-          <div className=" ml-10">
-          <p className=" text-black text-[13px] font-[500] 
-          leading-[normal] w-72 ">{myProfileData?.content}</p>
-          </div>
-          </div>
-          <div className=" flex justify-center mt-3">
-          <hr className=" w-[350px] mt-3 border-[1.5px] border-solid border-[#CACACA]"/>
-          </div>
-         
          </ScrollArea>
          </div>
          <div className=" flex gap-9 mt-3 mb-3  w-full">
           <div className=" flex items-center bg-[#CACACA] w-[300px] h-12 rounded-xl ml-4">
-          <input  placeholder="Type your comment here..." className=" focus:outline-none bg-[#CACACA] ml-4 text-[15px] placeholder:text-[#787878]"></input>
+          <input  placeholder="Type your comment here..." className=" focus:outline-none bg-[#CACACA] w-64 ml-4 text-[15px] placeholder:text-[#787878] font-PoppinsLight"></input>
          </div>
          <button className=" bg-black w-12 h-12 flex items-center justify-center rounded-xl">
           <Image src={'/images/send.png'} alt="Loading...." width={23} height={23}></Image>
@@ -378,7 +363,7 @@ export default function ProfileDetails({ params }: ProfileData) {
        
               </div>
               </div>
-               {/* PopOver Component ShadCN */}
+          {/* PopOver Component ShadCN */}
        <div className=" mt-5 mr-3">
         <Popover>
       <PopoverTrigger asChild onClick={()=>setShow(false)}>
@@ -388,27 +373,27 @@ export default function ProfileDetails({ params }: ProfileData) {
       <PopoverContent className="w-30 h-24">
       <Dialog>
       <DialogTrigger asChild onClick={()=>setShow(true)}>
-        <p className="text-sm text-muted-foreground cursor-pointer text-center">Edit tweet</p>
+        <p className="text-sm text-muted-foreground cursor-pointer text-center font-PoppinsMedium">Edit tweet</p>
         </DialogTrigger>
         <hr className=" w-full border border-solid border-[#CACACA] mt-[10px]"/>
         <DialogTrigger asChild onClick={()=>setShow(false)}>
-        <p className="text-sm text-muted-foreground cursor-pointer mt-[10px] text-center">Delete</p>
+        <p className="text-sm text-muted-foreground cursor-pointer mt-[10px] text-center font-PoppinsMedium">Delete</p>
       </DialogTrigger>
       {show===true?<DialogContent className="sm:max-w-[375px]">
         <div className=" flex items-center flex-col">
-      <h3 className=" text-black font-bold text-xl">Edit Tweet</h3>
+      <h3 className=" text-black font-bold text-xl font-SamsungSharpSansBold">Edit Tweet</h3>
       <hr className=" w-full border border-[#CACACA] mt-3" />
-      <textarea className=" mt-8 border border-solid border-[#CACACA] focus:outline-none rounded-lg w-72 h-32 pt-3 pl-3 pr-3" placeholder="Type Tweet..." ></textarea>
-      <button className=" bg-black text-white w-[105px] h-8 rounded-lg mt-5">Update</button>
+      <textarea className=" mt-8 border border-solid border-[#CACACA] focus:outline-none rounded-lg w-72 h-32 pt-3 pl-3 pr-3 font-PoppinsLight" placeholder="Type Tweet..." ></textarea>
+      <button className=" bg-black text-white w-[109px] h-10 rounded-lg mt-5 font-SamsungSharpSansBold">Update</button>
       </div>
       </DialogContent>
       : <DialogContent className="sm:max-w-[425px]">
        <div className=" flex items-center flex-col">
       <div className=" flex items-center justify-center bg-[#F3DDDD] w-20 h-20 rounded-full"><Image src={'/images/trash.png'} alt="Loading..." width={40} height={40}></Image></div>
-      <h2 className=" text-black text-2xl font-bold text-center w-64 mt-3">Do you want to delete this tweet?</h2>
+      <h2 className=" text-black text-2xl font-bold text-center w-72 mt-3 font-SamsungSharpSansBold">Do you want to delete this tweet?</h2>
       <div className=" mt-9 mb-3 flex gap-12">
-        <p className=" bg-[#CACACA] text-black w-[105px] h-8 rounded-lg flex items-center justify-center cursor-pointer">Cancel</p>
-        <button className=" bg-black text-white w-[105px] h-8 rounded-lg">Delete</button>
+        <p className=" bg-[#CACACA] text-black w-[109px] h-10 rounded-lg flex items-center justify-center cursor-pointer font-SamsungSharpSansBold tracking-[.5px]">Cancel</p>
+        <button className=" bg-black text-white w-[109px] h-10 rounded-lg font-SamsungSharpSansBold tracking-[.5px]">Delete</button>
       </div>
       </div>
       </DialogContent> }
@@ -488,7 +473,7 @@ export default function ProfileDetails({ params }: ProfileData) {
             >
               
            <Image src={mode===false?'/images/home-2.png':'/images/home-2w.png'} alt="Loading..." width={19} height={19}></Image> 
-          <p className={mode===false?" text-black font-bold":" text-white font-bold"}>Home</p>
+          <p className={mode===false?" text-black font-bold font-SamsungSharpSansBold":" text-white font-bold font-SamsungSharpSansBold"}>Home</p>
               </div>
               </Link>
           </div>
@@ -503,8 +488,8 @@ export default function ProfileDetails({ params }: ProfileData) {
               <button
                 className={
                   mode === false
-                    ? "w-[100%] flex justify-center py-[13px]  text-[0.875rem] font-[700] leading-[normal] tracking-[-0.056px]"
-                    : "w-[100%] flex justify-center py-[13px] text-white  text-[0.875rem] font-[700] leading-[normal] tracking-[-0.056px]"
+                    ? "w-[100%] flex justify-center py-[13px]  text-[0.875rem] font-[700] leading-[normal] tracking-[-0.056px] font-SamsungSharpSansBold"
+                    : "w-[100%] flex justify-center py-[13px] text-white  text-[0.875rem] font-[700] leading-[normal] tracking-[-0.056px] font-SamsungSharpSansBold"
                 }
               >
                 Logout
