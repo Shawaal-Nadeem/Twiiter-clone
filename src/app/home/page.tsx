@@ -67,33 +67,37 @@ export default function Home() {
         }
       >
         <div className=" flex justify-between">
-        <div className="flex w-[80%] mt-[17px]">
+          <div className="flex w-[80%] mt-[7px]">
+            <div>
           <Link href={`/profiles/${data.slug}`}>
             <img
-              className="ml-[17px] w-[32px] h-[32px] rounded-[32px] flex-shrink-0"
+              className="ml-[17px] mt-[15px] w-[32px] h-[32px] rounded-[32px] flex-shrink-0"
               src={data.profile}
               alt=""
             />
-          </Link>
+              </Link>
+              </div>
+            <div className=" flex items-center">
          <Link href={`/profiles/${data?.slug}`}> <h1
             className={
               mode === false
-                ? "ml-[6px] mt-[2px] text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px]"
-                : "ml-[6px] mt-[2px] text-white text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px]"
+                ? "ml-[6px] mt-[2px] text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px] font-SamsungSharpSansBold"
+                : "ml-[6px] mt-[2px] text-white text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px] font-SamsungSharpSansBold"
             }
           >
             {data.username}
           </h1></Link>
           <p
-            className="ml-[6px] mt-[3px]  text-grayLight text-[10px] font-[500] 
-          leading-[normal] tracking-[-0.04px]"
+            className="ml-[6px] mt-[2px]  text-grayLight text-[10px] font-[500] 
+          leading-[normal] tracking-[-0.04px] font-PoppinsMedium"
           >
             {data.time}
             {data.unit} ago
-          </p>
+              </p>
+              </div>
         </div>
         {/* PopOver Component ShadCN */}
-       <div className=" mt-5 mr-3">
+       <div className=" mt-6 mr-3">
         <Popover>
       <PopoverTrigger asChild onClick={()=>setShow(false)}>
         <Image src={'/images/more.png'} alt="Loading...." width={18} height={18} className=" cursor-pointer"></Image>
@@ -102,27 +106,27 @@ export default function Home() {
       <PopoverContent className="w-30 h-24">
       <Dialog>
       <DialogTrigger asChild onClick={()=>setShow(true)}>
-        <p className="text-sm text-muted-foreground cursor-pointer text-center">Edit tweet</p>
+        <p className="text-sm text-muted-foreground cursor-pointer text-center font-PoppinsMedium">Edit tweet</p>
         </DialogTrigger>
         <hr className=" w-full border border-solid border-[#CACACA] mt-[10px]"/>
         <DialogTrigger asChild onClick={()=>setShow(false)}>
-        <p className="text-sm text-muted-foreground cursor-pointer mt-[10px] text-center">Delete</p>
+        <p className="text-sm text-muted-foreground cursor-pointer mt-[10px] text-center font-PoppinsMedium">Delete</p>
       </DialogTrigger>
       {show===true?<DialogContent className="sm:max-w-[375px]">
         <div className=" flex items-center flex-col">
-      <h3 className=" text-black font-bold text-xl">Edit Tweet</h3>
+      <h3 className=" text-black font-bold text-xl font-SamsungSharpSansBold">Edit Tweet</h3>
       <hr className=" w-full border border-[#CACACA] mt-3" />
-      <textarea className=" mt-8 border border-solid border-[#CACACA] focus:outline-none rounded-lg w-72 h-32 pt-3 pl-3 pr-3" placeholder="Type Tweet..." ></textarea>
-      <button className=" bg-black text-white w-[105px] h-8 rounded-lg mt-5">Update</button>
+      <textarea className=" mt-8 border border-solid border-[#CACACA] focus:outline-none rounded-lg w-72 h-32 pt-3 pl-3 pr-3 font-PoppinsLight" placeholder="Type Tweet..." ></textarea>
+      <button className=" bg-black text-white w-[109px] h-10 rounded-lg mt-5 font-SamsungSharpSansBold">Update</button>
       </div>
       </DialogContent>
       : <DialogContent className="sm:max-w-[425px]">
        <div className=" flex items-center flex-col">
       <div className=" flex items-center justify-center bg-[#F3DDDD] w-20 h-20 rounded-full"><Image src={'/images/trash.png'} alt="Loading..." width={40} height={40}></Image></div>
-      <h2 className=" text-black text-2xl font-bold text-center w-64 mt-3">Do you want to delete this tweet?</h2>
+      <h2 className=" text-black text-2xl font-bold text-center w-72 mt-3 font-SamsungSharpSansBold">Do you want to delete this tweet?</h2>
       <div className=" mt-9 mb-3 flex gap-12">
-        <p className=" bg-[#CACACA] text-black w-[105px] h-8 rounded-lg flex items-center justify-center cursor-pointer">Cancel</p>
-        <button className=" bg-black text-white w-[105px] h-8 rounded-lg">Delete</button>
+        <p className=" bg-[#CACACA] text-black w-[109px] h-10 rounded-lg flex items-center justify-center cursor-pointer font-SamsungSharpSansBold tracking-[.5px]">Cancel</p>
+        <button className=" bg-black text-white w-[109px] h-10 rounded-lg font-SamsungSharpSansBold tracking-[.5px]">Delete</button>
       </div>
       </div>
       </DialogContent> }
@@ -136,8 +140,8 @@ export default function Home() {
         <div 
           className={
             mode === false
-              ? "ml-[55px] mt-[-2px] w-[280px] text-[12px] font-[400] leading-[normal] tracking-[-0.04px] self-start"
-              : "ml-[55px] mt-[-2px] text-[#fff] w-[280px] text-[12px] font-[400] leading-[normal] tracking-[-0.04px] self-start"
+              ? "ml-[55px] mt-[1px] w-[280px] text-[12px] font-PoppinsLight font-[500] text-black leading-[normal] tracking-[-0.04px] self-start"
+              : "ml-[55px] mt-[1px] text-[#fff] w-[280px] text-[12px] font-PoppinsLight font-[500] leading-[normal] tracking-[-0.04px] self-start"
           }
         >
           {data.content}
@@ -187,7 +191,7 @@ export default function Home() {
           )}
           <p
             className="ml-[5px] text-grayLight text-[10px] font-[500] 
-          leading-[normal] tracking-[-0.04px]"
+          leading-[normal] tracking-[-0.04px] font-PoppinsMedium"
           >
             {countLike} Likes
           </p>
@@ -209,7 +213,7 @@ export default function Home() {
         <DialogTrigger asChild>
         <p
             className="ml-[5px]  text-grayLight text-[10px] font-[500] 
-          leading-[normal] tracking-[-0.04px] cursor-pointer"
+          leading-[normal] tracking-[-0.04px] cursor-pointer font-PoppinsMedium"
           >
 
             view all {data.commentsNumber} comments
@@ -428,8 +432,8 @@ export default function Home() {
               <p
                 className={
                   mode === false
-                    ? "text-[0.875rem] mt-[22px] font-[700] leading-[normal] tracking-[-0.056px]"
-                    : "text-[0.875rem] mt-[22px] font-[700] leading-[normal] tracking-[-0.056px] text-white"
+                    ? "text-[0.875rem] mt-[22px] font-[700] leading-[normal] tracking-[-0.056px] font-SamsungSharpSansBold"
+                    : "text-[0.875rem] mt-[22px] font-[700] leading-[normal] tracking-[-0.056px] text-white font-SamsungSharpSansBold"
                 }
               >
                 My Profile
@@ -463,13 +467,13 @@ export default function Home() {
                 <p
                   className={
                     mode === false
-                      ? "slg:text-[0.875rem] lg:text-[0.78rem] lmd:text-[0.67rem] font-[700] leading-[normal] tracking-[-0.056px]"
-                      : "slg:text-[0.875rem] lg:text-[0.78rem] lmd:text-[0.67rem]  text-white font-[700] leading-[normal] tracking-[-0.056px]"
+                      ? "slg:text-[0.875rem] lg:text-[0.78rem] lmd:text-[0.67rem] font-[700] leading-[normal] tracking-[-0.056px] font-SamsungSharpSansBold"
+                      : "slg:text-[0.875rem] lg:text-[0.78rem] lmd:text-[0.67rem]  text-white font-[700] leading-[normal] tracking-[-0.056px] font-SamsungSharpSansBold"
                   }
                 >
                   {myProfileData?.username}
                 </p>
-                <p className="text-grayLight slg:text-[0.625rem] lg:text-[0.57rem] lmd:text-[0.50rem]  font-[500] leading-[normal] tracking-[-0.04px]">
+                <p className="text-grayLight slg:text-[0.625rem] lg:text-[0.57rem] lmd:text-[0.50rem]  font-[500] leading-[normal] tracking-[-0.04px] font-SamsungSharpSansMedium">
                   {myProfileData?.email}
                 </p>
               </div>
@@ -487,8 +491,8 @@ export default function Home() {
               <button
                 className={
                   mode === false
-                    ? "w-[100%] flex justify-center py-[13px]  text-[0.875rem] font-[700] leading-[normal] tracking-[-0.056px]"
-                    : "w-[100%] flex justify-center py-[13px] text-white  text-[0.875rem] font-[700] leading-[normal] tracking-[-0.056px]"
+                    ? "w-[100%] flex justify-center py-[13px]  text-[0.875rem] font-[700] leading-[normal] tracking-[-0.056px] font-SamsungSharpSansBold"
+                    : "w-[100%] flex justify-center py-[13px] text-white  text-[0.875rem] font-[700] leading-[normal] tracking-[-0.056px] font-SamsungSharpSansBold"
                 }
               >
                 Logout

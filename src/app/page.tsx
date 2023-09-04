@@ -34,7 +34,7 @@ export default function LognSign() {
         className={
           mode === false
             ? " flex items-center justify-between w-full h-[100vh] max-md:flex-col max-md:w-[100%] max-md:[100vh] max-md:h-auto"
-            : " flex items-center justify-between bg-black w-full h-[100vh] max-sm:flex-col max-md:h-auto max-md:w-[100%]"
+            : " flex items-center justify-between bg-black w-full h-[100vh] max-md:flex-col max-sm:flex-col max-md:h-auto max-md:w-[100%]"
         }
       >
         <div>
@@ -194,8 +194,8 @@ export default function LognSign() {
                 <input
                   className={
                     mode === false
-                      ? show===false? " outline-none w-96 pl-4 font-SamsungSharpSansBold text-2xl":" outline-none w-96 pl-4 font-SamsungSharpSansBold text-sm"
-                      : show===false? " outline-none w-96 pl-4 bg-black text-white font-SamsungSharpSansMedium text-2xl":" outline-none w-96 pl-4 bg-black text-white font-SamsungSharpSansMedium text-sm"
+                      ? show===false? " outline-none w-96 max-md:w-72 pl-4 font-SamsungSharpSansBold text-2xl":" outline-none w-96 max-md:w-72 pl-4 font-SamsungSharpSansBold text-sm"
+                      : show===false? " outline-none w-96 max-md:w-72 pl-4 bg-black text-white font-SamsungSharpSansMedium text-2xl":" outline-none w-96 max-md:w-72 pl-4 bg-black text-white font-SamsungSharpSansMedium text-sm"
                   }
                   type={show === false ? "password" : "text"}
                   value={password}
@@ -219,7 +219,7 @@ export default function LognSign() {
                   alt="Loading..."
                   width={19}
                   height={19}
-                  className=" cursor-pointer mr-3"
+                  className=" cursor-pointer ml-2 md:mr-3"
                 ></Image>
               </div>
             </div>

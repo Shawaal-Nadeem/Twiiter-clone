@@ -41,7 +41,12 @@ module.exports = {
       fontFamily: {
         SamsungSharpSans: 'SamsungSharpSans',
         SamsungSharpSansBold: 'SamsungSharpSans-Bold',
-        SamsungSharpSansMedium:'SamsungSharpSans-Medium'
+        SamsungSharpSansMedium: 'SamsungSharpSans-Medium',
+        PoppinsLight:'Poppins-Light',
+        PoppinsMedium:'Poppins-Medium',
+        PoppinsSemiBold:'Poppins-SemiBold',
+        PoppinsBold:'Poppins-Bold',
+        PoppinsExtraBold:'Poppins-ExtraBold'
       },
       colors: {
         border: "hsl(var(--border))",
