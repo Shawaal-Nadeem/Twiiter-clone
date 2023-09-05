@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { useContext } from "react";
 import { context } from "@/contextAPI/contextApi";
+import tweets from "./utils/mock";
 
 
 export default function LognSign() {
@@ -26,6 +27,22 @@ export default function LognSign() {
       setShow(true);
     } else if (show === true) {
       setShow(false);
+    }
+  }
+
+  const [email, setEmail] = useState('Codenest@gmail.com');
+  let flag:number = 0;
+  tweets.find((temp: any) => {
+    if (password === temp.password && email === temp.email) {
+      flag = 1;
+    }
+  })
+
+  const [showSuggest, setShowSuggest] = useState(false);
+  function decision() {
+    if (flag == 0)
+    {
+      setShowSuggest(true);
     }
   }
   return (
@@ -158,7 +175,8 @@ export default function LognSign() {
                     ? "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm"
                     : "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight bg-black text-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm"
                 }
-                placeholder="Codenest@gmail.com"
+                placeholder={email}
+                onChange={(e)=>{setEmail(e.target.value)}}
                 type="email"
               ></input>
             </div>
@@ -232,8 +250,8 @@ export default function LognSign() {
                   : "hidden"
               }
             >
-              <Link href={"/home"}>
-                <button className=" flex items-center justify-center font-medium w-96 h-12">
+              <Link href={flag===1?'/home':'/'}>
+                <button onClick={()=>{decision()}} className=" flex items-center justify-center font-medium w-96 h-12">
                   Login
                 </button>
               </Link>
@@ -247,12 +265,13 @@ export default function LognSign() {
                   : "hidden"
               }
             >
-              <Link href={"/home"}>
+              <Link href={'/home'}>
                 <button className=" flex items-center justify-center font-medium w-96 h-12">
                   Signup
                 </button>
               </Link>
             </div>
+           {showSuggest===true && state===false?<p className=" text-xs text-[red] mt-3">This Email ID or Password is Incorrect. <span className=" text-[blue]">Create Aaccount?</span> <span onClick={()=>{setState(true)}} className=" text-[purple] cursor-pointer underline">Signup</span></p>:null} 
           </div>
         </div>
 
