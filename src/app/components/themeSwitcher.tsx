@@ -2,7 +2,6 @@
 import Image from "next/image";
 import { useContext, useState } from "react";
 import { context } from "@/contextAPI/contextApi";
-import LognSignPage from "../page";
 
 
 export const ThemeSwitcher = () => {
