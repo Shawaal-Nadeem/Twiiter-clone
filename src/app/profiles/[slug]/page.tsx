@@ -60,7 +60,7 @@ export default function ProfileDetails({ params }: ProfileData) {
       </div>
 
       {/* Mid Side */}
-      <div className="w-[100%] h-[100vh] m-auto relative overflow-x-hidden lmd:w-[50vw]  ">
+      <div className="w-[100%] h-[100vh] m-auto relative lmd:w-[50vw]  ">
         <div
           className="w-[100%] hidden lmd:flex justify-center items-center border-l-[1px] border-r-[1px]  border-b-[1px] border-gray bg-mainBg dark:bg-black">
           <Image
