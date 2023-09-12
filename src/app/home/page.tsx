@@ -5,7 +5,6 @@ import { ThemeSwitcher } from "../components/themeSwitcher";
 import { MyProfileBox } from "../components/myProfileBox";
 import { AddIconMobile } from "../components/addIconMobile";
 import { RightSideHome } from "../components/rightSideHome";
-import { TweetData } from "../components/tweetData";
 import { TweetDataCall } from "../components/tweetData";
 
 export default function Home() {

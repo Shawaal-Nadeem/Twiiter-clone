@@ -43,7 +43,7 @@ export const TweetData = (data: any, index: number) => {
               </h1>
             </Link>
             <p className="ml-[6px] mt-[2px]  text-grayLight text-[10px] font-[500] leading-[normal] tracking-[-0.04px] font-PoppinsMedium">
-              {data.time} {data.unit} ago
+              {data.time}{data.unit} ago
             </p>
           </div>
         </div>
