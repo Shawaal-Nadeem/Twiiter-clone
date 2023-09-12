@@ -1,7 +1,7 @@
 import tweets from "../utils/mock";
 import Image from "next/image";
 import { LogoutButton } from "../components/logoutButton";
-import { ThemeSwitcher } from "../components/themeSwitcher";
+import { MobileNavbar } from "../components/mobileNavbar";
 import { MyProfileBox } from "../components/myProfileBox";
 import { AddIconMobile } from "../components/addIconMobile";
 import { RightSideHome } from "../components/rightSideHome";
@@ -20,15 +20,7 @@ export default function Home() {
   return (
     <div
       className=" w-full bg-clip-content flex flex-col lmd:flex lmd:flex-row bg-white  dark:bg-black">
-      <div className=" w-[100%] py-6 flex border-[.5px] mb-2 border-b-gray bg-mainBg lmd:hidden dark:bg-black">
-        <div className="w-[90%] m-auto flex items-center justify-between">
-          <img src={myProfileData?.profile} alt="" className="w-[44px] h-[44px] rounded-[36px]" />
-          <Image src={"/images/X.png"} alt="" width={55} height={55}></Image>
-          <div className=" cursor-pointer rounded-[36px] ">
-            <ThemeSwitcher />
-          </div>
-        </div>
-      </div>
+       <MobileNavbar/>
 
       {/* Left Side */}
       <div className="w-[25vw] hidden lmd:block h-[100vh] relative">

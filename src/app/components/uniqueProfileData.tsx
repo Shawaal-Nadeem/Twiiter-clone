@@ -17,6 +17,7 @@ import {
   DialogContent,
   DialogTrigger,
 } from "@/components/ui/dialog"
+import { Settings } from "./settingIcon";
 export const UniqueProfileData = ({ props }: { props: string }) => {
   const [like, updateLike] = useState(false);
 
@@ -40,46 +41,35 @@ export const UniqueProfileData = ({ props }: { props: string }) => {
     // Tweet Data Return
     return (
       <div
-        className={
-          mode === false
-            ? "flex flex-col w-[100%] border-[.5px] border-gray bg-mainBg "
-            : "flex flex-col w-[100%] border-[.5px] border-gray bg-black"
-        }
+      className={
+        mode === false
+        ? "flex flex-col w-[100%] border-[.5px] border-gray bg-mainBg "
+        : "flex flex-col w-[100%] border-[.5px] border-gray bg-black"
+      }
       >
+        {show===true?<div onClick={()=>{setShow(false)}} className=" fixed w-full h-[100vh]"></div>:null}
         <div className=" flex justify-center w-full mt-7">
-          <div className=" flex justify-center w-[95%]"> <Image src={data.profile} alt="Loading..." width={180} height={180} className={profileData.slug === 'my-profile' ? " rounded-full ml-5 " : " rounded-full"}></Image></div>
+          <div className=" flex justify-center w-[full]"> <Image src={data.profile} alt="Loading..." width={180} height={180} className={profileData.slug === 'my-profile' ? " rounded-full " : " rounded-full"}></Image></div>
           {profileData.slug === 'my-profile' ? <>
-            {/* PopOver Component ShadCN */}
-            <div className=" mt-5 mr-3">
-              <Popover>
-                <PopoverTrigger asChild onClick={() => setShow(false)}>
-                  <Image src={mode === false ? '/images/setting-2.png' : '/images/setting-2w.png'} alt="Loading..." width={20} height={20} className="cursor-pointer"></Image>
-                </PopoverTrigger>
-
-                <PopoverContent className="w-30 h-24">
-                  <Dialog>
-                    <DialogTrigger asChild onClick={() => setShow(true)}>
-                      <p className="text-sm text-muted-foreground cursor-pointer text-center font-PoppinsMedium">Edit Profile</p>
-                    </DialogTrigger>
-                    <hr className=" w-full border border-solid border-[#CACACA] mt-[10px]" />
-                    <DialogTrigger asChild onClick={() => setShow(false)}>
-                      <p className="text-sm text-muted-foreground cursor-pointer mt-[10px] text-center font-PoppinsMedium">Copy Link</p>
-                    </DialogTrigger>
-                    {show === true ? <DialogContent className="sm:max-w-[375px]">
-                      <div className=" flex items-center flex-col">
-                        <h3 className=" text-black font-bold text-xl font-SamsungSharpSansBold">Edit Profile</h3>
-                        <hr className=" w-full border border-[#CACACA] mt-3" />
-                        <p className=" mt-7 flex justify-self-start font-semibold text-black font-SamsungSharpSansBold">Change Username</p>
-                        <input onChange={(e) => { nameUpdate(e.target.value) }} className=" pl-3 border border-solid border-[#CACACA] focus:outline-none rounded-lg w-72 h-10 mt-5 font-PoppinsLight" placeholder={name} ></input>
-                        <button className=" bg-black text-white w-[105px] h-8 rounded-lg mt-5 font-SamsungSharpSansBold" onClick={(() => { setShow(false) })}>Update</button>
-                      </div>
-                    </DialogContent>
-                      : null}
-                  </Dialog>
-                </PopoverContent>
-
-              </Popover>
-            </div>
+               {/* Setting Popover */}
+       <div className=" mt-5 mr-3">
+       <div className=" absolute z-10 right-2"> 
+       <Image onClick={()=>{setShow(true)}} src={mode === false ? '/images/setting-2.png' : '/images/setting-2w.png'} alt="Loading..." width={20} height={20} className="cursor-pointer"></Image>
+       </div>
+                {show === true ? <div className="z-[10] absolute top-36 -right-16">
+                <div className="bg-white w-44 h-40 rounded-2xl" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
+                <div className=" flex justify-end pt-3 pr-3"><Image onClick={()=>{setShow(false)}} src={'/images/Group 13.png'} alt="Loading..." width={15} height={15} className=" cursor-pointer"></Image></div>
+                <div><h3 className="text-black font-bold text-lg font-SamsungSharpSansBold text-center">Settings</h3></div>
+                <hr className=" border-1 border-[#CACACA] mt-3"/>
+                <div className=" font-PoppinsMedium">
+                <p className=" mt-3 ml-3">Edit Profile</p>    
+                <hr className=" border-1 border-[#CACACA] mt-3"/>
+                <p className=" mt-3 ml-3">Copy Link</p>    
+                </div>
+                </div>
+       </div>:null}
+      
+         </div>
           </> : null}
         </div>
 

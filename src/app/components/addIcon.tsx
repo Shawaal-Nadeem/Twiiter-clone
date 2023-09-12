@@ -55,13 +55,13 @@ export const AddIcon = () => {
       // Popup Transpart BG
           <div onClick={() => { setShowTweetPopup(false) }} className=" bg-[#FFFFFF80] h-[100vh] w-full right-0 left-0 top-0 bottom-0 z-10 fixed flex items-center justify-center">
              {/* Popup Card */}
-            <div onClick={handlePopupBackgroundClick} className=" bg-white rounded-3xl flex items-center justify-center">
+            <div onClick={handlePopupBackgroundClick} className=" bg-white rounded-3xl flex items-center justify-center" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
               <div className="w-[400px] h-[300px]">
               <div className=" flex justify-end">
                 <Image onClick={() => { setShowTweetPopup(false) }} className=" cursor-pointer mr-4 mt-5" src={'/images/Group 13.png'} alt="Loading..." width={17} height={17}></Image>
           </div>
           <div className="w-full">
-          <h3 className="text-black ml-7 font-bold text-xl font-SamsungSharpSansBold">What's on your mind?</h3>
+          <h3 className="text-black ml-7 font-bold text-xl font-SamsungSharpSansBold">Whats on your mind?</h3>
           <div className=" flex flex-col items-center bg-white">
           <textarea className=" mt-6 border border-solid border-[#CACACA] focus:outline-none rounded-lg w-[340px] h-32 pt-3 pl-3 pr-3 font-PoppinsLight" ></textarea>
           <button onClick={()=>{setShowTweetPopup(false)}} className=" bg-black text-white w-[109px] h-10 rounded-lg mt-5 font-SamsungSharpSansBold">Post</button>
@@ -77,7 +77,7 @@ export const AddIcon = () => {
       // Popup Transpart BG
          <div onClick={() => { setGalleryPopup(false) }} className=" bg-[#FFFFFF80] h-[100vh] w-full right-0 left-0 top-0 bottom-0 z-10 fixed flex items-center justify-center">
              {/* Popup Card */}
-            <div onClick={handlePopupBackgroundClick} className=" bg-white rounded-3xl flex items-center justify-center">
+            <div onClick={handlePopupBackgroundClick} className=" bg-white rounded-3xl flex items-center justify-center" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
               <div className="w-[400px] h-[330px]">
               <div className=" flex justify-end">
                 <Image onClick={() => { setGalleryPopup(false) }} className=" cursor-pointer mr-4 mt-5" src={'/images/Group 13.png'} alt="Loading..." width={17} height={17}></Image>
