@@ -25,7 +25,7 @@ export const AddIconMobile = () => {
   const mode = getContext.mode;
   // show write Tweet popup component
   const [show, setShow] = useState(false);
-  const TogglePopup = () => {
+  const ToggleTweetPopup = () => {
     if (show === false) {
       setShow(true);
     }
@@ -35,7 +35,7 @@ export const AddIconMobile = () => {
   }
   // show gallery popup
   const [galleryPopup, setGalleryPopup] = useState(false);
-  const ToggleGalleyPopup = () => {
+  const ToggleGalleryPopup = () => {
     if (galleryPopup === false) {
       setGalleryPopup(true);
     }
@@ -109,10 +109,10 @@ export const AddIconMobile = () => {
         ) : (
           <div className={mode === false ? "bg-black w-[135px] flex lmd:hidden items-center h-[60px] fixed top-0 mt-[85vh] right-0 mr-[12px] rounded-[36px]" : "bg-white w-[135px] flex lmd:hidden items-center h-[60px] fixed top-0 mt-[85vh] right-0 mr-[12px] rounded-[36px] z-10"}>
             <div className={mode === false ? "flex w-[100%] " : "flex w-[100%] "}>
-              <div className={ mode === false ? " cursor-pointer w-[50%] flex justify-center border-r-[1px] py-[0.5em] border-grayLight" : "w-[50%] flex  justify-center border-r-[1px] py-[0.5em] border-grayLight"}>
+              <div onClick={ToggleGalleryPopup} className={ mode === false ? " cursor-pointer w-[50%] flex justify-center border-r-[1px] py-[0.5em] border-grayLight" : "w-[50%] flex  justify-center border-r-[1px] py-[0.5em] border-grayLight"}>
                 <Image onClick={()=>{AddTweet()}} src={ mode === false ? "/images/gallery-add1.png" : "/images/gallery-add.png"} alt="" width={24} height={24}></Image>
               </div>
-              <div onClick={() => { TogglePopup()}} className="cursor-pointer w-[50%] flex justify-center py-[0.5em]">
+              <div onClick={() => { ToggleTweetPopup()}} className="cursor-pointer w-[50%] flex justify-center py-[0.5em]">
                 <Image onClick={()=>{AddTweet()}} src={ mode === false ? "/images/edit-light.png" : "/images/edit-dark.png" } alt="" width={24} height={24}></Image>
               </div>
             </div>
