@@ -36,7 +36,7 @@ export const MobileNavbar = () => {
 
             </div>
             
-            {/* {show===true?<div className=" w-full h-screen bg-[yellow] -z[1] absolute left-0 right-0 top-10 bottom-100"></div>:null} */}
+            {show===true?<div onClick={()=>{setShow(false)}} className=" h-[100vh] w-full right-0 left-0 top-0 bottom-0 z-10 fixed flex items-center justify-center"></div>:null}
            
             {show === true ?
             <>
