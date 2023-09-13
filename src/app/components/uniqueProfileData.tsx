@@ -33,11 +33,7 @@ export const UniqueProfileData = ({ props }: { props: string }) => {
     // Tweet Data Return
     return (
       <div
-      className={
-        mode === false
-        ? "flex flex-col w-[100%] border-[.5px] border-gray bg-mainBg "
-        : "flex flex-col w-[100%] border-[.5px] border-gray bg-black"
-      }
+      className="flex flex-col w-[100%] border-[.5px] border-gray bg-mainBg dark:bg-[#121212]"
       >
         {show===true?<div onClick={()=>{setShow(false)}} className="  h-[100vh] w-full right-0 left-0 top-0 bottom-0 z-10 fixed flex items-center justify-center"></div>:null}
         <div className=" flex justify-center w-full mt-7">

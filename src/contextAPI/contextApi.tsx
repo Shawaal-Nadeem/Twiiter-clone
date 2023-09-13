@@ -13,7 +13,11 @@ interface Theme
     showSettingBehind: boolean,
     setShowSettingBehind: Dispatch<SetStateAction<boolean>>,
     showEditProfileBehind: boolean,
-    setShowEditProfileBehind: Dispatch<SetStateAction<boolean>>
+    setShowEditProfileBehind: Dispatch<SetStateAction<boolean>>,
+    showEditTweet: boolean,
+    setShowEditTweet: Dispatch<SetStateAction<boolean>>,
+    showDeleteTweet: boolean,
+    setShowDeleteTweet: Dispatch<SetStateAction<boolean>>,
 }
 export const context=createContext({} as Theme);
 
@@ -24,7 +28,9 @@ export default function ContextApp({children}:{children:ReactNode})
     const [tweetAdd, updateAdd] = useState(false);
     const [showSettingBehind, setShowSettingBehind] = useState(false);
     const [showEditProfileBehind, setShowEditProfileBehind] = useState(false);
-    return <context.Provider value={{mode,setMode,show,setShow,tweetAdd,updateAdd,showSettingBehind,setShowSettingBehind,showEditProfileBehind,setShowEditProfileBehind}}>
+    const [showEditTweet, setShowEditTweet] = useState(false);
+    const [showDeleteTweet, setShowDeleteTweet] = useState(false);
+    return <context.Provider value={{mode,setMode,show,setShow,tweetAdd,updateAdd,showSettingBehind,setShowSettingBehind,showEditProfileBehind,setShowEditProfileBehind,showEditTweet,setShowEditTweet,showDeleteTweet,setShowDeleteTweet}}>
         {children}
     </context.Provider>
 } 

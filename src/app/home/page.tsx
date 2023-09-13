@@ -32,8 +32,8 @@ export default function Home() {
       </div>
 
       {/* Mid Side */}
-      <div className="w-[100%] m-auto relative overflow-x-hidden lmd:w-[50vw]  ">
-        <div className="w-[100%] hidden lmd:flex justify-center items-center border-l-[1px] border-r-[1px]  border-b-[1px] border-gray bg-mainBg dark:bg-black">
+      <div className="w-[100%] m-auto relative overflow-x-hidden lmd:w-[50vw] ">
+        <div className="w-[100%] hidden lmd:flex justify-center items-center border-l-[1px] border-r-[1px]  border-b-[1px] border-gray bg-mainBg dark:bg-[#121212]">
           <Image src={"/images/X.png"} alt="" width={34} height={34} className="mt-[15px] mb-[17px]"></Image>
         </div>
         <TweetDataCall/>

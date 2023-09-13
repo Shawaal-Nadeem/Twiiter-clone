@@ -10,6 +10,7 @@ import { context } from "@/contextAPI/contextApi";
 const tweetContent = tweets.filter((item: any) => {
   return item;
 });
+
 export const TweetData = (data: any, index: number) => {
   const getContext = useContext(context);
   const mode = getContext.mode;
@@ -25,10 +26,9 @@ export const TweetData = (data: any, index: number) => {
       if (countLike > 0) updateCountLike(countLike - 1);
     }
   };
-
   // Tweet Data Return
   return (
-    <div key={index} className={mode === false ? "flex flex-col w-[100%] border-[.5px] border-gray bg-mainBg " : "flex flex-col w-[100%] border-[.5px] border-gray bg-black"}>
+    <div key={index} className="flex flex-col w-[100%] border-[.5px] border-gray bg-mainBg dark:bg-[#121212]">
       <div className=" flex justify-between">
         <div className="flex w-[80%] mt-[7px]">
           <div>
