@@ -12,6 +12,10 @@ const tweetContent = tweets.filter((item: any) => {
 });
 
 export const TweetData = (data: any, index: number) => {
+  const profileData = tweets.find((item: any) => {
+    if (item.slug === "my-profile") return item;
+    else return null;
+});
   const getContext = useContext(context);
   const mode = getContext.mode;
   const [like, updateLike] = useState(false);
@@ -47,7 +51,7 @@ export const TweetData = (data: any, index: number) => {
             </p>
           </div>
         </div>
-        <MorePopup />
+        <MorePopup profileData={profileData}/>
 
       </div>
       <div className={mode === false ? "ml-[55px] mt-[1px] w-[280px] text-[12px] font-PoppinsLight font-[500] text-black leading-[normal] tracking-[-0.04px] self-start" : "ml-[55px] mt-[1px] text-[#fff] w-[280px] text-[12px] font-PoppinsLight font-[500] leading-[normal] tracking-[-0.04px] self-start"}>
