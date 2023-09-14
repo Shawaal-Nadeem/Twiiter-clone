@@ -16,7 +16,7 @@ export const Settings = ({profileData}:{profileData:any}) => {
         else return setShow(false);
     }
     const [option, setOption] = useState(false);
-    const setShow1 = getContext.setShowEditProfileBehind;
+    const setShow1 = getContext.setShowEditTweet;
   return (
         <>
             {/* Setting Popover */}

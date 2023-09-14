@@ -2,12 +2,11 @@
 import Image from "next/image"
 import { useContext } from "react"
 import { context } from "@/contextAPI/contextApi"
-import { useState } from "react"
 
 export const EditProfilePopup = ({profileData}:{profileData:any}) => {
     const getContext = useContext(context);
-    const show1 = getContext.showEditProfileBehind;
-    const setShow1 = getContext.setShowEditProfileBehind;
+    const show1 = getContext.showEditTweet;
+    const setShow1 = getContext.setShowEditTweet;
     const ToggleShowTweetPopup = () => {
         if (show1 === false) {     
             setShow1(true);
@@ -20,9 +19,9 @@ export const EditProfilePopup = ({profileData}:{profileData:any}) => {
     const handlePopupBackgroundClick = (event:any) => {
        event.stopPropagation();
     };
-    const [name, setName] = useState(profileData.username);
+    // const [name, setName] = useState(profileData.username);
     const updateName = (newName: string) => {
-      setName(newName);
+      // setName(newName);
       }
     return (
         <>

@@ -1,5 +1,4 @@
 'use client'
-import { useState } from "react";
 import Link from "next/link";
 import tweets from "../utils/mock";
 import { MorePopup } from "./morePopup";
@@ -54,7 +53,7 @@ export const TweetData = (data: any, index: number) => {
             </p>
           </div>
         </div>
-        <MorePopup profileData={profileData} />
+        <MorePopup data={data} />
 
       </div>
       <div className={mode === false ? "ml-[55px] mt-[1px] w-[280px] text-[12px] font-PoppinsLight font-[500] text-black leading-[normal] tracking-[-0.04px] self-start" : "ml-[55px] mt-[1px] text-[#fff] w-[280px] text-[12px] font-PoppinsLight font-[500] leading-[normal] tracking-[-0.04px] self-start"}>
