@@ -10,7 +10,7 @@ const tweets = [
         contentImage: null,
         likesNumber: 90,
         commentsNumber: 20,
-        password:'cdn23'
+        password:'cdn23',
     },  
     {
         profile: "https://pbs.twimg.com/profile_images/1548735070030204929/SE6zZzFV_400x400.jpg",
@@ -23,7 +23,7 @@ const tweets = [
         contentImage: null,
         likesNumber: 100,
         commentsNumber: 450,
-        password:'imr123'
+        password:'imr123',
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1683325380441128960/yRsRRjGO_400x400.jpg",
