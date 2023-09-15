@@ -4,7 +4,7 @@ import { useState } from "react";
 import { useContext } from "react";
 import { context } from "@/contextAPI/contextApi";
 import tweets from "../utils/mock";
-let getTweets=tweets;
+let getTweets = tweets;
 export const WriteTweetPopup = () => {
 
   // When click on + icon and then we click on screen
@@ -56,7 +56,8 @@ export const WriteTweetPopup = () => {
     contentImage: null,
     likesNumber: 0,
     commentsNumber: 0,
-    password: 'cdn23'
+    password: 'cdn23',
+    id: 0
   }
   const enterTweet = (tweet: any) => {
     tweetObj.content = tweet;
@@ -64,6 +65,10 @@ export const WriteTweetPopup = () => {
   const addNewTweet = () => {
     getTweets.unshift(tweetObj)
     let newTweets = getTweets;
+    for (let i = 0; i < getTweets.length; i++) {
+      newTweets[i].id = i;
+    }
+    console.log(newTweets);
     setTweet(newTweets)
   }
   return (

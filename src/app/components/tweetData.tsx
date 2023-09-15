@@ -9,7 +9,8 @@ import { context } from "@/contextAPI/contextApi";
 const tweetContent = tweets.filter((item: any) => {
   return item;
 });
-
+let indexNum: any;
+let idNum: any;
 export const TweetData = (data: any, index: number) => {
   const profileData = tweets.find((item: any) => {
     if (item.slug === "my-profile") return item;
@@ -31,7 +32,11 @@ export const TweetData = (data: any, index: number) => {
       if (countLike > 0) updateCountLike(countLike - 1);
     }
   };
-
+  let props = {
+    indexNum: index,
+    idNum:data.id,
+    data:data
+  }
   // Tweet Data Return
   return (
     <div key={index} className="flex flex-col w-[100%] border-[.5px] border-gray bg-mainBg dark:bg-[#121212]">
@@ -53,7 +58,7 @@ export const TweetData = (data: any, index: number) => {
             </p>
           </div>
         </div>
-        <MorePopup data={data} />
+        <MorePopup {...props} />
 
       </div>
       <div className={mode === false ? "ml-[55px] mt-[1px] w-[280px] text-[12px] font-PoppinsLight font-[500] text-black leading-[normal] tracking-[-0.04px] self-start" : "ml-[55px] mt-[1px] text-[#fff] w-[280px] text-[12px] font-PoppinsLight font-[500] leading-[normal] tracking-[-0.04px] self-start"}>

@@ -11,6 +11,7 @@ const tweets = [
         likesNumber: 90,
         commentsNumber: 20,
         password:'cdn23',
+        id:0
     },  
     {
         profile: "https://pbs.twimg.com/profile_images/1548735070030204929/SE6zZzFV_400x400.jpg",
@@ -24,6 +25,7 @@ const tweets = [
         likesNumber: 100,
         commentsNumber: 450,
         password:'imr123',
+        id:1
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1683325380441128960/yRsRRjGO_400x400.jpg",
@@ -36,7 +38,8 @@ const tweets = [
         contentImage: "https://pbs.twimg.com/media/F3Bt7f9XEBE60qc?format=jpg&name=large",
         likesNumber: 109,
         commentsNumber: 30,
-        password:'elmX'
+        password:'elmX',
+        id:2
     },
     {
         profile: "/images/myprofile.jpeg",
@@ -49,7 +52,8 @@ const tweets = [
         contentImage: null,
         likesNumber: 40,
         commentsNumber: 10,
-        password:'cdn23'
+        password:'cdn23',
+        id:3
     },  
     {
         profile: "https://pbs.twimg.com/profile_images/1404378291599937536/b-r3SWlW_400x400.jpg",
@@ -62,7 +66,8 @@ const tweets = [
         contentImage: "https://pbs.twimg.com/media/F3N_NMeXAAAQEhd?format=jpg&name=large",
         likesNumber: 115,
         commentsNumber: 4,
-        password:'icMatch'
+        password:'icMatch',
+        id:4
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1672219882904072196/-Lt_IrhL_400x400.jpg",
@@ -75,7 +80,8 @@ const tweets = [
         contentImage: null,
         likesNumber: 96,
         commentsNumber: 500,
-        password:'tBro'
+        password:'tBro',
+        id:5
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1417471791845478403/MzAWCfK7_400x400.jpg",
@@ -88,7 +94,8 @@ const tweets = [
         contentImage: "https://pbs.twimg.com/media/F3QzOv-W0AA8m3q?format=jpg&name=large",
         likesNumber: 212,
         commentsNumber: 150,
-        password:'rockG'
+        password:'rockG',
+        id:6
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1308769664240160770/AfgzWVE7_400x400.jpg",
@@ -101,7 +108,8 @@ const tweets = [
         contentImage: null,
         likesNumber: 704,
         commentsNumber: 200,
-        password:'jbUS'
+        password:'jbUS',
+        id:7
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1417471791845478403/MzAWCfK7_400x400.jpg",
@@ -114,7 +122,8 @@ const tweets = [
         contentImage: "https://pbs.twimg.com/media/F3QzOv-W0AA8m3q?format=jpg&name=large",
         likesNumber: 212,
         commentsNumber: 150,
-        password:'rockG'
+        password:'rockG',
+        id:8
     },
 ]
 export default tweets;

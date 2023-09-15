@@ -28,7 +28,7 @@ export const UniqueProfileData = ({ props }: { props: string }) => {
   const setShow1 = getContext.setShowEditProfileBehind;
 
   let dataTweet = tweets.filter((temp) => { return profileData.username === temp.username })
-
+  
   const TweetDataProfile = (data: any) => {
     // Tweet Data Return
     return (
