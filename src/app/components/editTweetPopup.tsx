@@ -52,7 +52,7 @@ export const EditTweetPopup = (props2: any) => {
         // Popup Transpart BG
         <div onClick={() => { ToggleShowTweetPopup() }} className=" bg-[#FFFFFF80] dark:bg-[#00000080] h-[100vh] w-full right-0 left-0 top-0 bottom-0 z-10 fixed flex items-center justify-center">
           {/* Popup Card */}
-          <div onClick={handlePopupBackgroundClick} className=" bg-white dark:bg-black rounded-3xl flex items-center justify-center" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
+          <div onClick={handlePopupBackgroundClick} className=" bg-white dark:bg-black rounded-3xl flex items-center justify-center max-lmd:w-[85%]" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
             <div className="w-[400px] h-[350px]">
               <div className=" flex justify-end">
                 <Image onClick={() => { ToggleShowTweetPopup() }} className=" cursor-pointer mr-4 mt-5" src={'/images/Group 13.png'} alt="Loading..." width={17} height={17}></Image>
@@ -61,7 +61,7 @@ export const EditTweetPopup = (props2: any) => {
                 <h3 className="text-black dark:text-white font-bold text-xl font-SamsungSharpSansBold text-center">Edit Tweet</h3>
                 <hr className=" border border-[#CACACA] dark:border-[#242424] mt-2" />
                 <div className=" flex flex-col items-center bg-white dark:bg-black">
-                  <textarea onChange={(e) => { editTweet(e.target.value) }} className=" mt-8 border border-solid border-[#CACACA] focus:outline-none rounded-2xl w-80 h-36 pt-3 pl-3 pr-3 font-PoppinsLight text-base dark:bg-black placeholder:text-[#787878]" placeholder="There is no such thing as “Sad” You are either happy where you are OR You are furiously motivated to change something. either black or white. Yin and yang. ACT." ></textarea>
+                  <textarea onChange={(e) => { editTweet(e.target.value) }} className=" mt-8 border border-solid border-[#CACACA] focus:outline-none rounded-2xl w-80 h-36 pt-3 pl-3 pr-3 font-PoppinsLight text-base dark:bg-black placeholder:text-[#787878] max-lmd:w-[85%]" placeholder="There is no such thing as “Sad” You are either happy where you are OR You are furiously motivated to change something." ></textarea>
                   <button onClick={() => { ToggleShowTweetPopup(); updateTweet() }} className=" bg-black dark:bg-white text-white dark:text-black w-[112px] h-10 rounded-lg mt-6 font-SamsungSharpSansBold">Update</button>
                 </div>
               </div>

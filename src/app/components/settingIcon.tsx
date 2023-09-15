@@ -28,7 +28,7 @@ export const Settings = ({profileData}:{profileData:any}) => {
        <div className=" absolute z-10 right-2"> 
        <Image onClick={()=>{Toggle()}} src={mode === false ? '/images/setting-2.png' : '/images/setting-2w.png'} alt="Loading..." width={20} height={20} className="cursor-pointer"></Image>
        </div>
-                {show === true ? <div className="z-[10] absolute top-36 -right-16">
+                {show === true ? <div className="z-[10] absolute top-36 -right-16 max-lmd:right-0 max-lmd:top-20">
                 <div className="bg-white dark:bg-black w-44 h-44 rounded-2xl dark:border-[0.1px] dark:border-[#242424]" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
                 <div className=" flex justify-end pt-3 pr-3"><Image onClick={()=>{setShow(false)}} src={'/images/Group 13.png'} alt="Loading..." width={15} height={15} className=" cursor-pointer"></Image></div>
                 <div><h3 className="text-black dark:text-white font-bold text-lg font-SamsungSharpSansBold text-center">Settings</h3></div>
