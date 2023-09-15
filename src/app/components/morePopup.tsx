@@ -45,11 +45,11 @@ export const MorePopup = (props: any) => {
             <Image onClick={() => { Toggle() }} src={'/images/more.png'} alt="Loading...." width={18} height={18} className=" cursor-pointer"></Image>
           </div>
           {show === true ? <div className="z-[10] absolute ">
-            <div className=" ml-[-100px] w-[120px] h-20 rounded-2xl" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
+            <div className=" ml-[-105px] mt-[-20px] w-[120px] h-20 rounded-2xl bg-white dark:bg-[#060606]" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
               <div className=" font-PoppinsMedium mt-6">
                 <p onClick={() => { setOption(true), Toggle(), setShow1(true) }} className=" text-sm pt-3 ml-3 cursor-pointer text-[#787878]">Edit Tweet</p>
-                <hr className=" border-1 border-[#CACACA] mt-2" />
-                <p onClick={() => { setOption1(true), Toggle(), setShow2(true) }} className=" mt-1 ml-3 text-[#787878] cursor-pointer text-sm">Delete</p>
+                <hr className=" border-1 border-[#CACACA] dark:border-[#242424] mt-2" />
+                <p onClick={() => { setOption1(true), Toggle(), setShow2(true) }} className=" mt-2 ml-3 text-[#787878] cursor-pointer text-sm">Delete</p>
               </div>
             </div>
           </div> : null}
@@ -66,10 +66,10 @@ export const MorePopup = (props: any) => {
             <div>
               <Image onClick={() => { Toggle() }} src={'/images/more.png'} alt="Loading...." width={18} height={18} className=" cursor-pointer"></Image>
             </div>
-            {show === true ? <div className="z-[10] absolute -right-7 ">
-              <div className="bg-white w-[120px] h-10 rounded-xl flex items-center justify-center mt-2" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
-                <div className=" font-PoppinsMedium">
-                  <button onClick={() => { copyTweet(data.content), Toggle() }} className=" text-sm cursor-pointer text-[#787878]">Copy Tweet</button>
+            {show === true ? <div className="z-[10] absolute right-5 ">
+              <div className="bg-white w-[120px] h-10 rounded-xl flex items-center justify-center mt-2 dark:bg-black" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
+                <div className=" font-PoppinsMedium ">
+                  <button onClick={() => { copyTweet(data.content), Toggle() }} className=" text-sm cursor-pointer text-[#787878] bg-white dark:bg-black">Copy Tweet</button>
                 </div>
               </div>
             </div> : null}

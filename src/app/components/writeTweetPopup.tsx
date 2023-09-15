@@ -77,18 +77,18 @@ export const WriteTweetPopup = () => {
       {/* Write Tweet Popup */}
       {showTweetPopup === true ?
         // Popup Transpart BG
-        <div onClick={() => { ToggleShowTweetPopup() }} className=" bg-[#FFFFFF80] h-[100vh] w-full right-0 left-0 top-0 bottom-0 z-10 fixed flex items-center justify-center">
+        <div onClick={() => { ToggleShowTweetPopup() }} className=" bg-[#FFFFFF80] dark:bg-[#00000080] h-[100vh] w-full right-0 left-0 top-0 bottom-0 z-10 fixed flex items-center justify-center">
           {/* Popup Card */}
-          <div onClick={handlePopupBackgroundClick} className=" bg-white rounded-3xl flex items-center justify-center" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
+          <div onClick={handlePopupBackgroundClick} className=" bg-white dark:bg-black rounded-3xl flex items-center justify-center" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
             <div className="w-[400px] h-[300px]">
               <div className=" flex justify-end">
                 <Image onClick={() => { ToggleShowTweetPopup() }} className=" cursor-pointer mr-4 mt-5" src={'/images/Group 13.png'} alt="Loading..." width={17} height={17}></Image>
               </div>
               <div className="w-full">
-                <h3 className="text-black ml-7 font-bold text-xl font-SamsungSharpSansBold">Whats on your mind?</h3>
-                <div className=" flex flex-col items-center bg-white">
-                  <textarea onChange={(e) => { enterTweet(e.target.value) }} className=" mt-6 border border-solid border-[#CACACA] focus:outline-none rounded-lg w-[340px] h-32 pt-3 pl-3 pr-3 font-PoppinsLight" ></textarea>
-                  <button onClick={() => { ToggleShowTweetPopup(); addNewTweet() }} className=" bg-black text-white w-[109px] h-10 rounded-lg mt-5 font-SamsungSharpSansBold">Post</button>
+                <h3 className="text-black dark:text-white ml-7 font-bold text-xl font-SamsungSharpSansBold">Whats on your mind?</h3>
+                <div className=" flex flex-col items-center bg-white dark:bg-black">
+                  <textarea onChange={(e) => { enterTweet(e.target.value) }} className=" mt-6 border border-solid border-[#CACACA] dark:border-[#242424] dark:bg-black focus:outline-none rounded-lg w-[340px] h-32 pt-3 pl-3 pr-3 font-PoppinsLight" ></textarea>
+                  <button onClick={() => { ToggleShowTweetPopup(); addNewTweet() }} className=" bg-black dark:bg-white text-white dark:text-black w-[109px] h-10 rounded-lg mt-5 font-SamsungSharpSansBold">Post</button>
                 </div>
               </div>
             </div>
