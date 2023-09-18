@@ -83,7 +83,7 @@ export const CommentsPopup = (props: any) => {
       {/* Comment Popup Card */}
       {show === true ?
         <div onClick={() => { ToggleShowCommentPopup() }} className=" flex items-center justify-center fixed z-30 top-[0%] left-[0%] w-full h-[100vh]">
-          <div onClick={handlePopupBackgroundClick} className=" bg-white dark:bg-black rounded-3xl max-sm:w-[80%] flex justify-center" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
+          <div onClick={handlePopupBackgroundClick} className=" bg-white dark:bg-black rounded-3xl max-sm:w-[92%] flex justify-center" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
             <div className="w-[400px] h-[485px] max-sm:w-full">
               <div className=" flex justify-end">
                 <Image onClick={() => { ToggleShowCommentPopup() }} className=" cursor-pointer mr-4 mt-5" src={'/images/Group 13.png'} alt="Loading..." width={17} height={17}></Image>
