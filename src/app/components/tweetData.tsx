@@ -12,37 +12,59 @@ const tweetContent = tweets.filter((item: any) => {
 });
 let indexNum: any;
 let idNum: any;
-export const TweetData = (data: any, index: number) => {
+export const TweetData = (data: any, index: any) => {
   const profileData = tweets.find((item: any) => {
     if (item.slug === "my-profile") return item;
     else return null;
   });
   const getContext = useContext(context);
   const mode = getContext.mode;
-  const like = getContext.like;
-  const updateLike = getContext.updateLike;
+  // const like = getContext.like;
+  // const updateLike = getContext.updateLike;
   // const [like,updateLike]=useState(false);
-  let num = data.likesNumber;
-  const countLike = getContext.countLike;
-  const updateCountLike = getContext.updateCountLike;
-  const toggleLike = () => {
-    if (like === false) {
-      updateLike(true);
-      if (countLike >= 0) updateCountLike(countLike + 1);
-    } else if (like === true) {
-      updateLike(false);
-      if (countLike > 0) updateCountLike(countLike - 1);
-    }
-  };
-  let stateProps = {
-    like: like,
-    updateLike: updateLike
+  const tweetLikes = getContext.like;
+  const setTweetLikes = getContext.updateLike;
+  // const countLike = getContext.countLike;
+  // const updateCountLike = getContext.updateCountLike;
+  const tweet = getContext.tweet;
+  const setTweet=getContext.setTweet;
+
+  let mainIndex = tweet.findIndex(checkIndex);
+  function checkIndex(obj: any) {
+    return data.id === obj.id
   }
+  const like = tweetLikes[mainIndex] || false;
+
+
+  const toggleLike = () => {
+    const newLikes = [...tweetLikes]; // Create a copy of the likes array
+    newLikes[mainIndex] = !like; // Toggle the like state for this tweet
+    let arr = tweet
+    if (like === true) {
+      if (arr[mainIndex].likesNumber == 0) {
+        arr[mainIndex].likesNumber = 0
+        setTweet(arr)
+      }
+      else
+      {
+        arr[mainIndex].likesNumber -= 1
+        setTweet(arr)
+      }
+    }
+    else if (like === false) {
+      arr[mainIndex].likesNumber += 1
+      setTweet(arr)
+    }
+    setTweetLikes(newLikes); // Update the likes array in the context
+  };
+  let num = data.likesNumber;
+
+
   let props = {
     idNum: data.id,
     data: data
   }
- 
+
   // Tweet Data Return
   return (
     <div key={index} className="flex flex-col w-[100%] border-[.5px] border-gray bg-mainBg dark:bg-[#121212]">
@@ -84,7 +106,7 @@ export const TweetData = (data: any, index: number) => {
           <Image onClick={() => { toggleLike(); }} src={like === false ? "/images/heartWhite.png" : "/images/heartRed.png"} alt="" width={16} height={16} className="ml-[17px] cursor-pointer "></Image>
         )}
         <p className="ml-[5px] text-grayLight text-[10px] font-[500] leading-[normal] tracking-[-0.04px] font-PoppinsMedium">
-          {countLike} Likes
+          {data.likesNumber} Likes
         </p>
         <CommentsPopup {...props} />
       </div>
@@ -96,7 +118,6 @@ export const TweetDataCall = () => {
   const getContext = useContext(context);
   const tweet = getContext.tweet;
   const setTweet = getContext.setTweet;
-  let newArray = tweet;
   return (
     <div>
       {tweet.map(TweetData)}

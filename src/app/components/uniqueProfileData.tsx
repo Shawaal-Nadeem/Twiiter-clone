@@ -28,19 +28,19 @@ export const UniqueProfileData = ({ props }: { props: string }) => {
   const setShow1 = getContext.setShowEditProfileBehind;
 
   let dataTweet = tweets.filter((temp) => { return profileData.username === temp.username })
-  
+  let dataTweetLength = dataTweet.length;
   const TweetDataProfile = (data: any) => {
     // Tweet Data Return
     return (
       <div
-      className="flex flex-col w-[100%] border-[.5px] border-gray bg-mainBg dark:bg-[#121212]"
+        className="flex flex-col w-[100%] border-[.5px] border-gray bg-mainBg dark:bg-[#121212]"
       >
-        {show===true?<div onClick={()=>{setShow(false)}} className="  h-[100vh] w-full right-0 left-0 top-0 bottom-0 z-10 fixed flex items-center justify-center"></div>:null}
+        {show === true ? <div onClick={() => { setShow(false) }} className="  h-[100vh] w-full right-0 left-0 top-0 bottom-0 z-10 fixed flex items-center justify-center"></div> : null}
         <div className=" flex justify-center w-full mt-7">
           <div className=" flex justify-center w-[full]"> <Image src={data.profile} alt="Loading..." width={180} height={180} className={profileData.slug === 'my-profile' ? " rounded-full " : " rounded-full"}></Image></div>
           {profileData.slug === 'my-profile' ? <>
-               {/* Setting Popover */}
-       <Settings profileData={profileData}/>
+            {/* Setting Popover */}
+            <Settings profileData={profileData} />
           </> : null}
         </div>
 
@@ -50,7 +50,7 @@ export const UniqueProfileData = ({ props }: { props: string }) => {
         </div>
         {profileData.slug === 'my-profile' ? <h4 className={mode === false ? " text-[black] text-2xl ml-5 font-SamsungSharpSansBold mb-2" : " font-SamsungSharpSansBold text-[white] text-2xl ml-5 mb-2"}>My Posts</h4> : <h4 className={mode === false ? " font-SamsungSharpSansBold text-[black] text-2xl ml-5" : " font-SamsungSharpSansBold text-[white] text-2xl ml-5"}>Posts</h4>}
 
-        {dataTweet.map(TweetData)}
+        {dataTweetLength > 0 ? dataTweet.map(TweetData) : null}
       </div>
     );
   };

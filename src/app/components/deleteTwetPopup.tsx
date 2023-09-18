@@ -29,8 +29,10 @@ export const DeleteTweetPopup = (props2: any) => {
     }
   }
   const router=useRouter()
+  const tweetLikes = getContext.like;
   const deleteTweet = () => {
     newTweets.splice(mainIndex, 1)
+    tweetLikes.splice(mainIndex, 1)
     for(let i=0;i<newTweets.length;i++){
       newTweets[i].id=i;
     }

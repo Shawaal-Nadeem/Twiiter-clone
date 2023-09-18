@@ -45,6 +45,7 @@ export const WriteTweetPopup = () => {
     event.stopPropagation();
   };
   // Tweet Adding 
+  const tweetLikes = getContext.like;
   let tweetObj = {
     profile: "/images/myprofile.jpeg",
     username: "Codenest",
@@ -64,12 +65,13 @@ export const WriteTweetPopup = () => {
     tweetObj.content = tweet;
   }
   const addNewTweet = () => {
+   
     getTweets.unshift(tweetObj)
+    tweetLikes.unshift(false)
     let newTweets = getTweets;
     for (let i = 0; i < getTweets.length; i++) {
       newTweets[i].id = i;
-    }
-    console.log(newTweets);
+    }   
     setTweet(newTweets)
   }
   return (

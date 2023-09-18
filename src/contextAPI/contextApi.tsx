@@ -19,8 +19,8 @@ interface Theme {
     setShowDeleteTweet: Dispatch<SetStateAction<boolean>>,
     tweet: any,
     setTweet: Dispatch<SetStateAction<any>>,
-    like: boolean,
-    updateLike: Dispatch<SetStateAction<boolean>>
+    like: any,
+    updateLike: any,
     countLike: number,
     updateCountLike: Dispatch<SetStateAction<number>>
     option:boolean,
@@ -39,7 +39,7 @@ export default function ContextApp({ children }: { children: ReactNode }) {
     const [showEditTweet, setShowEditTweet] = useState(false);
     const [showDeleteTweet, setShowDeleteTweet] = useState(false);
     const [tweet, setTweet] = useState(tweets);
-    const [like, updateLike] = useState(false);
+    const [like, updateLike] = useState([]);
     const [countLike, updateCountLike] = useState(0);
     const [option, setOption] = useState(false);
     const [option1, setOption1] = useState(false);
