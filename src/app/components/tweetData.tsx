@@ -1,31 +1,17 @@
 'use client'
 import Link from "next/link";
-import tweets from "../utils/mock";
 import { MorePopup } from "./morePopup";
 import { CommentsPopup } from "./commentsPopup";
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { context } from "@/contextAPI/contextApi";
 
-const tweetContent = tweets.filter((item: any) => {
-  return item;
-});
-let indexNum: any;
-let idNum: any;
 export const TweetData = (data: any, index: any) => {
-  const profileData = tweets.find((item: any) => {
-    if (item.slug === "my-profile") return item;
-    else return null;
-  });
   const getContext = useContext(context);
   const mode = getContext.mode;
-  // const like = getContext.like;
-  // const updateLike = getContext.updateLike;
-  // const [like,updateLike]=useState(false);
   const tweetLikes = getContext.like;
   const setTweetLikes = getContext.updateLike;
-  // const countLike = getContext.countLike;
-  // const updateCountLike = getContext.updateCountLike;
+  const name = getContext.name;
   const tweet = getContext.tweet;
   const setTweet=getContext.setTweet;
 
@@ -57,9 +43,7 @@ export const TweetData = (data: any, index: any) => {
     }
     setTweetLikes(newLikes); // Update the likes array in the context
   };
-  let num = data.likesNumber;
-
-
+ 
   let props = {
     idNum: data.id,
     data: data
@@ -77,9 +61,11 @@ export const TweetData = (data: any, index: any) => {
           </div>
           <div className=" flex items-center">
             <Link href={`/profiles/${data?.slug}`}>
-              <h1 className={mode === false ? "ml-[6px] mt-[2px] text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px] font-SamsungSharpSansBold" : "ml-[6px] mt-[2px] text-white text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px] font-SamsungSharpSansBold"}>
+              {data.slug==='my-profile'?<h1 className={mode === false ? "ml-[6px] mt-[2px] text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px] font-SamsungSharpSansBold" : "ml-[6px] mt-[2px] text-white text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px] font-SamsungSharpSansBold"}>
+                {name}
+              </h1>:<h1 className={mode === false ? "ml-[6px] mt-[2px] text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px] font-SamsungSharpSansBold" : "ml-[6px] mt-[2px] text-white text-[12px] text-s font-[700] leading-[normal] tracking-[-0.048px] font-SamsungSharpSansBold"}>
                 {data.username}
-              </h1>
+              </h1>}
             </Link>
             <p className="ml-[6px] mt-[2px]  text-grayLight text-[10px] font-[500] leading-[normal] tracking-[-0.04px] font-PoppinsMedium">
               {data.time}{data.unit} ago
@@ -117,7 +103,6 @@ export const TweetData = (data: any, index: any) => {
 export const TweetDataCall = () => {
   const getContext = useContext(context);
   const tweet = getContext.tweet;
-  const setTweet = getContext.setTweet;
   return (
     <div>
       {tweet.map(TweetData)}

@@ -2,15 +2,15 @@
 import Image from "next/image"
 import { useContext, useState } from "react"
 import { context } from "@/contextAPI/contextApi"
-import tweets from "../utils/mock"
-import { log } from "console"
 const showComment = (data: any, index: any) => {
+  const getContext = useContext(context);
+  const name = getContext.name;
   return (
     <div key={index}>
       <div className=" mt-3">
         <div className=" flex items-center gap-2">
           <img src={data.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
-          <p className=" font-bold text-sm font-SamsungSharpSansBold">{data.username}</p>
+          <p className=" font-bold text-sm font-SamsungSharpSansBold">{name}</p>
           <p className=" text-grayLight text-sm font-[500] font-PoppinsMedium">{data.time}{data.unit}</p>
         </div>
         <div className=" ml-10">
@@ -27,14 +27,9 @@ const showComment = (data: any, index: any) => {
 export const CommentsPopup = (props: any) => {
   let data = props.data
   let newId=props.idNum
-  // console.log(data);
 
   const getContext = useContext(context);
   const mode = getContext.mode;
-  const myProfileData = tweets.find((item: any) => {
-    if (item.slug === "my-profile") return item;
-    else return null;
-  });
   const [show, setShow] = useState(false);
   const ToggleShowCommentPopup = () => {
     if (show === false) {
@@ -88,8 +83,8 @@ export const CommentsPopup = (props: any) => {
       {/* Comment Popup Card */}
       {show === true ?
         <div onClick={() => { ToggleShowCommentPopup() }} className=" flex items-center justify-center fixed z-30 top-[0%] left-[0%] w-full h-[100vh]">
-          <div onClick={handlePopupBackgroundClick} className=" bg-white dark:bg-black rounded-3xl max-lmd:w-[85%] flex justify-center" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
-            <div className="w-[400px] h-[485px] max-lmd:w-full">
+          <div onClick={handlePopupBackgroundClick} className=" bg-white dark:bg-black rounded-3xl max-sm:w-[85%] flex justify-center" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
+            <div className="w-[400px] h-[485px] max-sm:w-full">
               <div className=" flex justify-end">
                 <Image onClick={() => { ToggleShowCommentPopup() }} className=" cursor-pointer mr-4 mt-5" src={'/images/Group 13.png'} alt="Loading..." width={17} height={17}></Image>
               </div>
@@ -97,13 +92,13 @@ export const CommentsPopup = (props: any) => {
                 <h3 className="text-black dark:text-white font-bold text-xl font-SamsungSharpSansBold text-center">Comments</h3>
                 <hr className=" border border-[#CACACA] dark:border-[#242424] mt-2" />
                 <div className=" flex flex-col items-center h-[310px]  overflow-y-scroll mt-2">
-                  <div className="  w-[85%] max-lmd:w-[70%]">
+                  <div className="  w-[85%] max-sm:w-[70%]">
                     {data.comments.length > 0 ? data.comments.map(showComment) : null}
                   </div>
                 </div>
                 <hr className=" w-full mt-3 border-[1.5px] border-solid border-[#CACACA] dark:border-[#242424]" />
                 <div className=" w-[80%] flex gap-5 mt-3">  
-                  <div className=" flex items-center bg-[#CACACA] dark:bg-[#242424] w-[320px] h-12 rounded-xl ml-4 max-lmd:w-[85%]">
+                  <div className=" flex items-center bg-[#CACACA] dark:bg-[#242424] w-[320px] h-12 rounded-xl ml-4 max-sm:w-[85%]">
                     <input value={inputValue}  onChange={(e)=>{setInputValue(e.target.value)}} placeholder="Type your comment here..." className=" focus:outline-none bg-[#CACACA] dark:bg-[#242424] w-[270px] ml-4 mr-4 text-[15px] placeholder:text-[#787878] font-PoppinsLight"></input>
                   </div>
                   <div>
@@ -117,9 +112,6 @@ export const CommentsPopup = (props: any) => {
           </div>
         </div>
         : null}
-
-
-
     </>
   )
 }

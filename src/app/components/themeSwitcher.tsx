@@ -28,7 +28,7 @@ export const ThemeSwitcher = () => {
               ToggleMode();
             }}
             src={
-              theme === 'light'
+              mode === false
                 ? "/images/light mode icon.png"
                 : "/images/dark mode icon.png"
             }

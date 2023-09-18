@@ -15,19 +15,64 @@ const tweets = [
         id: 0
     },
     {
-        profile: "https://pbs.twimg.com/profile_images/1548735070030204929/SE6zZzFV_400x400.jpg",
-        username: "Imran Khan",
-        slug: "Imran-Khan",
-        email: "imrankhan@gmail.com",
+        profile: "https://pbs.twimg.com/profile_images/1625196076587225096/ByHsg0RV_400x400.jpg",
+        username: "Shawaal Nadeem",
+        slug: "Shawaal-Nadeem",
+        email: "shawaalnadeem63@gmail.com",
         time: 10,
         unit: "h",
-        content: "In my address at 9:15 PM tonight I will talk about how the days of political engineering by the establishment are long gone while the politics of ideology is back and will prevail in Pakistan.",
+        content: "Hunt your Goal like a Hungry Beast.🔥",
         contentImage: null,
         likesNumber: 100,
         commentsNumber: 0,
-        password: 'imr123',
+        password: 'shl123',
         comments: [],
         id: 1
+    },
+    {
+        profile: "https://pbs.twimg.com/profile_images/1018746740424392704/WiiWn1u2_400x400.jpg",
+        username: "Nancy Jewel",
+        slug: "Nancy-Jewel",
+        email: "nancyjewel@gmail.com",
+        time: 10,
+        unit: "h",
+        content: "I feel someone likes me and he can't live without me.",
+        contentImage: 'https://pbs.twimg.com/media/FlZVINsaUAY99BY?format=jpg&name=900x900',
+        likesNumber: 100,
+        commentsNumber: 0,
+        password: 'njm123',
+        comments: [],
+        id: 2
+    },
+    {
+        profile: "https://pbs.twimg.com/profile_images/1625196076587225096/ByHsg0RV_400x400.jpg",
+        username: "Shawaal Nadeem",
+        slug: "Shawaal-Nadeem",
+        email: "shawaalnadeem63@gmail.com",
+        time: 5,
+        unit: "h",
+        content: "In your smile, I see something more beautiful than the stars.✨",
+        contentImage: null,
+        likesNumber: 109,
+        commentsNumber: 0,
+        password: 'shl123',
+        comments: [],
+        id: 3
+    },
+    {
+        profile: "https://pbs.twimg.com/profile_images/1385596677151674371/y-hZT-CJ_400x400.jpg",
+        username: "Muhammad Ahsaan",
+        slug: "Muhammad-Ahsaan",
+        email: "muhammadahsaan@gmail.com",
+        time: 5,
+        unit: "h",
+        content: "Koi kisi ka nahi sab waqti sahary hain, idhr civic nhi to sab apny begany hain.",
+        contentImage: null,
+        likesNumber: 122,
+        commentsNumber: 0,
+        password: 'mah123',
+        comments: [],
+        id: 4
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1683325380441128960/yRsRRjGO_400x400.jpg",
@@ -42,7 +87,7 @@ const tweets = [
         commentsNumber: 0,
         password: 'elmX',
         comments: [],
-        id: 2
+        id: 5
     },
     {
         profile: "/images/myprofile.jpeg",
@@ -57,7 +102,7 @@ const tweets = [
         commentsNumber: 0,
         password: 'cdn23',
         comments: [],
-        id: 3
+        id: 6
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1404378291599937536/b-r3SWlW_400x400.jpg",
@@ -72,7 +117,7 @@ const tweets = [
         commentsNumber: 0,
         password: 'icMatch',
         comments: [],
-        id: 4
+        id: 7
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1672219882904072196/-Lt_IrhL_400x400.jpg",
@@ -87,7 +132,7 @@ const tweets = [
         commentsNumber: 0,
         password: 'tBro',
         comments: [],
-        id: 5
+        id: 8
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1417471791845478403/MzAWCfK7_400x400.jpg",
@@ -102,7 +147,7 @@ const tweets = [
         commentsNumber: 0,
         password: 'rockG',
         comments: [],
-        id: 6
+        id: 9
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1308769664240160770/AfgzWVE7_400x400.jpg",
@@ -117,22 +162,8 @@ const tweets = [
         commentsNumber: 0,
         password: 'jbUS',
         comments: [],
-        id: 7
-    },
-    {
-        profile: "https://pbs.twimg.com/profile_images/1417471791845478403/MzAWCfK7_400x400.jpg",
-        username: "Rockstar Games",
-        slug: "Rockstar-Games",
-        email: "rockstargames@gmail.com",
-        time: 30,
-        unit: "m",
-        content: "jkvbkdfbvjvjksdvjksbnvbsd vjkasdbnvsdvj",
-        contentImage: "https://pbs.twimg.com/media/F3QzOv-W0AA8m3q?format=jpg&name=large",
-        likesNumber: 212,
-        commentsNumber: 0,
-        password: 'rockG',
-        comments: [],
-        id: 8
-    },
+        id: 10
+    }
+   
 ]
 export default tweets;

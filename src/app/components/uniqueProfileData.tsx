@@ -5,22 +5,15 @@ import Image from "next/image";
 import tweets from "../utils/mock";
 import { useContext } from "react";
 import { context } from "@/contextAPI/contextApi";
-import { CommentsPopup } from "./commentsPopup";
-import { MorePopup } from "./morePopup";
 import { Settings } from "./settingIcon";
 export const UniqueProfileData = ({ props }: { props: string }) => {
 
   const profileData = tweets.find((temp) => {
     return temp.slug === props;
   }) as any;
-
-  const [name, setName] = useState(profileData.username);
-  const [update, setUpdate] = useState(false);
-  const nameUpdate = (newName: string) => {
-    setName(newName);
-  }
-
+  
   const getContext = useContext(context);
+  const name = getContext.name;
   const mode = getContext.mode;
   const show = getContext.showSettingBehind;
   const setShow = getContext.setShowSettingBehind;
@@ -45,7 +38,9 @@ export const UniqueProfileData = ({ props }: { props: string }) => {
         </div>
 
         <div className=" flex flex-col items-center mt-5 mb-12">
-          <p className={mode === false ? " font-bold text-lg text-[black] font-SamsungSharpSansBold" : " font-bold text-lg text-[white] font-SamsungSharpSansBold"}>{name}</p>
+        {profileData.slug==='my-profile'?<p className={mode === false ? " font-bold text-lg text-[black] font-SamsungSharpSansBold" : " font-bold text-lg text-[white] font-SamsungSharpSansBold"}>{name}</p>
+:<p className={mode === false ? " font-bold text-lg text-[black] font-SamsungSharpSansBold" : " font-bold text-lg text-[white] font-SamsungSharpSansBold"}>{data.username}</p>
+}
           <p className=" font-semibold text-[#787878] font-SamsungSharpSans text-sm">{profileData.email}</p>
         </div>
         {profileData.slug === 'my-profile' ? <h4 className={mode === false ? " text-[black] text-2xl ml-5 font-SamsungSharpSansBold mb-2" : " font-SamsungSharpSansBold text-[white] text-2xl ml-5 mb-2"}>My Posts</h4> : <h4 className={mode === false ? " font-SamsungSharpSansBold text-[black] text-2xl ml-5" : " font-SamsungSharpSansBold text-[white] text-2xl ml-5"}>Posts</h4>}

@@ -5,7 +5,8 @@ import { useContext } from "react"
 import { context } from "@/contextAPI/contextApi"
 export const MyProfileBox = ({myProfileData}:{myProfileData:any}) => {
     const getContext = useContext(context);
-    const mode = getContext.mode;
+  const mode = getContext.mode;
+  const name = getContext.name;
     return (
         <div className="w-[90%] box-border cursor-pointer h-[136px] rounded-b-[10px] bg-[#EAEAEA] dark:bg-[#121212]">
             <div className="flex items-center justify-center">
@@ -20,7 +21,7 @@ export const MyProfileBox = ({myProfileData}:{myProfileData:any}) => {
             </Link>
             <Link href={`/profiles/${myProfileData?.slug}`}><div className="ml-[7px] box-content">
                 <p className={mode === false ? "slg:text-[0.875rem] lg:text-[0.78rem] lmd:text-[0.67rem] font-[700] leading-[normal] tracking-[-0.056px] font-SamsungSharpSansBold" : "slg:text-[0.875rem] lg:text-[0.78rem] lmd:text-[0.67rem]  text-white font-[700] leading-[normal] tracking-[-0.056px] font-SamsungSharpSansBold"}>
-                  {myProfileData?.username}
+                  {name}
                 </p>
                 <p className="text-grayLight slg:text-[0.625rem] lg:text-[0.57rem] lmd:text-[0.50rem]  font-[500] leading-[normal] tracking-[-0.04px] font-SamsungSharpSansMedium">
                   {myProfileData?.email}

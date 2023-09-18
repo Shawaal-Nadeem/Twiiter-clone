@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image"
-import { useContext } from "react"
+import { useContext,useState } from "react"
 import { context } from "@/contextAPI/contextApi"
 
 export const EditProfilePopup = ({profileData}:{profileData:any}) => {
@@ -19,10 +19,12 @@ export const EditProfilePopup = ({profileData}:{profileData:any}) => {
     const handlePopupBackgroundClick = (event:any) => {
        event.stopPropagation();
     };
-    // const [name, setName] = useState(profileData.username);
-    const updateName = (newName: string) => {
-      // setName(newName);
-      }
+    const name = getContext.name;
+    const setName = getContext.setName;
+    const [newName, setNewName] = useState("");
+    const updateName = () => {
+      setName(newName); 
+    };
     return (
         <>
              {show1 === true ?
@@ -39,8 +41,8 @@ export const EditProfilePopup = ({profileData}:{profileData:any}) => {
           <hr className=" border border-[#242424] mt-2"/>
           <div className=" flex flex-col items-center bg-white dark:bg-black">
           <div className="mt-7 w-72"><label className=" font-SamsungSharpSansBold text-black dark:text-white text-md ml-1">Change Username</label></div>
-         <input onChange={(e)=>{updateName(e.target.value)}} className=" bg-white dark:bg-black pl-3 border border-solid border-[#CACACA] focus:outline-none rounded-lg w-72 h-10 mt-3 font-PoppinsLight" placeholder={profileData.username} ></input>
-         <button onClick={()=>{ToggleShowTweetPopup()}} className=" bg-black dark:bg-white text-white dark:text-black w-[109px] h-10 rounded-lg mt-6 font-SamsungSharpSansBold">Update</button>
+         <input onChange={(e)=>{setNewName(e.target.value)}} className=" bg-white dark:bg-black pl-3 border border-solid border-[#CACACA] focus:outline-none rounded-lg w-72 h-10 mt-3 font-PoppinsLight" placeholder={name} ></input>
+         <button onClick={()=>{updateName(),ToggleShowTweetPopup()}} className=" bg-black dark:bg-white text-white dark:text-black w-[109px] h-10 rounded-lg mt-6 font-SamsungSharpSansBold">Update</button>
           </div>
           </div>
             </div>
