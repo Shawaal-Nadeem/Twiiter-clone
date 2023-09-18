@@ -2,7 +2,7 @@
 import Image from "next/image"
 import { useContext, useState } from "react"
 import { context } from "@/contextAPI/contextApi"
-const showComment = (data: any, index: any) => {
+const ShowComment = (data: any, index: any) => {
   const getContext = useContext(context);
   const name = getContext.name;
   return (
@@ -89,11 +89,11 @@ export const CommentsPopup = (props: any) => {
                 <Image onClick={() => { ToggleShowCommentPopup() }} className=" cursor-pointer mr-4 mt-5" src={'/images/Group 13.png'} alt="Loading..." width={17} height={17}></Image>
               </div>
               <div className="w-full">
-                <h3 className="text-black dark:text-white font-bold text-xl font-SamsungSharpSansBold text-center">Comments</h3>
+               <h3 className="text-black dark:text-white font-bold text-xl font-SamsungSharpSansBold text-center">Comments</h3>
                 <hr className=" border border-[#CACACA] dark:border-[#242424] mt-2" />
                 <div className=" flex flex-col items-center h-[310px]  overflow-y-scroll mt-2">
                   <div className="  w-[85%] max-sm:w-[70%]">
-                    {data.comments.length > 0 ? data.comments.map(showComment) : null}
+                    {data.comments.length > 0 ? data.comments.map(ShowComment) : null}
                   </div>
                 </div>
                 <hr className=" w-full mt-3 border-[1.5px] border-solid border-[#CACACA] dark:border-[#242424]" />
