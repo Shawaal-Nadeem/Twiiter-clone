@@ -57,6 +57,7 @@ export const WriteTweetPopup = () => {
     likesNumber: 0,
     commentsNumber: 0,
     password: 'cdn23',
+    comments: [],
     id: 0
   }
   const enterTweet = (tweet: any) => {

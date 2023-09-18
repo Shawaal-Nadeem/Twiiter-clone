@@ -4,7 +4,7 @@ import tweets from "../utils/mock";
 import { MorePopup } from "./morePopup";
 import { CommentsPopup } from "./commentsPopup";
 import Image from "next/image";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { context } from "@/contextAPI/contextApi";
 const tweetContent = tweets.filter((item: any) => {
   return item;
@@ -20,6 +20,7 @@ export const TweetData = (data: any, index: number) => {
   const mode = getContext.mode;
   const like = getContext.like;
   const updateLike = getContext.updateLike;
+  // const [like,updateLike]=useState(false);
   let num = data.likesNumber;
   const countLike = getContext.countLike;
   const updateCountLike = getContext.updateCountLike;
@@ -32,10 +33,13 @@ export const TweetData = (data: any, index: number) => {
       if (countLike > 0) updateCountLike(countLike - 1);
     }
   };
+  let stateProps = {
+    like: like,
+    updateLike: updateLike
+  }
   let props = {
-    indexNum: index,
-    idNum:data.id,
-    data:data
+    idNum: data.id,
+    data: data
   }
   // Tweet Data Return
   return (
@@ -80,7 +84,7 @@ export const TweetData = (data: any, index: number) => {
         <p className="ml-[5px] text-grayLight text-[10px] font-[500] leading-[normal] tracking-[-0.04px] font-PoppinsMedium">
           {countLike} Likes
         </p>
-        <CommentsPopup commentNum={data.commentsNumber} />
+        <CommentsPopup {...props} />
       </div>
     </div>
   );
@@ -93,7 +97,7 @@ export const TweetDataCall = () => {
   let newArray = tweet;
   return (
     <div>
-      {newArray.map(TweetData)}
+      {tweet.map(TweetData)}
     </div>
   )
 }

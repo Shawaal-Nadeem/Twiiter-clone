@@ -7,13 +7,10 @@ import { EditTweetPopup } from "./editTweetPopup"
 import { DeleteTweetPopup } from "./deleteTwetPopup"
 
 export const MorePopup = (props: any) => {
-  let index = props.indexNum;
+
   let id = props.idNum
   let data = props.data
-  let props2 = {
-    // indexValue: index,
-    idValue: id
-  }
+ 
   const getContext = useContext(context);
   const mode = getContext.mode;
   const [show, setShow] = useState(false)
@@ -24,14 +21,21 @@ export const MorePopup = (props: any) => {
   }
   const [option, setOption] = useState(false);
   const [option1, setOption1] = useState(false);
-  const setShow1 = getContext.setShowEditProfileBehind;
-  const setShow2 = getContext.setShowDeleteTweet;
-
+  // const setShow1 = getContext.setShowEditProfileBehind;
+  // const setShow2 = getContext.setShowDeleteTweet;
+  const [show1, setShow1] = useState(false)
+  const [show2, setShow2] = useState(false)
   const [text, setText] = useState('');
   const copyTweet = async (tweet: string) => {
     setText(tweet);
     await navigator.clipboard.writeText(tweet)
-
+  }
+  let props2 = {
+    idValue: id,
+    show1:show1,
+    setShow1:setShow1,
+    show2:show2,
+    setShow2:setShow2
   }
   return (
     <>

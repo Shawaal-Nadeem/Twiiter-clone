@@ -6,19 +6,19 @@ import { log } from "console"
 
 export const DeleteTweetPopup = (props2: any) => {
   const getContext = useContext(context);
-  const show2 = getContext.showDeleteTweet;
-  const setShow2 = getContext.setShowDeleteTweet;
+
+  const show2 = props2.show2
+  const setShow2 = props2.setShow2
   const tweet = getContext.tweet;
   const setTweet = getContext.setTweet;
   let newTweets = tweet;
-  let newIndex = props2.indexValue;
   let newId = props2.idValue;
-  console.log(newId);
   
   let mainIndex=newTweets.findIndex(checkIndex);
   function checkIndex(obj: any) {
-    return newId==obj.id
+    return newId===obj.id
   }
+  console.log(mainIndex);
   const ToggleShowTweetPopup = () => {
     if (show2 === false) {
       setShow2(true);
@@ -27,7 +27,6 @@ export const DeleteTweetPopup = (props2: any) => {
       setShow2(false);
     }
   }
-  let len: number
   const deleteTweet = () => {
     newTweets.splice(mainIndex, 1)
     for(let i=0;i<newTweets.length;i++){

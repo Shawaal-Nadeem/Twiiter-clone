@@ -5,17 +5,13 @@ import { context } from "@/contextAPI/contextApi"
 // let mainIndex = 0;
 export const EditTweetPopup = (props2: any) => {
   const getContext = useContext(context);
-  const show1 = getContext.showEditProfileBehind;
-  const setShow1 = getContext.setShowEditProfileBehind;
+  const show1 = props2.show1
+  const setShow1 = props2.setShow1
   const tweet = getContext.tweet;
   const setTweet = getContext.setTweet;
   let newTweets = tweet;
-  let newIndex = props2.indexValue;
   let newId = props2.idValue;
-  // console.log(newId);
-  
-  // mainIndex = newTweets.findIndex(checkIndex);
-  
+console.log(newId);
 
   function checkIndex(obj: any) {
     return newId === obj.id

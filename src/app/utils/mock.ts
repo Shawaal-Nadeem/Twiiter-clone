@@ -9,10 +9,11 @@ const tweets = [
         content: "Prepare for an exhilarating revelation! Codenest's Game Development Department is set to launch on March 16, 2024. Stay tuned for an immersive journey into the realm of gaming innovation! 🥳😀🎮",
         contentImage: null,
         likesNumber: 90,
-        commentsNumber: 20,
-        password:'cdn23',
-        id:0
-    },  
+        commentsNumber: 0,
+        password: 'cdn23',
+        comments: [],
+        id: 0
+    },
     {
         profile: "https://pbs.twimg.com/profile_images/1548735070030204929/SE6zZzFV_400x400.jpg",
         username: "Imran Khan",
@@ -23,9 +24,10 @@ const tweets = [
         content: "In my address at 9:15 PM tonight I will talk about how the days of political engineering by the establishment are long gone while the politics of ideology is back and will prevail in Pakistan.",
         contentImage: null,
         likesNumber: 100,
-        commentsNumber: 450,
-        password:'imr123',
-        id:1
+        commentsNumber: 0,
+        password: 'imr123',
+        comments: [],
+        id: 1
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1683325380441128960/yRsRRjGO_400x400.jpg",
@@ -37,9 +39,10 @@ const tweets = [
         content: "Starship Super Heavy Booster",
         contentImage: "https://pbs.twimg.com/media/F3Bt7f9XEBE60qc?format=jpg&name=large",
         likesNumber: 109,
-        commentsNumber: 30,
-        password:'elmX',
-        id:2
+        commentsNumber: 0,
+        password: 'elmX',
+        comments: [],
+        id: 2
     },
     {
         profile: "/images/myprofile.jpeg",
@@ -51,10 +54,11 @@ const tweets = [
         content: "Believe in yourself and all that you are. Know that there is something inside you that is greater than any obstacle.",
         contentImage: null,
         likesNumber: 40,
-        commentsNumber: 10,
-        password:'cdn23',
-        id:3
-    },  
+        commentsNumber: 0,
+        password: 'cdn23',
+        comments: [],
+        id: 3
+    },
     {
         profile: "https://pbs.twimg.com/profile_images/1404378291599937536/b-r3SWlW_400x400.jpg",
         username: "ICC",
@@ -65,9 +69,10 @@ const tweets = [
         content: "Rohit Sharma has admitted that India's ODI team have concerns at the No.4 batting position.",
         contentImage: "https://pbs.twimg.com/media/F3N_NMeXAAAQEhd?format=jpg&name=large",
         likesNumber: 115,
-        commentsNumber: 4,
-        password:'icMatch',
-        id:4
+        commentsNumber: 0,
+        password: 'icMatch',
+        comments: [],
+        id: 4
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1672219882904072196/-Lt_IrhL_400x400.jpg",
@@ -79,51 +84,55 @@ const tweets = [
         content: "If you truly wanted money, you wouldnt be able to sleep until you fucking had it.",
         contentImage: null,
         likesNumber: 96,
-        commentsNumber: 500,
-        password:'tBro',
-        id:5
+        commentsNumber: 0,
+        password: 'tBro',
+        comments: [],
+        id: 5
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1417471791845478403/MzAWCfK7_400x400.jpg",
         username: "Rockstar Games",
         slug: "Rockstar-Games",
-        email: "rockstargames@gmail.com", 
+        email: "rockstargames@gmail.com",
         time: 30,
         unit: "m",
         content: "Meet demand for illicit arms head-on with 2X GTA$ and RP on Bunker Sell Missions, and more in GTA Online. Get 30% off a Bunker, and use the new Career Progress feature on PS5 and Xbox Series X|S to earn even more from the lucrative world of Gunrunning",
         contentImage: "https://pbs.twimg.com/media/F3QzOv-W0AA8m3q?format=jpg&name=large",
         likesNumber: 212,
-        commentsNumber: 150,
-        password:'rockG',
-        id:6
+        commentsNumber: 0,
+        password: 'rockG',
+        comments: [],
+        id: 6
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1308769664240160770/AfgzWVE7_400x400.jpg",
         username: "Joe Biden",
         slug: "Joe-Biden",
-        email:"joebiden@gmail.com",
+        email: "joebiden@gmail.com",
         time: 2,
         unit: "h",
         content: "Unemployment remains near record lows, a higher share of working-age Americans are working now than in 20 years, and real wages for the average American worker are growing and are higher than before the pandemic—with lower-wage workers seeing the largest gains.",
         contentImage: null,
         likesNumber: 704,
-        commentsNumber: 200,
-        password:'jbUS',
-        id:7
+        commentsNumber: 0,
+        password: 'jbUS',
+        comments: [],
+        id: 7
     },
     {
         profile: "https://pbs.twimg.com/profile_images/1417471791845478403/MzAWCfK7_400x400.jpg",
         username: "Rockstar Games",
         slug: "Rockstar-Games",
-        email: "rockstargames@gmail.com", 
+        email: "rockstargames@gmail.com",
         time: 30,
         unit: "m",
         content: "jkvbkdfbvjvjksdvjksbnvbsd vjkasdbnvsdvj",
         contentImage: "https://pbs.twimg.com/media/F3QzOv-W0AA8m3q?format=jpg&name=large",
         likesNumber: 212,
-        commentsNumber: 150,
-        password:'rockG',
-        id:8
+        commentsNumber: 0,
+        password: 'rockG',
+        comments: [],
+        id: 8
     },
 ]
 export default tweets;
