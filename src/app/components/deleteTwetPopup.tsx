@@ -2,7 +2,6 @@
 import Image from "next/image"
 import { useContext } from "react"
 import { context } from "@/contextAPI/contextApi"
-import { log } from "console"
 import { useRouter } from "next/navigation";
 
 export const DeleteTweetPopup = (props2: any) => {
@@ -50,7 +49,7 @@ export const DeleteTweetPopup = (props2: any) => {
         // Popup Transpart BG
         <div onClick={() => { ToggleShowTweetPopup() }} className=" bg-[#FFFFFF80] dark:bg-[#00000080] h-[100vh] w-full right-0 left-0 top-0 bottom-0 z-10 fixed flex items-center justify-center">
           {/* Popup Card */}
-          <div onClick={handlePopupBackgroundClick} className=" bg-white dark:bg-black rounded-3xl flex items-center justify-center" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
+          <div onClick={handlePopupBackgroundClick} className=" bg-white dark:bg-black rounded-3xl flex items-center justify-center max-lmd:w-[85%]" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
             <div className="w-[400px] h-[310px]">
               <div className=" flex justify-end">
                 <Image onClick={() => { ToggleShowTweetPopup() }} className=" cursor-pointer mr-4 mt-5" src={'/images/Group 13.png'} alt="Loading..." width={17} height={17}></Image>

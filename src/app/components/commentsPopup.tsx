@@ -83,7 +83,7 @@ export const CommentsPopup = (props: any) => {
       {/* Comment Popup Card */}
       {show === true ?
         <div onClick={() => { ToggleShowCommentPopup() }} className=" flex items-center justify-center fixed z-30 top-[0%] left-[0%] w-full h-[100vh]">
-          <div onClick={handlePopupBackgroundClick} className=" bg-white dark:bg-black rounded-3xl max-sm:w-[85%] flex justify-center" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
+          <div onClick={handlePopupBackgroundClick} className=" bg-white dark:bg-black rounded-3xl max-sm:w-[80%] flex justify-center" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
             <div className="w-[400px] h-[485px] max-sm:w-full">
               <div className=" flex justify-end">
                 <Image onClick={() => { ToggleShowCommentPopup() }} className=" cursor-pointer mr-4 mt-5" src={'/images/Group 13.png'} alt="Loading..." width={17} height={17}></Image>
@@ -97,11 +97,11 @@ export const CommentsPopup = (props: any) => {
                   </div>
                 </div>
                 <hr className=" w-full mt-3 border-[1.5px] border-solid border-[#CACACA] dark:border-[#242424]" />
-                <div className=" w-[80%] flex gap-5 mt-3">  
-                  <div className=" flex items-center bg-[#CACACA] dark:bg-[#242424] w-[320px] h-12 rounded-xl ml-4 max-sm:w-[85%]">
-                    <input value={inputValue}  onChange={(e)=>{setInputValue(e.target.value)}} placeholder="Type your comment here..." className=" focus:outline-none bg-[#CACACA] dark:bg-[#242424] w-[270px] ml-4 mr-4 text-[15px] placeholder:text-[#787878] font-PoppinsLight"></input>
+                <div className=" w-[80%] max-sm:w-[90%] flex max-sm:gap-0 gap-5 mt-3">  
+                  <div className=" max-sm:w-[83%] flex items-center bg-[#CACACA] dark:bg-[#242424] w-[320px] h-12 rounded-xl ml-4">
+                    <input value={inputValue}  onChange={(e)=>{setInputValue(e.target.value)}} placeholder="Type your comment here..." className=" max-sm:w-[95%] focus:outline-none bg-[#CACACA] dark:bg-[#242424] w-[270px] ml-4 mr-4 text-[15px] placeholder:text-[#787878] font-PoppinsLight"></input>
                   </div>
-                  <div>
+                  <div className="max-sm:w-[5%] max-sm:ml-3">
                     <button onClick={() => { sendComment() }} className=" bg-black dark:bg-white w-12 h-12 flex items-center justify-center rounded-xl">
                       <Image src={mode === false ? '/images/send.png' : '/images/sendB.png'} alt="Loading...." width={23} height={23}></Image>
                     </button>
