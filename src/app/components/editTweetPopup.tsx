@@ -2,6 +2,7 @@
 import Image from "next/image"
 import { useContext } from "react"
 import { context } from "@/contextAPI/contextApi"
+import { useRouter } from "next/navigation"
 // let mainIndex = 0;
 export const EditTweetPopup = (props2: any) => {
   const getContext = useContext(context);
@@ -32,11 +33,13 @@ console.log(newId);
   const editTweet = (tweet: any) => {
     updatedTweet = tweet;
   }
+  const router=useRouter()
   const updateTweet = () => {
     for (let i = 0; i < newTweets.length; i++) {
       if (newId === newTweets[i].id) {
         newTweets[i].content = updatedTweet
         setTweet(newTweets)
+        router.refresh()
         break;
       }
     }

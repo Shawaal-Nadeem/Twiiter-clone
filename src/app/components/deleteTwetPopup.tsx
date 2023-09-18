@@ -3,6 +3,7 @@ import Image from "next/image"
 import { useContext } from "react"
 import { context } from "@/contextAPI/contextApi"
 import { log } from "console"
+import { useRouter } from "next/navigation";
 
 export const DeleteTweetPopup = (props2: any) => {
   const getContext = useContext(context);
@@ -27,17 +28,20 @@ export const DeleteTweetPopup = (props2: any) => {
       setShow2(false);
     }
   }
+  const router=useRouter()
   const deleteTweet = () => {
     newTweets.splice(mainIndex, 1)
     for(let i=0;i<newTweets.length;i++){
       newTweets[i].id=i;
     }
     setTweet(newTweets);
+    router.refresh()
   }
   // Stop state to dom
   const handlePopupBackgroundClick = (event: any) => {
     event.stopPropagation();
   };
+  
   return (
     <>
       {show2 === true ?

@@ -6,6 +6,7 @@ import { CommentsPopup } from "./commentsPopup";
 import Image from "next/image";
 import { useContext, useEffect, useState } from "react";
 import { context } from "@/contextAPI/contextApi";
+
 const tweetContent = tweets.filter((item: any) => {
   return item;
 });
@@ -41,6 +42,7 @@ export const TweetData = (data: any, index: number) => {
     idNum: data.id,
     data: data
   }
+ 
   // Tweet Data Return
   return (
     <div key={index} className="flex flex-col w-[100%] border-[.5px] border-gray bg-mainBg dark:bg-[#121212]">
