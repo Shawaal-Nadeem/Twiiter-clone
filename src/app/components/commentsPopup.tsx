@@ -13,8 +13,8 @@ const ShowComment = (data: any, index: any) => {
           <p className=" font-bold text-sm font-SamsungSharpSansBold">{name}</p>
           <p className=" text-grayLight text-sm font-[500] font-PoppinsMedium">{data.time}{data.unit}</p>
         </div>
-        <div className=" ml-10">
-          <p className=" text-black dark:text-white text-[13px] font-[500] leading-[normal] w-64 font-PoppinsLight">{data.content}</p>
+        <div className=" ml-10 overflow-hidden w-20">
+          <p className=" text-black dark:text-white text-[13px] font-[500] leading-[normal] font-PoppinsLight">{data.content}</p>
         </div>
       </div>
       <div className=" flex justify-center mt-3">
@@ -92,7 +92,7 @@ export const CommentsPopup = (props: any) => {
                <h3 className="text-black dark:text-white font-bold text-xl font-SamsungSharpSansBold text-center">Comments</h3>
                 <hr className=" border border-[#CACACA] dark:border-[#242424] mt-2" />
                 <div className=" flex flex-col items-center h-[310px]  overflow-y-scroll mt-2">
-                  <div className="  w-[85%] max-sm:w-[70%]">
+                  <div className="  w-[85%] max-sm:w-[90%]">
                     {data.comments.length > 0 ? data.comments.map(ShowComment) : null}
                   </div>
                 </div>
