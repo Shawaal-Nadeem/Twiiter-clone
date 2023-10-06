@@ -2,7 +2,7 @@
 import { ThemeSwitcher } from "./themeSwitcher"
 import Image from "next/image"
 import tweets from "../utils/mock"
-import { useState,useContext } from "react"
+import { useState,useContext, useEffect } from "react"
 import Link from "next/link"
 import { context } from "@/contextAPI/contextApi"
 export const MobileNavbar = () => {
@@ -22,18 +22,21 @@ export const MobileNavbar = () => {
   const getContext = useContext(context);
   const tweet = getContext.tweet;
   let myProfile,myPic;
-  if (typeof window !== "undefined") {
-    const email = localStorage.getItem("email");
-    const password = localStorage.getItem("password");
-  
-    let myProfileObj = tweet.find((temp: any) => {
-      return email === temp.email && password === temp.password;
-    });
-  
-    myProfile = myProfileObj?.slug;
-    myPic = myProfileObj?.profile;
-  }
-  
+  useEffect(() => {
+    
+    if (typeof window !== "undefined") {
+      const email = localStorage.getItem("email");
+      const password = localStorage.getItem("password");
+    
+      let myProfileObj = tweet.find((temp: any) => {
+        return email === temp.email && password === temp.password;
+      });
+    
+      myProfile = myProfileObj?.slug;
+      myPic = myProfileObj?.profile;
+    }
+    
+  },[])
     return (
         <>
         <div
