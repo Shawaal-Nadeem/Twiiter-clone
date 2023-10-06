@@ -22,14 +22,18 @@ export const MobileNavbar = () => {
   const getContext = useContext(context);
   const tweet = getContext.tweet;
   let myProfile,myPic;
-  if (typeof window !== undefined) {
-    const email = localStorage.email;
-    const password = localStorage.password;
+  if (typeof window !== "undefined") {
+    const email = localStorage.getItem("email");
+    const password = localStorage.getItem("password");
   
-    let myProfileObj = tweet.find((temp: any) => { return email === temp.email && password === temp.password })
+    let myProfileObj = tweet.find((temp: any) => {
+      return email === temp.email && password === temp.password;
+    });
+  
     myProfile = myProfileObj?.slug;
     myPic = myProfileObj?.profile;
   }
+  
     return (
         <>
         <div
