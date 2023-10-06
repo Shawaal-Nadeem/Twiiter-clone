@@ -29,7 +29,9 @@ interface Theme {
     option1:boolean,
     setOption1: Dispatch<SetStateAction<boolean>>,
     name: any,
-    setName:any
+    setName: any,
+    triggerGetApi: boolean,
+    setTriggerGetApi: Dispatch<SetStateAction<boolean>>
 }
 export const context = createContext({} as Theme);
 
@@ -41,13 +43,14 @@ export default function ContextApp({ children }: { children: ReactNode }) {
     const [showEditProfileBehind, setShowEditProfileBehind] = useState(false);
     const [showEditTweet, setShowEditTweet] = useState(false);
     const [showDeleteTweet, setShowDeleteTweet] = useState(false);
-    const [tweet, setTweet] = useState(tweets);
+    const [tweet, setTweet] = useState([{}]);
     const [like, updateLike] = useState([]);
     const [countLike, updateCountLike] = useState(0);
     const [option, setOption] = useState(false);
     const [option1, setOption1] = useState(false);
     const [name, setName] = useState(myName);
-    return <context.Provider value={{ mode, setMode, show, setShow, tweetAdd, updateAdd, showSettingBehind, setShowSettingBehind, showEditProfileBehind, setShowEditProfileBehind, showEditTweet, setShowEditTweet, showDeleteTweet, setShowDeleteTweet, tweet, setTweet, like, updateLike, countLike, updateCountLike,option,setOption,option1,setOption1,name,setName }}>
+    const [triggerGetApi, setTriggerGetApi] = useState(false);
+    return <context.Provider value={{ mode, setMode, show, setShow, tweetAdd, updateAdd, showSettingBehind, setShowSettingBehind, showEditProfileBehind, setShowEditProfileBehind, showEditTweet, setShowEditTweet, showDeleteTweet, setShowDeleteTweet, like, updateLike, countLike, updateCountLike,option,setOption,option1,setOption1,name,setName,tweet,setTweet,triggerGetApi,setTriggerGetApi }}>
         {children}
     </context.Provider>
 } 

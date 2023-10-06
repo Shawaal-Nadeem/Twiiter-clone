@@ -21,11 +21,10 @@ export const MorePopup = (props: any) => {
   }
   const [option, setOption] = useState(false);
   const [option1, setOption1] = useState(false);
-  // const setShow1 = getContext.setShowEditProfileBehind;
-  // const setShow2 = getContext.setShowDeleteTweet;
   const [show1, setShow1] = useState(false)
   const [show2, setShow2] = useState(false)
   const [text, setText] = useState('');
+  //Copy Tweet
   const copyTweet = async (tweet: string) => {
     setText(tweet);
     await navigator.clipboard.writeText(tweet)
@@ -37,9 +36,12 @@ export const MorePopup = (props: any) => {
     show2:show2,
     setShow2:setShow2
   }
+
+  const email = localStorage.getItem("email");
+  const password = localStorage.getItem("password");
   return (
     <>
-      {data.slug === 'my-profile' ? <div>
+      {data.email === email && data.password===password ? <div>
 
         {show === true ? <div onClick={() => { setShow(false) }} className=" h-[100vh] w-full right-0 left-0 top-0 bottom-0 z-10 fixed flex items-center justify-center"></div> : null}
 

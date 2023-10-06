@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image"
-import { useContext } from "react"
+import { useContext,useEffect, useState } from "react"
 import { context } from "@/contextAPI/contextApi"
 import { useRouter } from "next/navigation"
 // let mainIndex = 0;
@@ -10,13 +10,62 @@ export const EditTweetPopup = (props2: any) => {
   const setShow1 = props2.setShow1
   const tweet = getContext.tweet;
   const setTweet = getContext.setTweet;
+
   let newTweets = tweet;
   let newId = props2.idValue;
-console.log(newId);
-
-  function checkIndex(obj: any) {
-    return newId === obj.id
+  console.log(newId);
+  
+  const searchCurrentTweet = tweet.find((temp: any) => { return temp.id === newId });
+  console.log(searchCurrentTweet.content);
+  const [currentTweet, editTweet] = useState(searchCurrentTweet.content);
+  const [handleEditTweet, setHandleEditTweet] = useState(false);
+  useEffect(() => {
+    console.log('Outside condition');
+    if (handleEditTweet === true) {
+      console.log('Inside condition');
+      console.log('Entering Edit')
+      console.log(newId);
+      console.log(currentTweet);
+      const patchApi = async () => {
+        try {
+          const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter/${newId}`, {
+            method: 'PUT',
+            body: JSON.stringify({
+              content: currentTweet
+            }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            }
+          });
+          const json = await api.json();
+          console.log(json);
+          setTimeout(() => {
+            setTriggerGetApi(true);
+          }, 1000)
+          setHandleEditTweet(false);
+        }
+        catch (error) {
+          console.log(`Error in Patching are : ${error}`);
+         } 
+        }
+      patchApi();
+    }
+  }, [currentTweet,handleEditTweet])
+  const handleEditTweetFunction = () => {
+    setHandleEditTweet(true);
+    ToggleShowTweetPopup();
   }
+  const setTriggerGetApi = getContext.setTriggerGetApi;
+  // if (handleEditTweet === true) {
+  //   setTimeout(() => {
+  //     setTriggerGetApi(true);
+  //   }, 1000)
+  //   setHandleEditTweet(false);
+  // }
+  
+  // function checkIndex(obj: any) {
+  //   return newId === obj.id
+  // }
   const ToggleShowTweetPopup = () => {
     if (show1 === false) {
       setShow1(true);
@@ -29,22 +78,22 @@ console.log(newId);
   const handlePopupBackgroundClick = (event: any) => {
     event.stopPropagation();
   };
-  let updatedTweet: string;
-  const editTweet = (tweet: any) => {
-    updatedTweet = tweet;
-  }
-  const router=useRouter()
-  const updateTweet = () => {
-    for (let i = 0; i < newTweets.length; i++) {
-      if (newId === newTweets[i].id) {
-        newTweets[i].content = updatedTweet
-        setTweet(newTweets)
-        router.refresh()
-        break;
-      }
-    }
+  // let updatedTweet: string;
+  // const editTweet = (tweet: any) => {
+  //   updatedTweet = tweet;
+  // }
+  // const router=useRouter()
+  // const updateTweet = () => {
+  //   for (let i = 0; i < newTweets.length; i++) {
+  //     if (newId === newTweets[i].id) {
+  //       newTweets[i].content = updatedTweet
+  //       setTweet(newTweets)
+  //       router.refresh()
+  //       break;
+  //     }
+  //   }
     
-  }
+  // }
   return (
     <>
       {show1 === true ?
@@ -60,8 +109,8 @@ console.log(newId);
                 <h3 className="text-black dark:text-white font-bold text-xl font-SamsungSharpSansBold text-center">Edit Tweet</h3>
                 <hr className=" border border-[#CACACA] dark:border-[#242424] mt-2" />
                 <div className=" flex flex-col items-center bg-white dark:bg-black">
-                  <textarea onChange={(e) => { editTweet(e.target.value) }} className=" mt-8 border border-solid border-[#CACACA] focus:outline-none rounded-2xl w-80 h-36 pt-3 pl-3 pr-3 font-PoppinsLight text-base dark:bg-black placeholder:text-[#787878] max-lmd:w-[85%]" placeholder="There is no such thing as “Sad” You are either happy where you are OR You are furiously motivated to change something." ></textarea>
-                  <button onClick={() => { ToggleShowTweetPopup(); updateTweet() }} className=" bg-black dark:bg-white text-white dark:text-black w-[112px] h-10 rounded-lg mt-6 font-SamsungSharpSansBold">Update</button>
+                  <textarea onChange={(e) => { editTweet(e.target.value) }} className=" mt-8 border border-solid border-[#CACACA] focus:outline-none rounded-2xl w-80 h-36 pt-3 pl-3 pr-3 font-PoppinsLight text-base dark:bg-black placeholder:text-[#787878] max-lmd:w-[85%]" value={currentTweet} ></textarea>
+                  <button onClick={() => {handleEditTweetFunction()}} className=" bg-black dark:bg-white text-white dark:text-black w-[112px] h-10 rounded-lg mt-6 font-SamsungSharpSansBold">Update</button>
                 </div>
               </div>
             </div>

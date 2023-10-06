@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image"
-import { useContext } from "react"
+import { useContext,useEffect,useState } from "react"
 import { context } from "@/contextAPI/contextApi"
 import { useRouter } from "next/navigation";
 
@@ -13,12 +13,43 @@ export const DeleteTweetPopup = (props2: any) => {
   const setTweet = getContext.setTweet;
   let newTweets = tweet;
   let newId = props2.idValue;
-  
+  const [handleDeleteTweet, setHandleDeleteTweet] = useState(false);
+  const setTriggerGetApi = getContext.setTriggerGetApi;
+
+  useEffect(() => {
+    console.log('Outside condition');
+    if (handleDeleteTweet === true) {
+      console.log('Inside condition');
+      console.log('Entering Delete')
+      console.log(newId);
+      const patchApi = async () => {
+        try {
+          const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter/${newId}`, {
+            method: 'DELETE',
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            }
+          });
+          const json = await api.json();
+          console.log(json);
+          setTimeout(() => {
+            setTriggerGetApi(true);
+          }, 1000)
+          setHandleDeleteTweet(false);
+        }
+        catch (error) {
+          console.log(`Error in Patching are : ${error}`);
+         } 
+        }
+      patchApi();
+    }
+  }, [handleDeleteTweet])
+
   let mainIndex=newTweets.findIndex(checkIndex);
   function checkIndex(obj: any) {
     return newId===obj.id
   }
-  console.log(mainIndex);
+  console.log(newId);
   const ToggleShowTweetPopup = () => {
     if (show2 === false) {
       setShow2(true);
@@ -29,14 +60,19 @@ export const DeleteTweetPopup = (props2: any) => {
   }
   const router=useRouter()
   const tweetLikes = getContext.like;
-  const deleteTweet = () => {
-    newTweets.splice(mainIndex, 1)
-    tweetLikes.splice(mainIndex, 1)
-    for(let i=0;i<newTweets.length;i++){
-      newTweets[i].id=i;
-    }
-    setTweet(newTweets);
-    router.refresh()
+  // const deleteTweet = () => {
+  //   newTweets.splice(mainIndex, 1)
+  //   tweetLikes.splice(mainIndex, 1)
+  //   for(let i=0;i<newTweets.length;i++){
+  //     newTweets[i].id=i;
+  //   }
+  //   setTweet(newTweets);
+  //   router.refresh()
+  // }
+
+  const handleDeleteTweetFunction = () => {
+    setHandleDeleteTweet(true);
+    ToggleShowTweetPopup();
   }
   // Stop state to dom
   const handlePopupBackgroundClick = (event: any) => {
@@ -60,7 +96,7 @@ export const DeleteTweetPopup = (props2: any) => {
                   <h2 className=" text-black dark:text-white text-2xl font-bold text-center w-72 mt-3 font-SamsungSharpSansBold">Do you want to delete this tweet?</h2>
                   <div className=" mt-9 mb-3 flex gap-12">
                     <button onClick={() => { ToggleShowTweetPopup() }} className=" bg-[#CACACA] dark:bg-[#383838] text-black dark:text-white w-[109px] h-10 rounded-lg flex items-center justify-center cursor-pointer font-SamsungSharpSansBold tracking-[.5px]">Cancel</button>
-                    <button onClick={() => { ToggleShowTweetPopup(); deleteTweet() }} className=" bg-black dark:bg-white text-white dark:text-black w-[109px] h-10 rounded-lg font-SamsungSharpSansBold tracking-[.5px]">Delete</button>
+                    <button onClick={() => { handleDeleteTweetFunction() }} className=" bg-black dark:bg-white text-white dark:text-black w-[109px] h-10 rounded-lg font-SamsungSharpSansBold tracking-[.5px]">Delete</button>
                   </div>
                 </div>
               </div>

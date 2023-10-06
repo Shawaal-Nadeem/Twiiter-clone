@@ -2,8 +2,9 @@
 import { ThemeSwitcher } from "./themeSwitcher"
 import Image from "next/image"
 import tweets from "../utils/mock"
-import { useState } from "react"
+import { useState,useContext } from "react"
 import Link from "next/link"
+import { context } from "@/contextAPI/contextApi"
 export const MobileNavbar = () => {
     const [show, setShow] = useState(false);
     
@@ -17,7 +18,14 @@ export const MobileNavbar = () => {
     const togglePopup = () => {
         if (show === false) return setShow(true);
         else return setShow(false)
-    }
+  }
+  const getContext = useContext(context);
+  const tweet = getContext.tweet;
+  const email = localStorage.email;
+  const password = localStorage.password;
+  let myProfileObj = tweet.find((temp:any) => { return email === temp.email && password === temp.password })
+  let myProfile = myProfileObj?.slug;
+  let myPic = myProfileObj?.profile;
     return (
         <>
         <div
@@ -25,7 +33,7 @@ export const MobileNavbar = () => {
         <div className="w-[90%] m-auto flex items-center justify-between">
             <div onClick={()=>{togglePopup()}} className=" cursor-pointer">
           <img
-            src={myProfileData?.profile}
+            src={myPic}
             alt=""
             className="w-[44px] h-[44px] rounded-[36px]"
           />
@@ -45,7 +53,7 @@ export const MobileNavbar = () => {
           <div className="w-28 h-32 bg-white dark:bg-black rounded-2xl flex flex-col justify-center font-PoppinsMedium" style={{ boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.2)' }}>
             <Link href={'/home'}><div className="ml-3 cursor-pointer">Home</div></Link>
             <hr className=" mt-2 mb-2 border-1 border-[#CACACA] dark:border-[#242424]" />
-            <Link href={`/profiles/my-profile`}><div className="ml-3 cursor-pointer">My Profile</div></Link>
+            <Link href={`/profiles/${myProfile}`}><div className="ml-3 cursor-pointer">My Profile</div></Link>
             <hr className=" mt-2 mb-2 border-1 border-[#CACACA] dark:border-[#242424]" />
             <Link href={'/'}><div className="ml-3 cursor-pointer">Logout</div></Link>
           </div>

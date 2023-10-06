@@ -1,4 +1,3 @@
-import tweets from "../utils/mock";
 import Image from "next/image";
 import { LogoutButton } from "../components/logoutButton";
 import { MobileNavbar } from "../components/mobileNavbar";
@@ -8,13 +7,7 @@ import { RightSideHome } from "../components/rightSideHome";
 import { TweetDataCall } from "../components/tweetData";
 
 export default function Home() {
-  const tweetContent = tweets.filter((item: any) => {
-    return item;
-  });
-  const myProfileData = tweetContent.find((item: any) => {
-    if (item.slug === "my-profile") return item;
-    else return null;
-  });
+  
 
   // Main Function Return
   return (
@@ -26,7 +19,7 @@ export default function Home() {
       <div className="w-[25vw] hidden lmd:block h-[100vh] relative">
 
         <div className="w-[25vw] h-[100vh] flex flex-col items-center  fixed dark:bg-black">
-          <MyProfileBox myProfileData={myProfileData} />
+          <MyProfileBox/>
           <LogoutButton />
         </div>
       </div>

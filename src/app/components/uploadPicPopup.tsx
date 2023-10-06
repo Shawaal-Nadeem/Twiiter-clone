@@ -1,7 +1,7 @@
 'use client'
 import Image from "next/image"
 import { useState } from "react";
-import { useContext } from "react";
+import { useContext,useEffect } from "react";
 import { context } from "@/contextAPI/contextApi";
 import tweets from "../utils/mock";
 let getTweets = tweets;
@@ -42,38 +42,97 @@ export const UploadPicPopup = () => {
   const handlePopupBackgroundClick = (event: any) => {
     event.stopPropagation();
   };
-  const setTweet = getContext.setTweet;
+  // const setTweet = getContext.setTweet;
   const tweetLikes = getContext.like;
-  let tweetObj = {
-    profile: "/images/myprofile.jpeg",
-    username: "Codenest",
-    slug: "my-profile",
-    email: "codenest6@gmail.com",
-    time: 1,
-    unit: "m",
-    content: "",
-    contentImage: "",
-    likesNumber: 0,
-    commentsNumber: 0,
-    password: 'cdn23',
-    comments: [],
-    id: 0
-  }
-  const enterTweet = (tweet: any) => {
-    tweetObj.content = tweet;
-  }
-  const enterURL = (url: any) => {
-    tweetObj.contentImage = url;
-  }
-  const addNewTweet = () => {
+  // let tweetObj = {
+  //   profile: "/images/myprofile.jpeg",
+  //   username: "Codenest",
+  //   slug: "my-profile",
+  //   email: "codenest6@gmail.com",
+  //   time: 1,
+  //   unit: "m",
+  //   content: "",
+  //   contentImage: "",
+  //   likesNumber: 0,
+  //   commentsNumber: 0,
+  //   password: 'cdn23',
+  //   comments: [],
+  //   id: 0
+  // }
+  // const enterTweet = (tweet: any) => {
+  //   tweetObj.content = tweet;
+  // }
+  // const enterURL = (url: any) => {
+  //   tweetObj.contentImage = url;
+  // }
+  // const addNewTweet = () => {
    
-    getTweets.unshift(tweetObj)
-    tweetLikes.unshift(false)
-    let newTweets = getTweets;
-    for (let i = 0; i < getTweets.length; i++) {
-      newTweets[i].id = i;
-    }   
-    setTweet(newTweets)
+  //   getTweets.unshift(tweetObj)
+  //   tweetLikes.unshift(false)
+  //   let newTweets = getTweets;
+  //   for (let i = 0; i < getTweets.length; i++) {
+  //     newTweets[i].id = i;
+  //   }   
+  //   setTweet(newTweets)
+  // }
+
+  const tweet = getContext.tweet;
+  const email = localStorage.getItem("email");
+  const password = localStorage.getItem("password");
+  const myProfileData = tweet.find((para: any) => { return para.email === email && para.password === password });
+  const [handleWriteTweet, setHandleWriteTweet] = useState(false);
+  const [tweetContent, setTweetContent] = useState('');
+  const [tweetPic, setTweetPic] = useState('');
+
+  useEffect(() => {
+    console.log(tweetPic); 
+    if (handleWriteTweet === true) {
+      const postApi = async () => {
+        console.log('Entering');
+        console.log(tweetPic);
+        let slugName = myProfileData.username.replace(/\s/g, '')
+        try {
+          const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter`, {
+            method: 'POST',
+            body: JSON.stringify({
+              profile: myProfileData.profile,
+              username: myProfileData.username,
+              slug: `${slugName}-profile`,
+              email: myProfileData.email,
+              time: 1,
+              unit: "m",
+              content: tweetContent,
+              contentImage: tweetPic,
+              likesNumber: 0,
+              commentsNumber: 0,
+              password: myProfileData.password,
+              comments: []
+            }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            }
+        })  
+         
+        }
+        catch (error) {
+          console.log(`Error in Post Api are : ${error}`);
+        }
+      }
+      postApi();
+    }
+  }, [handleWriteTweet, tweetPic])
+  
+  const handlePopupandWriteTweet = () => {
+    console.log('Hello');
+    setHandleWriteTweet(true);
+    // ToggleGalleyPopup();
+  }
+  const setTriggerGetApi = getContext.setTriggerGetApi;
+  if (handleWriteTweet === true) {
+    setTimeout(() => {
+      setTriggerGetApi(true);
+    }, 1000)
+    updateAdd(false);
   }
 
   return (
@@ -95,13 +154,13 @@ export const UploadPicPopup = () => {
                   <div className=" mt-3"><input type="image" src={'/images/Group 14.png'} alt="Loading...." width={80} height={80}></input></div>
                   <div className=" mt-3 max-md:w-[80%]">
                     <label className=" text-black dark:text-[white] font-SamsungSharpSansBold text-lg">Add URL</label>
-                    <input onChange={(e)=>{enterURL(e.target.value)}} className="flex items-center border-[1.9px] border-solid border-grayLight h-10 rounded-lg outline-none w-[350px] pl-4 placeholder-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm  dark:bg-black text-grayLight "></input>
+                    <input onChange={(e)=>{setTweetPic(e.target.value)}} className="flex items-center border-[1.9px] border-solid border-grayLight h-10 rounded-lg outline-none w-[350px] pl-4 placeholder-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm  dark:bg-black text-grayLight "></input>
                   </div>
                   <div className=" mt-3 max-md:w-[80%]">
                     <label className=" text-black dark:text-[white] font-SamsungSharpSansBold text-lg">Add Caption</label>
-                    <input onChange={(e)=>{enterTweet(e.target.value)}} className="flex items-center border-[1.9px] border-solid border-grayLight h-10 rounded-lg outline-none w-[350px] pl-4 placeholder-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm  dark:bg-black text-grayLight "></input>
+                    <input onChange={(e)=>{setTweetContent(e.target.value)}} className="flex items-center border-[1.9px] border-solid border-grayLight h-10 rounded-lg outline-none w-[350px] pl-4 placeholder-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm  dark:bg-black text-grayLight "></input>
                   </div>
-                  <button onClick={() => { ToggleGalleyPopup(), addNewTweet() }} className=" bg-black dark:bg-white text-white dark:text-black w-[109px] h-10 rounded-lg mt-5 font-SamsungSharpSansBold">Post</button>
+                  <button onClick={() => {handlePopupandWriteTweet()}} className=" bg-black dark:bg-white text-white dark:text-black w-[109px] h-10 rounded-lg mt-5 font-SamsungSharpSansBold">Post</button>
                 </div>
               </div>
             </div>

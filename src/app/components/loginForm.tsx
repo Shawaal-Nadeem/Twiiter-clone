@@ -1,42 +1,122 @@
 'use client'
-import { useState } from "react";
-import tweets from "../utils/mock";
+import { useEffect, useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
 import { context } from "@/contextAPI/contextApi";
 export const LoginForm=()=> {
     
-    const [state, setState] = useState(false);
-    const [show, setShow] = useState(false);
+  const [state, setState] = useState(false);
+  const [show, setShow] = useState(false);
   const getContext = useContext(context);
   const mode = getContext.mode;
-    const [password, setPassword] = useState("Type Password");
-    function ToggleIcon() {
-      if (show === false) {
+ const[password,setPassword]=useState('Type Password');
+
+  
+  
+  function ToggleIcon() {
+    if (show === false) {
         setShow(true);
       } else if (show === true) {
         setShow(false);
       }
     }
   
-    const [email, setEmail] = useState('Codenest@gmail.com');
-    let flag:number = 0;
-    tweets.find((temp: any) => {
-      if (password === temp.password && email === temp.email) {
-        flag = 1;
-      }
-    })
-    const [showSuggest, setShowSuggest] = useState(false);
-  function decision() {
-    if (flag == 0)
-    {
-      setShowSuggest(true);
-    }
-  }
+    const [email, setEmail] = useState('shawaal@gmail.com');
+  const [move, setMove] = useState(false);
+  const [showSuggest, setShowSuggest] = useState(false);
 
+  const [submit, setSubmit] = useState(false);
+  const [handleApi, setHandleApi] = useState(false);
+  const [username, setUsername] = useState('');
+  const [handleAgainFetch, setHandleAgainFetch] = useState(false);
+  
+  
+  let localData:any =useRef();    // useRef store my old value when re-renders component. Why i use ? -> bcz when useEffect calls localData again initialize.
+  
+  useEffect(() => {
+    //Login Side
+    if (state === false) {
+      const getApi = async () => {
+          try {
+
+            if (handleApi === false || handleAgainFetch===true) {
+              const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter`);
+              const json = await api.json();
+              localData.current = json;
+              setHandleApi(true);
+            }
+            console.log(localData.current);
+            const foundItem = localData.current.find((parameter: any) => {
+              if (parameter.email === email && parameter.password === password) {
+                return parameter
+              }
+            })
+          
+            if (foundItem) {
+              console.log('Enter');
+              setMove(true);
+              
+            }
+            else {
+              console.log(email);
+              console.log(password);
+              console.log('No Enter');
+              setMove(false);
+              if (submit === true) {
+                setShowSuggest(true);
+              }
+            }
+          } catch (error) {
+            console.error(`Error in GetApi are : ${error}`);
+          }
+          
+        }
+        
+        getApi();  
+    };
+    //Signup Side
+    if (state === true) {
+      if (submit === true) {
+        let slugName = username.replace(/\s/g, '');
+        const postApi = async () => {
+          try {
+            const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter`, {
+              method: 'POST',
+              body: JSON.stringify({
+                profile: "/images/myprofile.jpeg",
+                username: username,
+                slug: `${slugName}-profile`,
+                email: email,
+                time: 4,
+                unit: "h",
+                content: null,
+                contentImage: null,
+                likesNumber: 0,
+                commentsNumber: 0,
+                password: password,
+                comments: []
+              }),
+              headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+              }
+          })
+          }
+          catch (error) {
+            console.log(`Error in Post Api are : ${error}`)
+          }
+        }
+        postApi();
+        alert('Account has been Created')
+        setSubmit(false);
+        setHandleAgainFetch(true);
+        setState(false);
+      }
+    }
+    }, [submit,email,password])
+  
     return (
-        <>
+      <>
         <div>
           <div className=" max-md:flex max-md:items-center max-md:flex-col max-md:mt-10 max-md:mb-16">
             <div className=" flex items-center justify-center bg-gray-box w-96 h-14 rounded-xl max-md:w-[80%] dark:bg-black-box ">
@@ -66,11 +146,11 @@ export const LoginForm=()=> {
             </div>
             <div className=" mt-6 max-md:w-[80%]">
               <label className=" text-grayLight font-SamsungSharpSansMedium">Email Address</label>
-              <input className= "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm  dark:bg-black text-grayLight " placeholder={email} onChange={(e)=>{setEmail(e.target.value)}} type="email"></input>
+              <input className= "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm  dark:bg-black text-grayLight " placeholder={email} onChange={(e)=>{setEmail(e.target.value),localStorage.setItem("email",e.target.value)}} type="email"></input>
             </div>
             <div className={state === true ? " mt-4 max-md:w-[80%]" : "hidden"}>
               <label className=" text-grayLight font-SamsungSharpSansMedium">Create Username</label>
-              <input className= "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm dark:bg-black text-grayLight " placeholder="Codenest2023" type="text"></input>
+              <input onChange={(e)=>{setUsername(e.target.value)}} className= "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm dark:bg-black text-grayLight " placeholder="Codenest2023" type="text"></input>
             </div>
             <div className=" mt-6 max-md:w-[80%]">
               {state === false?
@@ -83,7 +163,7 @@ export const LoginForm=()=> {
               </label>      
             }
               <div className=" flex items-center border-2 border-solid border-black h-12 rounded-lg w-96 max-md:w-[100%] dark:border-white">
-                <input className={ show===false? " outline-none w-96 max-md:w-72 pl-4 font-SamsungSharpSansBold text-2xl dark:bg-black " : " outline-none w-96 max-md:w-72 pl-4 dark:bg-black dark:text-white font-SamsungSharpSansMedium"} type={show === false ? "password" : "text"} value={password} onChange={(e) => {setPassword(e.target.value);}}></input>
+                <input className={ show===false? " outline-none w-96 max-md:w-72 pl-4 font-SamsungSharpSansBold text-2xl dark:bg-black " : " outline-none w-96 max-md:w-72 pl-4 dark:bg-black dark:text-white font-SamsungSharpSansMedium"} type={show === false ? "password" : "text"} value={password} onChange={(e) => {setPassword(e.target.value),localStorage.setItem("password",e.target.value)}}></input>
                 <Image src={ mode === false ? show === false ? "/images/notEye.png" : "/images/openEye1.png" : show === false ? "/images/notEye1.png" : "/images/openEye.png"}onClick={() => {ToggleIcon();}} alt="Loading..." width={19} height={19} className=" cursor-pointer ml-2 md:mr-3"></Image>
               </div>
             </div>
@@ -95,8 +175,8 @@ export const LoginForm=()=> {
                   : "hidden"
               }
             >
-              <Link href={flag===1?'/home':'/'}>
-                <button onClick={()=>{decision()}} className=" flex items-center justify-center font-medium w-96 h-12">
+              <Link href={move===true?'/home':'/'}>
+                <button onClick={() => { setSubmit(true) }} className=" flex items-center justify-center font-medium w-96 h-12">
                   Login
                 </button>
               </Link>
@@ -109,11 +189,11 @@ export const LoginForm=()=> {
                   : "hidden"
               }
             >
-              <Link href={'/home'}>
-                <button className=" flex items-center justify-center font-medium w-96 h-12">
+            
+                <button onClick={() => { setSubmit(true) }} className=" flex items-center justify-center font-medium w-96 h-12">
                   Signup
                 </button>
-              </Link>
+              
             </div>
            {showSuggest===true && state===false?<p className=" text-xs text-[red] mt-3">This Email ID or Password is Incorrect. <span className=" text-[blue]">Create Aaccount?</span> <span onClick={()=>{setState(true)}} className=" text-[purple] cursor-pointer underline">Signup</span></p>:null} 
           </div>

@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image"
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { context } from "@/contextAPI/contextApi";
 import tweets from "../utils/mock";
@@ -32,10 +32,11 @@ export const WriteTweetPopup = () => {
   // show write Tweet popup 
   const [showTweetPopup, setShowTweetPopup] = useState(false)
   const ToggleShowTweetPopup = () => {
-    if (showTweetPopup === false) {
+    
+    if (showTweetPopup === false ) {
       setShowTweetPopup(true);
     }
-    else {
+    else if(showTweetPopup === true) {
       setShowTweetPopup(false);
       updateAdd(false);
     }
@@ -44,36 +45,91 @@ export const WriteTweetPopup = () => {
   const handlePopupBackgroundClick = (event: any) => {
     event.stopPropagation();
   };
+
   // Tweet Adding 
   const tweetLikes = getContext.like;
-  let tweetObj = {
-    profile: "/images/myprofile.jpeg",
-    username: "Codenest",
-    slug: "my-profile",
-    email: "codenest6@gmail.com",
-    time: 1,
-    unit: "m",
-    content: "",
-    contentImage: null,
-    likesNumber: 0,
-    commentsNumber: 0,
-    password: 'cdn23',
-    comments: [],
-    id: 0
+  const email = localStorage.getItem("email");
+  const password = localStorage.getItem("password");
+  const myProfileData = tweet.find((para: any) => { return para.email === email && para.password === password });
+  const [handleWriteTweet, setHandleWriteTweet] = useState(false);
+  const [tweetContent, setTweetContent] = useState('');
+  useEffect(() => {
+    console.log(tweetContent); 
+    if (handleWriteTweet === true) {
+      const postApi = async () => {
+        console.log('Entering');
+        console.log(tweetContent);
+        let slugName = myProfileData.username.replace(/\s/g, '')
+        try {
+          const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter`, {
+            method: 'POST',
+            body: JSON.stringify({
+              profile: myProfileData.profile,
+              username: myProfileData.username,
+              slug: `${slugName}-profile`,
+              email: myProfileData.email,
+              time: 1,
+              unit: "m",
+              content: tweetContent,
+              contentImage: null,
+              likesNumber: 0,
+              commentsNumber: 0,
+              password: myProfileData.password,
+              comments: []
+            }),
+            headers: {
+              'Content-type': 'application/json; charset=UTF-8',
+            }
+        })  
+         
+        }
+        catch (error) {
+          console.log(`Error in Post Api are : ${error}`);
+        }
+      }
+      postApi();
+    }
+ },[handleWriteTweet,tweetContent])
+  const handlePopupandWriteTweet = () => {
+    setHandleWriteTweet(true);
+    setShowTweetPopup(false);
   }
-  const enterTweet = (tweet: any) => {
-    tweetObj.content = tweet;
+  const setTriggerGetApi = getContext.setTriggerGetApi;
+  if (handleWriteTweet === true) {
+    setTimeout(() => {
+      setTriggerGetApi(true);
+    }, 1000)
+    updateAdd(false);
   }
-  const addNewTweet = () => {
+  // let tweetObj = {
+  //   profile: "/images/myprofile.jpeg",
+  //   username: "Codenest",
+  //   slug: "my-profile",
+  //   email: "codenest6@gmail.com",
+  //   time: 1,
+  //   unit: "m",
+  //   content: "",
+  //   contentImage: null,
+  //   likesNumber: 0,
+  //   commentsNumber: 0,
+  //   password: 'cdn23',
+  //   comments: [],
+  //   id: 0
+  // }
+  
+  // const enterTweet = (tweet: any) => {
+  //   tweetObj.content = tweet;
+  // }
+  // const addNewTweet = () => {
    
-    getTweets.unshift(tweetObj)
-    tweetLikes.unshift(false)
-    let newTweets = getTweets;
-    for (let i = 0; i < getTweets.length; i++) {
-      newTweets[i].id = i;
-    }   
-    setTweet(newTweets)
-  }
+  //   getTweets.unshift(tweetObj)
+  //   tweetLikes.unshift(false)
+  //   let newTweets = getTweets;
+  //   for (let i = 0; i < getTweets.length; i++) {
+  //     newTweets[i].id = i;
+  //   }   
+  //   setTweet(newTweets)
+  // }
   return (
     <>
 
@@ -90,8 +146,8 @@ export const WriteTweetPopup = () => {
               <div className="w-full">
                 <h3 className="text-black dark:text-white ml-7 font-bold text-xl font-SamsungSharpSansBold">Whats on your mind?</h3>
                 <div className=" flex flex-col items-center bg-white dark:bg-black">
-                  <textarea onChange={(e) => { enterTweet(e.target.value) }} className=" mt-6 border border-solid border-[#CACACA] dark:border-[#242424] dark:bg-black focus:outline-none rounded-lg w-[340px] h-32 pt-3 pl-3 pr-3 font-PoppinsLight max-lmd:w-[80%]" ></textarea>
-                  <button onClick={() => { ToggleShowTweetPopup(); addNewTweet() }} className=" bg-black dark:bg-white text-white dark:text-black w-[109px] h-10 rounded-lg mt-5 font-SamsungSharpSansBold">Post</button>
+                  <textarea onChange={(e) => {setTweetContent(e.target.value)}} className=" mt-6 border border-solid border-[#CACACA] dark:border-[#242424] dark:bg-black focus:outline-none rounded-lg w-[340px] h-32 pt-3 pl-3 pr-3 font-PoppinsLight max-lmd:w-[80%]" ></textarea>
+                  <button onClick={() => { handlePopupandWriteTweet() }} className=" bg-black dark:bg-white text-white dark:text-black w-[109px] h-10 rounded-lg mt-5 font-SamsungSharpSansBold">Post</button>
                 </div>
               </div>
             </div>
