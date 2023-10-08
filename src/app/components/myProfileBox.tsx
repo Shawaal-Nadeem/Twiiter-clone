@@ -7,8 +7,27 @@ export const MyProfileBox = () => {
   const getContext = useContext(context);
   const mode = getContext.mode;
   const name = getContext.name;
-  const email = localStorage.getItem("email");
-  const password = localStorage.getItem("password");
+  const email = getContext.email;
+  const setEmail = getContext.setEmail;
+  const password = getContext.password;
+  const setPassword = getContext.setPassword;
+  useEffect(() => {
+    const getUserData = async () => {
+      console.log('Profile Box');
+      const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/users/1`);
+      const json = await api.json();
+      let email = json.email;
+      let password = json.password;
+      if (email) {
+        setEmail(email);
+      }
+      if (password) {
+        setPassword(password);
+      }
+
+    }
+    getUserData();
+  },[])
  
   const tweet = getContext.tweet;
   const myProfileData = tweet.find((para: any) => { return para.email === email && para.password === password });

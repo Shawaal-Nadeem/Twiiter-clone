@@ -10,8 +10,9 @@ export const LoginForm=()=> {
   const [show, setShow] = useState(false);
   const getContext = useContext(context);
   const mode = getContext.mode;
- const[password,setPassword]=useState('Type Password');
-
+  
+  const password = getContext.password;
+  const setPassword = getContext.setPassword;
   
   
   function ToggleIcon() {
@@ -22,7 +23,8 @@ export const LoginForm=()=> {
       }
     }
   
-    const [email, setEmail] = useState('shawaal@gmail.com');
+  const email = getContext.email;
+  const setEmail = getContext.setEmail;
   const [move, setMove] = useState(false);
   const [showSuggest, setShowSuggest] = useState(false);
 
@@ -32,6 +34,8 @@ export const LoginForm=()=> {
   const [handleAgainFetch, setHandleAgainFetch] = useState(false);
   
   
+
+
   let localData:any =useRef();    // useRef store my old value when re-renders component. Why i use ? -> bcz when useEffect calls localData again initialize.
   
   useEffect(() => {
@@ -55,7 +59,20 @@ export const LoginForm=()=> {
           
             if (foundItem) {
               console.log('Enter');
+              console.log(email);
+              console.log(password);
               setMove(true);
+            //save current user data
+            const userData = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/users/1`, {
+              method: 'PUT',
+              body: JSON.stringify({
+                email: email,
+                password:password
+              }),
+              headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+              }
+            })
               
             }
             else {
@@ -67,6 +84,7 @@ export const LoginForm=()=> {
                 setShowSuggest(true);
               }
             }
+
           } catch (error) {
             console.error(`Error in GetApi are : ${error}`);
           }

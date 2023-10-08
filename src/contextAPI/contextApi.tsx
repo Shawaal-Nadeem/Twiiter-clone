@@ -32,6 +32,10 @@ interface Theme {
     setName: any,
     triggerGetApi: boolean,
     setTriggerGetApi: Dispatch<SetStateAction<boolean>>
+    email: string,
+    setEmail: Dispatch<SetStateAction<string>>,
+    password: string,
+    setPassword: Dispatch<SetStateAction<string>>
 }
 export const context = createContext({} as Theme);
 
@@ -50,7 +54,9 @@ export default function ContextApp({ children }: { children: ReactNode }) {
     const [option1, setOption1] = useState(false);
     const [name, setName] = useState(myName);
     const [triggerGetApi, setTriggerGetApi] = useState(false);
-    return <context.Provider value={{ mode, setMode, show, setShow, tweetAdd, updateAdd, showSettingBehind, setShowSettingBehind, showEditProfileBehind, setShowEditProfileBehind, showEditTweet, setShowEditTweet, showDeleteTweet, setShowDeleteTweet, like, updateLike, countLike, updateCountLike,option,setOption,option1,setOption1,name,setName,tweet,setTweet,triggerGetApi,setTriggerGetApi }}>
+    const [email, setEmail] = useState('shawaal@example.com');
+    const [password, setPassword] = useState('Type Password');
+    return <context.Provider value={{ mode, setMode, show, setShow, tweetAdd, updateAdd, showSettingBehind, setShowSettingBehind, showEditProfileBehind, setShowEditProfileBehind, showEditTweet, setShowEditTweet, showDeleteTweet, setShowDeleteTweet, like, updateLike, countLike, updateCountLike,option,setOption,option1,setOption1,name,setName,tweet,setTweet,triggerGetApi,setTriggerGetApi,email,setEmail,password,setPassword }}>
         {children}
     </context.Provider>
 } 

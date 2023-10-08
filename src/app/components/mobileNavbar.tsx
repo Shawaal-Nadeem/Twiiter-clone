@@ -1,42 +1,44 @@
 'use client'
 import { ThemeSwitcher } from "./themeSwitcher"
 import Image from "next/image"
-import tweets from "../utils/mock"
-import { useState,useContext, useEffect } from "react"
+import { useState,useContext,useEffect } from "react"
 import Link from "next/link"
 import { context } from "@/contextAPI/contextApi"
+
 export const MobileNavbar = () => {
     const [show, setShow] = useState(false);
-    
-    const tweetContent = tweets.filter((item: any) => {
-        return item;
-      });
-    const myProfileData = tweetContent.find((item: any) => {
-        if (item.slug === "my-profile") return item;
-        else return null;
-    });
+
     const togglePopup = () => {
         if (show === false) return setShow(true);
         else return setShow(false)
   }
   const getContext = useContext(context);
   const tweet = getContext.tweet;
-  let myProfile,myPic;
+  const email = getContext.email;
+  const setEmail = getContext.setEmail;
+  const password = getContext.password;
+  const setPassword = getContext.setPassword;
   useEffect(() => {
-    
-    if (typeof window !== "undefined") {
-      const email = localStorage.getItem("email");
-      const password = localStorage.getItem("password");
-    
-      let myProfileObj = tweet.find((temp: any) => {
-        return email === temp.email && password === temp.password;
-      });
-    
-      myProfile = myProfileObj?.slug;
-      myPic = myProfileObj?.profile;
+    const getUserData = async () => {
+      console.log('Profile Box');
+      const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/users/1`);
+      const json = await api.json();
+      let email = json.email;
+      let password = json.password;
+      if (email) {
+        setEmail(email);
+      }
+      if (password) {
+        setPassword(password);
+      }
+
     }
-    
+    getUserData();
   },[])
+
+  let myProfileObj = tweet.find((temp:any) => { return email === temp.email && password === temp.password })
+  let myProfile = myProfileObj?.slug;
+  let myPic = myProfileObj?.profile;
     return (
         <>
         <div
