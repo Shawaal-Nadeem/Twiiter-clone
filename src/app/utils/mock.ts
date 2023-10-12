@@ -1,6 +1,6 @@
 const tweets = [
     {
-        profile: "/images/myprofile.jpeg",
+        profile: "/images/myprofile.png",
         username: "Codenest",
         slug: "my-profile",
         email: "codenest6@gmail.com",

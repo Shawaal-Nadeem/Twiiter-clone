@@ -106,7 +106,8 @@ export const UploadPicPopup = () => {
               likesNumber: 0,
               commentsNumber: 0,
               password: myProfileData.password,
-              comments: []
+              comments: [],
+              likeUserIds:[]
             }),
             headers: {
               'Content-type': 'application/json; charset=UTF-8',

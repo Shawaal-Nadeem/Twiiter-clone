@@ -113,7 +113,8 @@ export const LoginForm=()=> {
                 likesNumber: 0,
                 commentsNumber: 0,
                 password: password,
-                comments: []
+                comments: [],
+                likeUserIds:[]
               }),
               
               headers: {
