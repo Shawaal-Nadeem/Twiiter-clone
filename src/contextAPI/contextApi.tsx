@@ -31,11 +31,19 @@ interface Theme {
     name: any,
     setName: any,
     triggerGetApi: boolean,
-    setTriggerGetApi: Dispatch<SetStateAction<boolean>>
+    setTriggerGetApi: Dispatch<SetStateAction<boolean>>,
     email: string,
     setEmail: Dispatch<SetStateAction<string>>,
     password: string,
-    setPassword: Dispatch<SetStateAction<string>>
+    setPassword: Dispatch<SetStateAction<string>>,
+    tempValue: number,
+    setTempValue: Dispatch<SetStateAction<number>>,
+    handleValue: boolean,
+    setHandleValue: Dispatch<SetStateAction<boolean>>,
+    triggerGetApiLikes: boolean,
+    setTriggerGetApiLikes: Dispatch<SetStateAction<boolean>>,
+    likeTweet: boolean,
+    setLikeTweet: Dispatch<SetStateAction<boolean>>
 }
 export const context = createContext({} as Theme);
 
@@ -56,7 +64,11 @@ export default function ContextApp({ children }: { children: ReactNode }) {
     const [triggerGetApi, setTriggerGetApi] = useState(false);
     const [email, setEmail] = useState('shawaal@example.com');
     const [password, setPassword] = useState('Type Password');
-    return <context.Provider value={{ mode, setMode, show, setShow, tweetAdd, updateAdd, showSettingBehind, setShowSettingBehind, showEditProfileBehind, setShowEditProfileBehind, showEditTweet, setShowEditTweet, showDeleteTweet, setShowDeleteTweet, like, updateLike, countLike, updateCountLike,option,setOption,option1,setOption1,name,setName,tweet,setTweet,triggerGetApi,setTriggerGetApi,email,setEmail,password,setPassword }}>
+    const [tempValue, setTempValue] = useState(0);
+    const [handleValue, setHandleValue] = useState(false);
+    const [triggerGetApiLikes, setTriggerGetApiLikes] = useState(false);
+    const [likeTweet, setLikeTweet] = useState(false);
+    return <context.Provider value={{ mode, setMode, show, setShow, tweetAdd, updateAdd, showSettingBehind, setShowSettingBehind, showEditProfileBehind, setShowEditProfileBehind, showEditTweet, setShowEditTweet, showDeleteTweet, setShowDeleteTweet, like, updateLike, countLike, updateCountLike, option, setOption, option1, setOption1, name, setName, tweet, setTweet, triggerGetApi, setTriggerGetApi, email, setEmail, password, setPassword, tempValue, setTempValue,handleValue,setHandleValue,triggerGetApiLikes,setTriggerGetApiLikes,likeTweet,setLikeTweet }}>
         {children}
     </context.Provider>
 } 

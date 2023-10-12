@@ -102,7 +102,7 @@ export const LoginForm=()=> {
             const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter`, {
               method: 'POST',
               body: JSON.stringify({
-                profile: "/images/myprofile.jpeg",
+                profile: "/images/myprofile1.jpeg",
                 username: username,
                 slug: `${slugName}-profile`,
                 email: email,
@@ -115,10 +115,23 @@ export const LoginForm=()=> {
                 password: password,
                 comments: []
               }),
+              
               headers: {
                 'Content-type': 'application/json; charset=UTF-8',
               }
-          })
+            })
+            
+            //save current user data
+            const userData = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/users/1`, {
+              method: 'PUT',
+              body: JSON.stringify({
+                email: email,
+                password:password
+              }),
+              headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+              }
+            })     
           }
           catch (error) {
             console.log(`Error in Post Api are : ${error}`)
@@ -129,6 +142,8 @@ export const LoginForm=()=> {
         setSubmit(false);
         setHandleAgainFetch(true);
         setState(false);
+
+       
       }
     }
     }, [submit,email,password])

@@ -1,19 +1,19 @@
 'use client'
 import Image from "next/image"
-import { useContext, useState } from "react"
+import { useContext, useState,useEffect } from "react"
 import { context } from "@/contextAPI/contextApi"
 const ShowComment = (data: any, index: any) => {
   const getContext = useContext(context);
-  const name = getContext.name;
+
   return (
     <div key={index}>
       <div className=" mt-3">
         <div className=" flex items-center gap-2">
           <img src={data.profile} alt="Loading..." width={30} height={30} className=" rounded-full" ></img>
-          <p className=" font-bold text-sm font-SamsungSharpSansBold">{name}</p>
+          <p className=" font-bold text-sm font-SamsungSharpSansBold">{data?.username}</p>
           <p className=" text-grayLight text-sm font-[500] font-PoppinsMedium">{data.time}{data.unit}</p>
         </div>
-        <div className=" ml-10 overflow-hidden w-20">
+        <div className=" ml-10 overflow-hidden w-56">
           <p className=" text-black dark:text-white text-[13px] font-[500] leading-[normal] font-PoppinsLight">{data.content}</p>
         </div>
       </div>
@@ -27,7 +27,8 @@ const ShowComment = (data: any, index: any) => {
 export const CommentsPopup = (props: any) => {
   let data = props.data
   let newId=props.idNum
-
+  
+  
   const getContext = useContext(context);
   const mode = getContext.mode;
   const [show, setShow] = useState(false);
@@ -42,32 +43,70 @@ export const CommentsPopup = (props: any) => {
   const tweet = getContext.tweet;
   const setTweet = getContext.setTweet;
   let newTweet=tweet;
-  let commentObj = {
-    profile: "/images/myprofile.jpeg",
-    username: "Codenest",
-    slug: "my-profile",
-    time: 0,
-    unit: "m",
-    content: "",
-    }
+ 
   const [inputValue, setInputValue] = useState('');
-  const sendComment=()=>{
-    commentObj.content = inputValue
-    for (let i = 0; i < newTweet.length; i++) {
-      if (newId === newTweet[i].id) {
-        newTweet[i].comments.push(commentObj)
-        newTweet[i].commentsNumber+=1
-        setTweet(newTweet)
-        setInputValue('')
-        break;
-      }
-    }
-  }
+ 
   // Stop state to dom
   const handlePopupBackgroundClick = (event: any) => {
     event.stopPropagation();
   };
-
+  
+  const email = getContext.email;
+  const password = getContext.password;
+  const myProfile=tweet.find((item:any)=>{return item.email===email && item.password===password})
+  const [handleUploadComment, setHandleUploadComment] = useState(false);
+  // const [commentsNumber, setCommentsNumber] = useState(data.commentsNumber);
+  const setTriggerGetApi = getContext.setTriggerGetApi;
+  const [comments, setComments] = useState([{}]);
+  //Show Comments
+  useEffect(() => {
+    if (show === true) {
+      console.log(newId);
+      
+      const getApi = async () => {
+        const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter/${newId}`);
+        const json = await api.json();
+        let oldArr = json.comments;
+        console.log(oldArr);
+        setComments(oldArr.reverse());
+        // Save Comment
+        if (handleUploadComment === true) {
+          let obj = {
+            profile:myProfile.profile,
+            username: myProfile.username,
+            content:inputValue
+          }
+          console.log(inputValue);
+          oldArr.push(obj);
+          console.log('After');
+          console.log(oldArr);
+        
+          let commentsNum = oldArr.length;
+          console.log(commentsNum);
+          // console.log(data.commentsNumber);
+          const putApi = async () => {
+            const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter/${newId}`, {
+              method: 'PUT',
+              body: JSON.stringify({
+                comments: oldArr,
+                commentsNumber:commentsNum
+              }),
+              headers:{
+                'Content-type': 'application/json; charset=UTF-8',
+              }
+            })
+            // setCommentsNumber(commentsNum);
+            setTriggerGetApi(true);
+            setHandleUploadComment(false);
+          }
+          putApi();
+        }
+      }
+      getApi();
+    
+  }
+}, [show,handleUploadComment])
+ 
   return (
     <>
       {show === true ? <div onClick={() => { ToggleShowCommentPopup() }} className=" bg-[#FFFFFF80] dark:bg-[#00000080] h-[100vh] w-full right-0 left-0 top-0 bottom-0 z-10 fixed flex items-center justify-center"></div> : null}
@@ -77,7 +116,7 @@ export const CommentsPopup = (props: any) => {
       <div onClick={() => { setShow(true) }} className=" flex">
         <Image src={"/images/message.png"} alt="" width={16} height={16} className="ml-[14px] cursor-pointer"></Image>
         <p className="ml-[5px]  text-grayLight text-[10px] font-[500] leading-[normal] tracking-[-0.04px] cursor-pointer font-PoppinsMedium">
-          view all {data.commentsNumber} comments
+          view all {data?.commentsNumber} comments
         </p>
       </div>
       {/* Comment Popup Card */}
@@ -93,7 +132,7 @@ export const CommentsPopup = (props: any) => {
                 <hr className=" border border-[#CACACA] dark:border-[#242424] mt-2" />
                 <div className=" flex flex-col items-center h-[310px]  overflow-y-scroll mt-2">
                   <div className="  w-[85%] max-sm:w-[90%]">
-                    {data.comments.length > 0 ? data.comments.map(ShowComment) : null}
+                  {comments.length > 0 ? comments.map(ShowComment) : null}
                   </div>
                 </div>
                 <hr className=" w-full mt-3 border-[1.5px] border-solid border-[#CACACA] dark:border-[#242424]" />
@@ -102,7 +141,7 @@ export const CommentsPopup = (props: any) => {
                     <input value={inputValue}  onChange={(e)=>{setInputValue(e.target.value)}} placeholder="Type your comment here..." className=" max-sm:w-[95%] focus:outline-none bg-[#CACACA] dark:bg-[#242424] w-[270px] ml-4 mr-4 text-[15px] placeholder:text-[#787878] font-PoppinsLight"></input>
                   </div>
                   <div className="max-sm:w-[5%] max-sm:ml-3">
-                    <button onClick={() => { sendComment() }} className=" bg-black dark:bg-white w-12 h-12 flex items-center justify-center rounded-xl">
+                    <button onClick={() => { setHandleUploadComment(true) }} className=" bg-black dark:bg-white w-12 h-12 flex items-center justify-center rounded-xl">
                       <Image src={mode === false ? '/images/send.png' : '/images/sendB.png'} alt="Loading...." width={23} height={23}></Image>
                     </button>
                   </div>

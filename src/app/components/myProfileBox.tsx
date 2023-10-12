@@ -6,7 +6,6 @@ import { context } from "@/contextAPI/contextApi"
 export const MyProfileBox = () => {
   const getContext = useContext(context);
   const mode = getContext.mode;
-  const name = getContext.name;
   const email = getContext.email;
   const setEmail = getContext.setEmail;
   const password = getContext.password;
