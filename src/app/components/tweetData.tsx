@@ -106,10 +106,9 @@ export const TweetData = (data: any, index: any) => {
      {mode === false ? (
           <Image onClick={() => {temp(data?.id) }} src={childTemp(data)} alt="" width={16} height={16} className="ml-[17px] cursor-pointer "></Image>
        ) :
-      //         (
-      //  <Image onClick={() => {  }} src={like === false ? "/images/heartWhite.png" : "/images/heartRed.png"} alt="" width={16} height={16} className="ml-[17px] cursor-pointer "></Image>
-      //       )
-      null
+              (
+       <Image onClick={() => {temp(data?.id) }} src={childTemp(data)} alt="" width={16} height={16} className="ml-[17px] cursor-pointer "></Image>
+            )
       }
      <p className="ml-[5px] text-grayLight text-[10px] font-[500] leading-[normal] tracking-[-0.04px] font-PoppinsMedium">
        {data.likesNumber} Likes
