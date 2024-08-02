@@ -24,7 +24,7 @@ export const DeleteTweetPopup = (props2: any) => {
       console.log(newId);
       const patchApi = async () => {
         try {
-          const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter/${newId}`, {
+          const api = await fetch(`http://localhost:8000/tweets/${newId}`, {
             method: 'DELETE',
             headers: {
               'Content-type': 'application/json; charset=UTF-8',

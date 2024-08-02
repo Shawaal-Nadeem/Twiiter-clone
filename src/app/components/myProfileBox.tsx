@@ -6,17 +6,22 @@ import { context } from "@/contextAPI/contextApi"
 export const MyProfileBox = () => {
   const getContext = useContext(context);
   const mode = getContext.mode;
-  const email = getContext.email;
+  // const email = getContext.email;
   const setEmail = getContext.setEmail;
-  const password = getContext.password;
+  // const password = getContext.password;
   const setPassword = getContext.setPassword;
+  const setTweet = getContext.setTweet
+  let getemail =localStorage.getItem('email');
+  let getpassword =localStorage.getItem('password');
+
+  console.log('Profile Box');
+
+  let email = getemail;
+  let password = getpassword;
+
   useEffect(() => {
-    const getUserData = async () => {
-      console.log('Profile Box');
-      const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/users/1`);
-      const json = await api.json();
-      let email = json.email;
-      let password = json.password;
+    const getUserData =  () => {    
+
       if (email) {
         setEmail(email);
       }
@@ -29,6 +34,9 @@ export const MyProfileBox = () => {
   },[])
  
   const tweet = getContext.tweet;
+  console.log(tweet)
+  console.log(`Email is :${email}`)
+  console.log(`Password is : ${password}`)
   const myProfileData = tweet.find((para: any) => { return para.email === email && para.password === password });
  
     return (

@@ -4,7 +4,7 @@ import { MobileNavbar } from "../components/mobileNavbar";
 import { MyProfileBox } from "../components/myProfileBox";
 import { AddIconMobile } from "../components/addIconMobile";
 import { RightSideHome } from "../components/rightSideHome";
-import { TweetDataCall } from "../components/tweetData";
+import { TweetDataCall } from "../components/tweetDataCall";
 
 export default function Home() {
   

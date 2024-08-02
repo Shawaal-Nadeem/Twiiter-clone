@@ -45,12 +45,13 @@ export const LoginForm=()=> {
           try {
 
             if (handleApi === false || handleAgainFetch===true) {
-              const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter`);
+              const api = await fetch(`http://localhost:8000/tweets`);
               const json = await api.json();
               localData.current = json;
+              console.log(localData.current);
               setHandleApi(true);
             }
-            console.log(localData.current);
+            
             const foundItem = localData.current.find((parameter: any) => {
               if (parameter.email === email && parameter.password === password) {
                 return parameter
@@ -62,17 +63,7 @@ export const LoginForm=()=> {
               console.log(email);
               console.log(password);
               setMove(true);
-            //save current user data
-            const userData = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/users/1`, {
-              method: 'PUT',
-              body: JSON.stringify({
-                email: email,
-                password:password
-              }),
-              headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-              }
-            })
+            
               
             }
             else {
@@ -97,17 +88,16 @@ export const LoginForm=()=> {
     if (state === true) {
       if (submit === true) {
         let slugName = username.replace(/\s/g, '');
+        console.log(`Slug Name is : ${slugName}`)
         const postApi = async () => {
           try {
-            const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter`, {
+            const api = await fetch(`http://localhost:8000/tweets`, {
               method: 'POST',
               body: JSON.stringify({
                 profile: "/images/myprofile1.jpeg",
                 username: username,
                 slug: `${slugName}-profile`,
                 email: email,
-                time: 4,
-                unit: "h",
                 content: null,
                 contentImage: null,
                 likesNumber: 0,
@@ -122,17 +112,7 @@ export const LoginForm=()=> {
               }
             })
             
-            //save current user data
-            const userData = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/users/1`, {
-              method: 'PUT',
-              body: JSON.stringify({
-                email: email,
-                password:password
-              }),
-              headers: {
-                'Content-type': 'application/json; charset=UTF-8',
-              }
-            })     
+            
           }
           catch (error) {
             console.log(`Error in Post Api are : ${error}`)

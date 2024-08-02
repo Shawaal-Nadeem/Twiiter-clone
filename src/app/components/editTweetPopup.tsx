@@ -26,29 +26,39 @@ export const EditTweetPopup = (props2: any) => {
       console.log('Entering Edit')
       console.log(newId);
       console.log(currentTweet);
-      const patchApi = async () => {
-        try {
-          const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter/${newId}`, {
-            method: 'PUT',
-            body: JSON.stringify({
-              content: currentTweet
-            }),
-            headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-            }
-          });
-          const json = await api.json();
-          console.log(json);
-          setTimeout(() => {
-            setTriggerGetApi(true);
-          }, 1000)
-          setHandleEditTweet(false);
-        }
-        catch (error) {
-          console.log(`Error in Patching are : ${error}`);
-         } 
-        }
-      patchApi();
+      const getPersonDetail = async() => {
+        const api = await fetch(`http://localhost:8000/tweets/${newId}`);
+        const json1 = await api.json();
+        console.log(json1);
+
+        const api2 = await fetch(`http://localhost:8000/tweets/${newId}`, {
+              method: 'PUT',
+              body: JSON.stringify({
+                profile: json1.profile,
+                username: json1.username,
+                slug: json1.slug,
+                email: json1.email,
+                contentImage: json1.contentImage,
+                likesNumber: json1.likesNumber,
+                commentsNumber: json1.commentsNumber,
+                password: json1.password,
+                comments: json1.comments,
+                likeUserIds:json1.likeUserIds,
+                content: currentTweet
+              }),
+              headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+              }
+            });
+            // const json = await api.json();
+            // console.log(json);
+            setTimeout(() => {
+              setTriggerGetApi(true);
+            }, 1000)
+            setHandleEditTweet(false);
+         
+      }
+      getPersonDetail();
     }
   }, [currentTweet,handleEditTweet])
   const handleEditTweetFunction = () => {

@@ -37,9 +37,9 @@ export const MorePopup = (props: any) => {
     setShow2:setShow2
   }
 
-  const email = getContext.email;
+  const email = localStorage.getItem("email");
   const setEmail = getContext.setEmail;
-  const password = getContext.password;
+  const password = localStorage.getItem("password");
   const setPassword = getContext.setPassword;
   // useEffect(() => {
   //   const getUserData = async () => {

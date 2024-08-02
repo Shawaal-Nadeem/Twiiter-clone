@@ -1,5 +1,5 @@
 'use client'
-import { TweetData } from "./tweetData";
+import { TweetData } from "./tweetDataCall";
 import Image from "next/image";
 import { useContext,useEffect } from "react";
 import { context } from "@/contextAPI/contextApi";
@@ -15,7 +15,7 @@ export const UniqueProfileData = ({ props }: { props: string }) => {
     console.log('Get API')
     const getApi = async () => {
       try {
-        const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter`);
+        const api = await fetch(`http://localhost:8000/tweets`);
         const json = await api.json();
         console.log(json);
         setTweet(json.reverse());
@@ -27,17 +27,19 @@ export const UniqueProfileData = ({ props }: { props: string }) => {
     getApi();
   }, [triggerGetApi]);
 
-  const email = getContext.email;
+//   const email = getContext.email;
   const setEmail = getContext.setEmail;
-  const password = getContext.password;
+//   const password = getContext.password;
   const setPassword = getContext.setPassword;
+  
+  let getemail =localStorage.getItem('email');
+  let getpassword =localStorage.getItem('password');
+  console.log('Profile Box');
+  let email = getemail;
+  let password = getpassword;
   useEffect(() => {
-    const getUserData = async () => {
-      console.log('Profile Box');
-      const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/users/1`);
-      const json = await api.json();
-      let email = json.email;
-      let password = json.password;
+    const getUserData = () => {
+     
       if (email) {
         setEmail(email);
       }

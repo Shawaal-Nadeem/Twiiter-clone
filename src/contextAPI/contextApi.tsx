@@ -43,7 +43,8 @@ interface Theme {
     triggerGetApiLikes: boolean,
     setTriggerGetApiLikes: Dispatch<SetStateAction<boolean>>,
     likeTweet: boolean,
-    setLikeTweet: Dispatch<SetStateAction<boolean>>
+    setLikeTweet: Dispatch<SetStateAction<boolean>>,
+    
 }
 export const context = createContext({} as Theme);
 

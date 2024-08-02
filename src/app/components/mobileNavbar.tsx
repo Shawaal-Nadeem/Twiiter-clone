@@ -14,17 +14,19 @@ export const MobileNavbar = () => {
   }
   const getContext = useContext(context);
   const tweet = getContext.tweet;
-  const email = getContext.email;
   const setEmail = getContext.setEmail;
-  const password = getContext.password;
   const setPassword = getContext.setPassword;
+  let getemail =localStorage.getItem('email');
+  let getpassword =localStorage.getItem('password');
+
+  console.log('Profile Box');
+
+  let email = getemail;
+  let password = getpassword;
+
   useEffect(() => {
-    const getUserData = async () => {
-      console.log('Profile Box');
-      const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/users/1`);
-      const json = await api.json();
-      let email = json.email;
-      let password = json.password;
+    const getUserData =  () => {    
+
       if (email) {
         setEmail(email);
       }
@@ -35,6 +37,7 @@ export const MobileNavbar = () => {
     }
     getUserData();
   },[])
+  
 
   let myProfileObj = tweet.find((temp:any) => { return email === temp.email && password === temp.password })
   let myProfile = myProfileObj?.slug;

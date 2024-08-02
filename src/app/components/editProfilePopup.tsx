@@ -32,34 +32,51 @@ export const EditProfilePopup = ({profileData}:{profileData:any}) => {
       console.log('Inside condition');
       console.log('Entering Edit')
      
-      const patchApi = async (paraRecv: any) => {
-        console.log(paraRecv.id);
-        console.log(currentPic);
-        try {
-          const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter/${paraRecv.id}`, {
-            method: 'PUT',
-            body: JSON.stringify({
-              username: currentName,
-              profile:currentPic
-            }),
-            headers: {
-              'Content-type': 'application/json; charset=UTF-8',
-            }
-          });
-          const json = await api.json();
-          console.log(json);
-          setTimeout(() => {
-            setTriggerGetApi(true);
-          }, 1000)
-          setHandleEditProfile(false);
-        }
-        catch (error) {
-          console.log(`Error in Patching are : ${error}`);
-         }
-        }
-       searchCurrentNameIds.map((para:any)=>{return patchApi(para)});
+      const getUserData=async(paraRecv: any)=>{
+        const api = await fetch(`http://localhost:8000/tweets/${paraRecv.id}`);
+        const json = await api.json();
+
+        const patchApi = async () => {
+          console.log(paraRecv.id);
+          console.log(`Current Pic URL: ${currentPic}`);
+          try {
+            console.log(`Current Pic inside patch API URL: ${currentPic}`);
+            const api = await fetch(`http://localhost:8000/tweets/${paraRecv.id}`, {
+              method: 'PUT',
+              body: JSON.stringify({
+                  slug: `${json.slug}`,
+                  email: json.email,
+                  content: json.content,
+                  contentImage: json.contentImage,
+                  likesNumber: json.likesNumber,
+                  commentsNumber: json.commentsNumber,
+                  password: json.password,
+                  comments: json.comments,
+                  likeUserIds: json.likeUserIds,
+                  profile: currentPic,
+                  username: currentName
+              }),
+              headers: {
+                'Content-type': 'application/json; charset=UTF-8',
+              }
+            });
+            // const json = await api.json();
+            // console.log(json);
+            setTimeout(() => {
+              setTriggerGetApi(true);
+            }, 1000)
+            setHandleEditProfile(false);
+          }
+          catch (error) {
+            console.log(`Error in Patching are : ${error}`);
+           }
+          }
+        patchApi()
+      }
+       searchCurrentNameIds.map((para:any)=>{return getUserData(para)});
     }
   }, [currentName,handleEditProfile])
+  
   const handleEditProfileFunction = () => {
     setHandleEditProfile(true);
     ToggleShowTweetPopup();

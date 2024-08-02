@@ -51,8 +51,8 @@ export const CommentsPopup = (props: any) => {
     event.stopPropagation();
   };
   
-  const email = getContext.email;
-  const password = getContext.password;
+  const email = localStorage.getItem("email");
+  const password = localStorage.getItem("password");
   const myProfile=tweet.find((item:any)=>{return item.email===email && item.password===password})
   const [handleUploadComment, setHandleUploadComment] = useState(false);
   // const [commentsNumber, setCommentsNumber] = useState(data.commentsNumber);
@@ -64,11 +64,11 @@ export const CommentsPopup = (props: any) => {
       console.log(newId);
       
       const getApi = async () => {
-        const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter/${newId}`);
+        const api = await fetch(`http://localhost:8000/tweets/${newId}`);
         const json = await api.json();
         let oldArr = json.comments;
         console.log(oldArr);
-        setComments(oldArr.reverse());
+        setComments(oldArr?.reverse());
         // Save Comment
         if (handleUploadComment === true) {
           let obj = {
@@ -82,12 +82,22 @@ export const CommentsPopup = (props: any) => {
           console.log(oldArr);
         
           let commentsNum = oldArr.length;
-          console.log(commentsNum);
+          console.log('Comments Quantity: '+ commentsNum);
           // console.log(data.commentsNumber);
           const putApi = async () => {
-            const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter/${newId}`, {
+            console.log('Comments Number inside Put function : '+ commentsNum);
+            const api = await fetch(`http://localhost:8000/tweets/${newId}`, {
               method: 'PUT',
               body: JSON.stringify({
+                profile: json.profile,
+                username: json.username,
+                slug: `${json.slug}`,
+                email: json.email,
+                content: json.content,
+                contentImage: json.contentImage,
+                likesNumber: json.likesNumber,
+                password: json.password,
+                likeUserIds:json.likeUserIds,
                 comments: oldArr,
                 commentsNumber:commentsNum
               }),
@@ -132,7 +142,7 @@ export const CommentsPopup = (props: any) => {
                 <hr className=" border border-[#CACACA] dark:border-[#242424] mt-2" />
                 <div className=" flex flex-col items-center h-[310px]  overflow-y-scroll mt-2">
                   <div className="  w-[85%] max-sm:w-[90%]">
-                  {comments.length > 0 ? comments.map(ShowComment) : null}
+                  {comments?.length > 0 ? comments.map(ShowComment) : null}
                   </div>
                 </div>
                 <hr className=" w-full mt-3 border-[1.5px] border-solid border-[#CACACA] dark:border-[#242424]" />

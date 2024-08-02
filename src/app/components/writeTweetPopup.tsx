@@ -59,17 +59,15 @@ export const WriteTweetPopup = () => {
       const postApi = async () => {
         console.log('Entering');
         console.log(tweetContent);
-        let slugName = myProfileData.username.replace(/\s/g, '')
+        let slugName = myProfileData?.username.replace(/\s/g, '')
         try {
-          const api = await fetch(`https://65054b57ef808d3c66efe2ce.mockapi.io/todos/api/Twitter`, {
+          const api = await fetch(`http://localhost:8000/tweets`, {
             method: 'POST',
             body: JSON.stringify({
               profile: myProfileData.profile,
               username: myProfileData.username,
               slug: `${slugName}-profile`,
               email: myProfileData.email,
-              time: 1,
-              unit: "m",
               content: tweetContent,
               contentImage: null,
               likesNumber: 0,

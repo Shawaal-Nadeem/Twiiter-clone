@@ -1,34 +1,41 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Twitter Clone Application
 
-## Getting Started
+## Overview
+I developed a Twitter clone that includes both login and signup pages. Registered users can log in by entering their email and password, which directs them to the home page displaying all users' tweets. New users can sign up by providing their details, creating an account, and then logging in.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+### User Authentication
+- Registered users can log in with email and password.
+- New users can sign up and create an account.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Home Page
+- Displays all users' tweets.
+- Users can like, dislike, and comment on tweets.
+- Users can write tweets, upload pictures with captions (via URLs), and edit or delete their own tweets.
+- Users cannot edit or delete others' tweets but can copy them.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Profile Management
+- Users can view other profiles.
+- When viewing their own profile, users have access to a settings icon to edit their profile.
+- Profile editing includes renaming the profile and changing the profile picture (via URL).
+- Users can see their own tweets on their profile and others' tweets on other profiles.
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+### Theme Options
+- Users can choose between light and dark modes.
 
-## Learn More
+## Technologies
 
-To learn more about Next.js, take a look at the following resources:
+### Frontend
+- Next.js (TypeScript, Tailwind CSS)
+- Mobile Responsive
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Backend
+- Python 
+- FastAPI for API development
+- Database schema defined in "database.py" of repo `https://github.com/Shawaal-Nadeem/twitter_clone_backend`
+- Neon database for storing user data
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Deployment
+- The entire backend application was containerized using Docker and pushed to Docker Hub.
+- Deployed on Microsoft Azure Container Cloud Service.
