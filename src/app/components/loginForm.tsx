@@ -10,7 +10,6 @@ import Cookies from 'js-cookie';
 export const LoginForm=()=> {
 
   const AZURE_API_URL = process.env.NEXT_PUBLIC_API_URL || '';
-  console.log('AZURE_API_URL:', AZURE_API_URL); // Add this line to verify the URL
 
   const [state, setState] = useState(false);
   const [show, setShow] = useState(false);
