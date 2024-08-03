@@ -203,7 +203,7 @@ export const TweetDataCall = () => {
           const api = await fetch(`http://localhost:8000/tweets/${tempValue}`, {
             method: 'PUT',
             body: JSON.stringify({
-              profile: "stringprofile.jpeg",
+              profile: json.profile,
                 username: json.username,
                 slug: `${json.slug}`,
                 email: json.email,
