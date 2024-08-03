@@ -6,8 +6,11 @@ import { useContext } from "react";
 import { context } from "@/contextAPI/contextApi";
 import Cookies from 'js-cookie';
 
+
 export const LoginForm=()=> {
-    
+
+  const AZURE_API_URL = process.env.NEXT_PUBLIC_API_URL || '';
+  
   const [state, setState] = useState(false);
   const [show, setShow] = useState(false);
   const getContext = useContext(context);
@@ -52,7 +55,7 @@ export const LoginForm=()=> {
           try {
 
             if (handleApi === false || handleAgainFetch===true) {
-              const api = await fetch(`http://localhost:8000/tweets`);
+              const api = await fetch(`${AZURE_API_URL}`);
               const json = await api.json();
               localData.current = json;
               console.log(localData.current);
@@ -98,7 +101,7 @@ export const LoginForm=()=> {
         console.log(`Slug Name is : ${slugName}`)
         const postApi = async () => {
           try {
-            const api = await fetch(`http://localhost:8000/tweets`, {
+            const api = await fetch(`${AZURE_API_URL}`, {
               method: 'POST',
               body: JSON.stringify({
                 profile: "/images/myprofile1.jpeg",

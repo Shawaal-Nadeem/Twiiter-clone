@@ -5,6 +5,9 @@ import { context } from "@/contextAPI/contextApi"
 import Cookies from "js-cookie"
 
 export const EditProfilePopup = ({profileData}:{profileData:any}) => {
+
+  const AZURE_API_URL = process.env.NEXT_PUBLIC_API_URL || '';
+
     const getContext = useContext(context);
     const show1 = getContext.showEditTweet;
     const setShow1 = getContext.setShowEditTweet;
@@ -34,7 +37,7 @@ export const EditProfilePopup = ({profileData}:{profileData:any}) => {
       console.log('Entering Edit')
      
       const getUserData=async(paraRecv: any)=>{
-        const api = await fetch(`http://localhost:8000/tweets/${paraRecv.id}`);
+        const api = await fetch(`${AZURE_API_URL}/${paraRecv.id}`);
         const json = await api.json();
 
         const patchApi = async () => {
@@ -42,7 +45,7 @@ export const EditProfilePopup = ({profileData}:{profileData:any}) => {
           console.log(`Current Pic URL: ${currentPic}`);
           try {
             console.log(`Current Pic inside patch API URL: ${currentPic}`);
-            const api = await fetch(`http://localhost:8000/tweets/${paraRecv.id}`, {
+            const api = await fetch(`${AZURE_API_URL}/${paraRecv.id}`, {
               method: 'PUT',
               body: JSON.stringify({
                   slug: `${json.slug}`,

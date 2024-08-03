@@ -5,8 +5,10 @@ import { context } from "@/contextAPI/contextApi"
 import Cookies from 'js-cookie';
 
 const ShowComment = (data: any, index: any) => {
-  const getContext = useContext(context);
 
+  
+  const getContext = useContext(context);
+  
   return (
     <div key={index}>
       <div className=" mt-3">
@@ -27,6 +29,9 @@ const ShowComment = (data: any, index: any) => {
   )
 }
 export const CommentsPopup = (props: any) => {
+  
+  const AZURE_API_URL = process.env.NEXT_PUBLIC_API_URL || '';
+  
   let data = props.data
   let newId=props.idNum
   
@@ -66,7 +71,7 @@ export const CommentsPopup = (props: any) => {
       console.log(newId);
       
       const getApi = async () => {
-        const api = await fetch(`http://localhost:8000/tweets/${newId}`);
+        const api = await fetch(`${AZURE_API_URL}/${newId}`);
         const json = await api.json();
         let oldArr = json.comments;
         console.log(oldArr);
@@ -88,7 +93,7 @@ export const CommentsPopup = (props: any) => {
           // console.log(data.commentsNumber);
           const putApi = async () => {
             console.log('Comments Number inside Put function : '+ commentsNum);
-            const api = await fetch(`http://localhost:8000/tweets/${newId}`, {
+            const api = await fetch(`${AZURE_API_URL}/${newId}`, {
               method: 'PUT',
               body: JSON.stringify({
                 profile: json.profile,

@@ -39,3 +39,12 @@ I developed a Twitter clone that includes both login and signup pages. Registere
 ### Deployment
 - The entire backend application was containerized using Docker and pushed to Docker Hub.
 - Deployed on Microsoft Azure Container Cloud Service.
+
+## Important Notice
+
+**Security Advisory:**
+
+For security reasons, please do not use your personal or original email addresses and passwords with this application. This project is primarily focused on development and may not have robust security measures in place. Instead, create new accounts for testing purposes or use existing accounts registered with the application.
+
+Thank you for your understanding and cooperation.
+

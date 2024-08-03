@@ -5,6 +5,9 @@ import { context } from "@/contextAPI/contextApi"
 import { useRouter } from "next/navigation"
 // let mainIndex = 0;
 export const EditTweetPopup = (props2: any) => {
+
+  const AZURE_API_URL = process.env.NEXT_PUBLIC_API_URL || '';
+
   const getContext = useContext(context);
   const show1 = props2.show1
   const setShow1 = props2.setShow1
@@ -27,11 +30,11 @@ export const EditTweetPopup = (props2: any) => {
       console.log(newId);
       console.log(currentTweet);
       const getPersonDetail = async() => {
-        const api = await fetch(`http://localhost:8000/tweets/${newId}`);
+        const api = await fetch(`${AZURE_API_URL}/${newId}`);
         const json1 = await api.json();
         console.log(json1);
 
-        const api2 = await fetch(`http://localhost:8000/tweets/${newId}`, {
+        const api2 = await fetch(`${AZURE_API_URL}/${newId}`, {
               method: 'PUT',
               body: JSON.stringify({
                 profile: json1.profile,

@@ -9,6 +9,8 @@ import Cookies from "js-cookie";
 let getTweets = tweets;
 export const WriteTweetPopup = () => {
 
+  const AZURE_API_URL = process.env.NEXT_PUBLIC_API_URL || '';
+
   // When click on + icon and then we click on screen
 
   const getContext = useContext(context);
@@ -63,7 +65,7 @@ export const WriteTweetPopup = () => {
         console.log(tweetContent);
         let slugName = myProfileData?.username.replace(/\s/g, '')
         try {
-          const api = await fetch(`http://localhost:8000/tweets`, {
+          const api = await fetch(`${AZURE_API_URL}`, {
             method: 'POST',
             body: JSON.stringify({
               profile: myProfileData.profile,

@@ -5,6 +5,9 @@ import { context } from "@/contextAPI/contextApi"
 import { useRouter } from "next/navigation";
 
 export const DeleteTweetPopup = (props2: any) => {
+
+  const AZURE_API_URL = process.env.NEXT_PUBLIC_API_URL || '';
+
   const getContext = useContext(context);
 
   const show2 = props2.show2
@@ -24,7 +27,7 @@ export const DeleteTweetPopup = (props2: any) => {
       console.log(newId);
       const patchApi = async () => {
         try {
-          const api = await fetch(`http://localhost:8000/tweets/${newId}`, {
+          const api = await fetch(`${AZURE_API_URL}/${newId}`, {
             method: 'DELETE',
             headers: {
               'Content-type': 'application/json; charset=UTF-8',

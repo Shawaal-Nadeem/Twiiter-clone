@@ -125,6 +125,9 @@ export const TweetData = (data: any, index: any) => {
 
 
 export const TweetDataCall = () => {
+
+  const AZURE_API_URL = process.env.NEXT_PUBLIC_API_URL || '';
+
   const getContext = useContext(context);
   const tweet = getContext.tweet;
   const setTweet = getContext.setTweet;
@@ -140,7 +143,7 @@ export const TweetDataCall = () => {
     console.log('Get API')
     const getApi = async () => {
       try {
-        const api = await fetch(`http://localhost:8000/tweets`);
+        const api = await fetch(`${AZURE_API_URL}`);
         const json = await api.json();
         console.log(json);
         setTweet(json.reverse());
@@ -196,11 +199,11 @@ export const TweetDataCall = () => {
   
       // Likes Upload
       const getPersonDetail = async () => {
-        const api = await fetch(`http://localhost:8000/tweets/${tempValue}`);
+        const api = await fetch(`${AZURE_API_URL}/${tempValue}`);
         const json = await api.json();
 
         const putApi = async () => {
-          const api = await fetch(`http://localhost:8000/tweets/${tempValue}`, {
+          const api = await fetch(`${AZURE_API_URL}/${tempValue}`, {
             method: 'PUT',
             body: JSON.stringify({
               profile: json.profile,

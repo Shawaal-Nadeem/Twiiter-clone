@@ -7,6 +7,9 @@ import { Settings } from "./settingIcon";
 import Cookies from "js-cookie";
 
 export const UniqueProfileData = ({ props }: { props: string }) => {
+
+  const AZURE_API_URL = process.env.NEXT_PUBLIC_API_URL || '';
+
   const getContext = useContext(context);
   const tweet = getContext.tweet;
   const setTweet = getContext.setTweet;
@@ -17,7 +20,7 @@ export const UniqueProfileData = ({ props }: { props: string }) => {
     console.log('Get API')
     const getApi = async () => {
       try {
-        const api = await fetch(`http://localhost:8000/tweets`);
+        const api = await fetch(`${AZURE_API_URL}`);
         const json = await api.json();
         console.log(json);
         setTweet(json.reverse());
