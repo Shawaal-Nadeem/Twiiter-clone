@@ -3,6 +3,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { useContext,useEffect } from "react"
 import { context } from "@/contextAPI/contextApi"
+import Cookies from 'js-cookie'
+
 export const MyProfileBox = () => {
   const getContext = useContext(context);
   const mode = getContext.mode;
@@ -11,8 +13,8 @@ export const MyProfileBox = () => {
   // const password = getContext.password;
   const setPassword = getContext.setPassword;
   const setTweet = getContext.setTweet
-  let getemail =localStorage.getItem('email');
-  let getpassword =localStorage.getItem('password');
+  let getemail =Cookies.get('email');
+  let getpassword =Cookies.get('password');
 
   console.log('Profile Box');
 

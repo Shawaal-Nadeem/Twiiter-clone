@@ -2,6 +2,7 @@
 import Image from "next/image"
 import { useContext,useState,useEffect } from "react"
 import { context } from "@/contextAPI/contextApi"
+import Cookies from "js-cookie"
 
 export const EditProfilePopup = ({profileData}:{profileData:any}) => {
     const getContext = useContext(context);
@@ -17,8 +18,8 @@ export const EditProfilePopup = ({profileData}:{profileData:any}) => {
   }
   
   const tweet = getContext.tweet;
-  const email = localStorage.email;
-  const password = localStorage.password;
+  const email = Cookies.get('email');
+  const password = Cookies.get('password');
   const searchCurrentNameIds = tweet.filter((temp: any) => {return temp?.email === email && temp?.password === password });
   console.log(searchCurrentNameIds);
   let name: string = searchCurrentNameIds[0].username;

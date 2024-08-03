@@ -4,6 +4,8 @@ import Image from "next/image";
 import { useContext,useEffect } from "react";
 import { context } from "@/contextAPI/contextApi";
 import { Settings } from "./settingIcon";
+import Cookies from "js-cookie";
+
 export const UniqueProfileData = ({ props }: { props: string }) => {
   const getContext = useContext(context);
   const tweet = getContext.tweet;
@@ -32,8 +34,8 @@ export const UniqueProfileData = ({ props }: { props: string }) => {
 //   const password = getContext.password;
   const setPassword = getContext.setPassword;
   
-  let getemail =localStorage.getItem('email');
-  let getpassword =localStorage.getItem('password');
+  let getemail =Cookies.get('email');
+  let getpassword =Cookies.get('password');
   console.log('Profile Box');
   let email = getemail;
   let password = getpassword;

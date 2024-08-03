@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import { context } from "@/contextAPI/contextApi";
 import tweets from "../utils/mock";
+import Cookies from "js-cookie";
+
 let getTweets = tweets;
 export const WriteTweetPopup = () => {
 
@@ -48,8 +50,8 @@ export const WriteTweetPopup = () => {
 
   // Tweet Adding 
   const tweetLikes = getContext.like;
-  const email = localStorage.getItem("email");
-  const password = localStorage.getItem("password");
+  const email = Cookies.get("email");
+  const password = Cookies.get("password");
   const myProfileData = tweet.find((para: any) => { return para.email === email && para.password === password });
   const [handleWriteTweet, setHandleWriteTweet] = useState(false);
   const [tweetContent, setTweetContent] = useState('');

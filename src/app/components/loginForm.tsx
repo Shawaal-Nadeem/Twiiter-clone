@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useContext } from "react";
 import { context } from "@/contextAPI/contextApi";
+import Cookies from 'js-cookie';
+
 export const LoginForm=()=> {
     
   const [state, setState] = useState(false);
@@ -39,6 +41,11 @@ export const LoginForm=()=> {
   let localData:any =useRef();    // useRef store my old value when re-renders component. Why i use ? -> bcz when useEffect calls localData again initialize.
   
   useEffect(() => {
+    // Set email and password from cookies if they exist
+    const storedEmail = Cookies.get('email');
+    const storedPassword = Cookies.get('password');
+    if (storedEmail) setEmail(storedEmail);
+    if (storedPassword) setPassword(storedPassword);
     //Login Side
     if (state === false) {
       const getApi = async () => {
@@ -128,6 +135,29 @@ export const LoginForm=()=> {
       }
     }
     }, [submit,email,password])
+    // Cookies Code
+    useEffect(() => {
+      const handleBeforeUnload = () => {
+        Cookies.remove('email');
+        Cookies.remove('password');
+      };
+      window.addEventListener('beforeunload', handleBeforeUnload);
+      return () => {
+        window.removeEventListener('beforeunload', handleBeforeUnload);
+      };
+    }, []);
+  
+    const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newEmail = e.target.value;
+      setEmail(newEmail);
+      Cookies.set('email', newEmail);
+    };
+  
+    const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+      const newPassword = e.target.value;
+      setPassword(newPassword);
+      Cookies.set('password', newPassword);
+    };
   
     return (
       <>
@@ -160,7 +190,7 @@ export const LoginForm=()=> {
             </div>
             <div className=" mt-6 max-md:w-[80%]">
               <label className=" text-grayLight font-SamsungSharpSansMedium">Email Address</label>
-              <input className= "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm  dark:bg-black text-grayLight " placeholder={email} onChange={(e)=>{setEmail(e.target.value),localStorage.setItem("email",e.target.value)}} type="email"></input>
+              <input className= "flex items-center border-2 border-solid border-grayLight h-12 rounded-lg outline-none w-96 pl-4 placeholder-grayLight max-md:w-[100%] font-SamsungSharpSansMedium text-sm  dark:bg-black text-grayLight " placeholder={email} onChange={handleEmailChange} type="email"></input>
             </div>
             <div className={state === true ? " mt-4 max-md:w-[80%]" : "hidden"}>
               <label className=" text-grayLight font-SamsungSharpSansMedium">Create Username</label>
@@ -177,7 +207,7 @@ export const LoginForm=()=> {
               </label>      
             }
               <div className=" flex items-center border-2 border-solid border-black h-12 rounded-lg w-96 max-md:w-[100%] dark:border-white">
-                <input className={ show===false? " outline-none w-96 max-md:w-72 pl-4 font-SamsungSharpSansBold text-2xl dark:bg-black " : " outline-none w-96 max-md:w-72 pl-4 dark:bg-black dark:text-white font-SamsungSharpSansMedium"} type={show === false ? "password" : "text"} value={password} onChange={(e) => {setPassword(e.target.value),localStorage.setItem("password",e.target.value)}}></input>
+                <input className={ show===false? " outline-none w-96 max-md:w-72 pl-4 font-SamsungSharpSansBold text-2xl dark:bg-black " : " outline-none w-96 max-md:w-72 pl-4 dark:bg-black dark:text-white font-SamsungSharpSansMedium"} type={show === false ? "password" : "text"} value={password} onChange={handlePasswordChange}></input>
                 <Image src={ mode === false ? show === false ? "/images/notEye.png" : "/images/openEye1.png" : show === false ? "/images/notEye1.png" : "/images/openEye.png"}onClick={() => {ToggleIcon();}} alt="Loading..." width={19} height={19} className=" cursor-pointer ml-2 md:mr-3"></Image>
               </div>
             </div>

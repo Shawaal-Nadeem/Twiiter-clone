@@ -2,6 +2,8 @@
 import Image from "next/image"
 import { useContext, useState,useEffect } from "react"
 import { context } from "@/contextAPI/contextApi"
+import Cookies from 'js-cookie';
+
 const ShowComment = (data: any, index: any) => {
   const getContext = useContext(context);
 
@@ -51,8 +53,8 @@ export const CommentsPopup = (props: any) => {
     event.stopPropagation();
   };
   
-  const email = localStorage.getItem("email");
-  const password = localStorage.getItem("password");
+  const email = Cookies.get("email");
+  const password = Cookies.get("password");
   const myProfile=tweet.find((item:any)=>{return item.email===email && item.password===password})
   const [handleUploadComment, setHandleUploadComment] = useState(false);
   // const [commentsNumber, setCommentsNumber] = useState(data.commentsNumber);

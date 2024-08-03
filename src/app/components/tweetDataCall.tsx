@@ -5,6 +5,7 @@ import { CommentsPopup } from "./commentsPopup";
 import Image from "next/image";
 import { useContext, useEffect, useState,useRef } from "react";
 import { context } from "@/contextAPI/contextApi";
+import Cookies from "js-cookie";
 
 export const TweetData = (data: any, index: any) => {
   const getContext = useContext(context);
@@ -41,8 +42,8 @@ export const TweetData = (data: any, index: any) => {
   };
   
     
-  const email = localStorage.getItem("email");
-  const password = localStorage.getItem("password");
+  const email = Cookies.get("email");
+  const password = Cookies.get("password");
 
   const childTemp = (data: any) => {
     console.log('Child Temp Data')

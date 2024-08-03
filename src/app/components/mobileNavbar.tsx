@@ -4,6 +4,7 @@ import Image from "next/image"
 import { useState,useContext,useEffect } from "react"
 import Link from "next/link"
 import { context } from "@/contextAPI/contextApi"
+import Cookies from "js-cookie"
 
 export const MobileNavbar = () => {
     const [show, setShow] = useState(false);
@@ -16,8 +17,8 @@ export const MobileNavbar = () => {
   const tweet = getContext.tweet;
   const setEmail = getContext.setEmail;
   const setPassword = getContext.setPassword;
-  let getemail =localStorage.getItem('email');
-  let getpassword =localStorage.getItem('password');
+  let getemail =Cookies.get('email');
+  let getpassword =Cookies.get('password');
 
   console.log('Profile Box');
 

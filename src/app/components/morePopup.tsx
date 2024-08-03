@@ -5,6 +5,7 @@ import { context } from "@/contextAPI/contextApi"
 import { useState } from "react"
 import { EditTweetPopup } from "./editTweetPopup"
 import { DeleteTweetPopup } from "./deleteTwetPopup"
+import Cookies from "js-cookie"
 
 export const MorePopup = (props: any) => {
 
@@ -37,9 +38,9 @@ export const MorePopup = (props: any) => {
     setShow2:setShow2
   }
 
-  const email = localStorage.getItem("email");
+  const email = Cookies.get("email");
   const setEmail = getContext.setEmail;
-  const password = localStorage.getItem("password");
+  const password = Cookies.get("password");
   const setPassword = getContext.setPassword;
   // useEffect(() => {
   //   const getUserData = async () => {
