@@ -42,7 +42,7 @@ I developed a Twitter clone that includes both login and signup pages. Registere
 
 ## Important Notice
 
-**Security Advisory:**
+**⚠️ Security Advisory:**
 
 For security reasons, please do not use your personal or original email addresses and passwords with this application. This project is primarily focused on development and may not have robust security measures in place. Instead, create new accounts for testing purposes or use existing accounts registered with the application.
 
